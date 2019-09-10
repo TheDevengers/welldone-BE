@@ -16,6 +16,22 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+api_path = 'api/v1'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # API
+    path('{0}/articles/<int:pk>/comments'.format(api_path), view, name='article_comments_api'),
+    path('{0}/articles/<int:pk>/favorite'.format(api_path), view, name='article_favorite_api'),
+    path('{0}/articles/<int:pk>/highlight/<int:pk>'.format(api_path), view, name='article_highlight_api'),
+    path('{0}/articles/<int:pk>/highlight'.format(api_path), view, name='article_highlights_api'),
+    path('{0}/articles/<int:pk>/mention'.format(api_path), view, name='article_mention_api'),
+    path('{0}/articles/<int:pk>'.format(api_path), view, name='article_api'),
+    path('{0}/articles'.format(api_path), view, name='articles_api'),
+
+    path('{0}/users/<int:pk>/follow'.format(api_path), view, name='user_follow_api'),
+    path('{0}/users/<int:pk>/unfollow'.format(api_path), view, name='user_unfollow_api'),
+    path('{0}/users/<int:pk>'.format(api_path), view, name='user_api'),
+    path('{0}/users'.format(api_path), view, name='users_api'),
 ]
