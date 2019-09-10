@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from users.api import UsersAPI, UserAPI
+from articles.api import ArticlesAPI, ArticleAPI
+
 api_path = 'api/v1'
 
 urlpatterns = [
@@ -27,11 +30,11 @@ urlpatterns = [
     path('{0}/articles/<int:pk>/highlight/<int:pk>'.format(api_path), view, name='article_highlight_api'),
     path('{0}/articles/<int:pk>/highlight'.format(api_path), view, name='article_highlights_api'),
     path('{0}/articles/<int:pk>/mention'.format(api_path), view, name='article_mention_api'),
-    path('{0}/articles/<int:pk>'.format(api_path), view, name='article_api'),
-    path('{0}/articles'.format(api_path), view, name='articles_api'),
+    path('{0}/articles/<int:pk>'.format(api_path), ArticleAPI.as_view(), name='article_api'),
+    path('{0}/articles'.format(api_path), ArticlesAPI.as_view(), name='articles_api'),
 
     path('{0}/users/<int:pk>/follow'.format(api_path), view, name='user_follow_api'),
     path('{0}/users/<int:pk>/unfollow'.format(api_path), view, name='user_unfollow_api'),
-    path('{0}/users/<int:pk>'.format(api_path), view, name='user_api'),
-    path('{0}/users'.format(api_path), view, name='users_api'),
+    path('{0}/users/<int:pk>'.format(api_path), UserAPI.as_view(), name='user_api'),
+    path('{0}/users'.format(api_path), UsersAPI.as_view(), name='users_api'),
 ]
