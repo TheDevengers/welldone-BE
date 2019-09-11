@@ -6,3 +6,10 @@ env/
 
 #Database
 db.sqlite3
+
+#compiled files
+__pycache__
+
+#Editor settings
+.vscode
+.idea
