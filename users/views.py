@@ -1,3 +1,7 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 
-# Create your views here.
+
+def user_articles(request):
+    # TODO Implementar vista
+    return HttpResponse()

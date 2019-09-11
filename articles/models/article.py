@@ -20,7 +20,7 @@ class Article(models.Model):
     categories = models.ManyToManyField(Category, verbose_name='Categories')
     response_to = models.ForeignKey('self', on_delete=models.CASCADE, verbose_name='Response to')
     state = models.CharField(max_length=2, verbose_name='Article state', choices=ART_STATE, default=DRAFT)
-    slug = models.CharField(max_length=150)
+    slug = models.SlugField()
     image = models.ImageField(verbose_name='Image noted')
     publication_date = models.DateTimeField(verbose_name='Publication date', default=datetime.now)
     creation_date = models.DateTimeField(verbose_name='Creation date', auto_now_add=True)

@@ -12,3 +12,8 @@ def latest_articles(request):
     html = render(request, 'articles/latest.html', context)
 
     return HttpResponse(html)
+
+
+def article_detail():
+    # TODO Implementar vista
+    return HttpResponse()

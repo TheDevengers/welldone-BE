@@ -16,10 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from articles.views import latest_articles
+from articles.views import latest_articles, article_detail
+from users.views import user_articles
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
+    path('author/<str:username>', user_articles, name='user_articles'),
+
+    path('article/<str:slug>/', article_detail, name='article_detail'),
     path('', latest_articles, name='latest_articles'),
 ]

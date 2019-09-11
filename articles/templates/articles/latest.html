@@ -1,11 +1,19 @@
 {% extends 'base.html' %}
 
 {% block body_main %}
-    {% for article in latest_articles %}
-        <div>
-            <h2>{{ article.title }}</h2>
-            <img src="#" alt="{{ article.introduction }}" title="{{ article.title }}">
-            <p>{{ article.introduction }}</p>
-        </div>
-    {% endfor %}
+    <div class="article__list">
+        {% for article in latest_articles %}
+            <div class="article__item">
+                <a href="{% url 'article_detail' article.slug %}">
+                    <h2>{{ article.title }}</h2>
+                </a>
+                <small>
+                    Published at {{ article.publication_date }} by
+                    <a href="{% url 'user_articles' article.author.username %}">{{ article.author.username }}</a>
+                </small>
+                <img src="{{ article.image }}" alt="{{ article.introduction }}" title="{{ article.title }}">
+                <p>{{ article.introduction }}</p>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
