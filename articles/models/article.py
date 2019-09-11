@@ -10,6 +10,7 @@ ART_STATE = {
     (PUBLISHED, 'Published'),
 }
 
+
 class Article(models.Model):
     title = models.CharField(max_length=100, verbose_name='Title')
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Author')

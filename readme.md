@@ -10,6 +10,7 @@ We use 3.7.x to create this project. Probably works with some older versions as 
 3. Create a copy of ```.env.example``` file and change the name to ```.env```
 4. Create a migration of the applications ```python manage.py migrate```
 5. Create a superuser ```python manage.py superuser``` f.e.: suadmin@PompeuFabra-2019
+6. Run dev server: `python manage.py runserver`
 
 
 ## Create and activate virtual environments. 

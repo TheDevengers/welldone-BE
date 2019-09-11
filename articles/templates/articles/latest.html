@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block body_main %}
+    {% for article in latest_articles %}
+        <div>
+            <h2>{{ article.title }}</h2>
+            <img src="#" alt="{{ article.introduction }}" title="{{ article.title }}">
+            <p>{{ article.introduction }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
