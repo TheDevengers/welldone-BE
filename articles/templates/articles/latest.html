@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block body_main %}
+    <div class="article__list">
+        {% for article in latest_articles %}
+            <div class="article__item">
+                <a href="{% url 'article_detail' article.slug %}">
+                    <h2>{{ article.title }}</h2>
+                </a>
+                <small>
+                    Published at {{ article.publication_date }} by
+                    <a href="{% url 'user_articles' article.author.username %}">{{ article.author.username }}</a>
+                </small>
+                <img src="{{ article.image }}" alt="{{ article.introduction }}" title="{{ article.title }}">
+                <p>{{ article.introduction }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="pagination">
+        <span class="pagination__links">
+            {% if latest_articles.has_previous %}
+                <a href="?page=1{{ shown_param }}">&laquo; first</a>
+                <a href="?page={{ latest_articles.previous_page_number }}{{ shown_param }}">previous</a>
+            {% endif %}
+            <span>
+                Page {{ latest_articles.number }} of {{ latest_articles.paginator.num_pages }}.
+            </span>
+            {%  if latest_articles.has_next %}
+                <a href="?page={{ latest_articles.next_page_number }}{{ shown_param }}">next</a>
+                <a href="?page={{ latest_articles.paginator.num_pages }}{{ shown_param }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+{% endblock %}
