@@ -9,7 +9,7 @@ We use 3.7.x to create this project. Probably works with some older versions as 
 2. Install all dependencies using ```pip install requirements.txt```
 3. Create a copy of ```.env.example``` file and change the name to ```.env```
 4. Create a migration of the applications ```python manage.py migrate```
-5. Create a superuser ```python manage.py superuser``` f.e.: suadmin@PompeuFabra-2019
+5. Create a superuser ```python manage.py createsuperuser``` f.e.: suadmin@PompeuFabra-2019
 6. Run dev server: `python manage.py runserver`
 
 
@@ -25,4 +25,4 @@ WIN(bash): ```source env/Scripts/activate```
 
 The virtual environment is activated when the prompt has the virtualenv name inside parenthesis.
 
-
+For configure it in Visual Studio Code follow this: https://code.visualstudio.com/docs/python/tutorial-django
