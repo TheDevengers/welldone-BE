@@ -1,0 +1,1 @@
+from .singup_web import Singup

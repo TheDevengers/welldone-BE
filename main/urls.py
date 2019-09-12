@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from users.views import Singup 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('singup/', Singup.as_view(), name='singup_web'),
 ]
