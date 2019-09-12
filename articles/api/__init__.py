@@ -1,1 +1,1 @@
-from .api import ArticleDetailView, ArticleAPI
+from .api import ArticlesAPI, ArticleAPI
