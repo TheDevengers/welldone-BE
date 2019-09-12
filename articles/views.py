@@ -1,19 +1,33 @@
+from datetime import datetime
+
+from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.views import View
 
 from articles.models import Article
 
 
-def latest_articles(request):
-    articles = Article.objects.all()
+class LatestArticlesView(View):
+    def get(self, request):
+        page = request.GET.get('page')
+        shown = request.GET.get('shown', 10)
 
-    context = {'latest_articles': articles}
+        article_list = Article.objects.select_related('author').all()\
+            .filter(publication_date__lte=datetime.now(), state__exact='PB')\
+            .order_by('-publication_date')
+        paginator = Paginator(article_list, shown)
 
-    html = render(request, 'articles/latest.html', context)
+        articles = paginator.get_page(page)
 
-    return HttpResponse(html)
+        context = {'latest_articles': articles}
+
+        html = render(request, 'articles/latest.html', context)
+
+        return HttpResponse(html)
 
 
-def article_detail():
-    # TODO Implementar vista
-    return HttpResponse()
+class ArticleDetailView(View):
+    def get(self, request):
+        # TODO Implementar vista
+        return HttpResponse()

@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from articles.views import latest_articles, article_detail
+from articles.views import LatestArticlesView, ArticleDetailView
 from users.views import user_articles
 
 from users.api import UsersAPI, UserAPI
@@ -29,8 +29,8 @@ urlpatterns = [
 
     path('author/<str:username>', user_articles, name='user_articles'),
 
-    path('article/<str:slug>/', article_detail, name='article_detail'),
-    path('', latest_articles, name='latest_articles'),
+    path('article/<str:slug>/', ArticleDetailView.as_view(), name='article_detail'),
+    path('', LatestArticlesView.as_view(), name='latest_articles'),
 
 # API
     # TODO Rewrite them depends on your necessities, but notify to the team
