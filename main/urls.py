@@ -25,16 +25,20 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # API
-    path('{0}/articles/<int:pk>/comments'.format(api_path), view, name='article_comments_api'),
-    path('{0}/articles/<int:pk>/favorite'.format(api_path), view, name='article_favorite_api'),
-    path('{0}/articles/<int:pk>/highlight/<int:pk>'.format(api_path), view, name='article_highlight_api'),
-    path('{0}/articles/<int:pk>/highlight'.format(api_path), view, name='article_highlights_api'),
-    path('{0}/articles/<int:pk>/mention'.format(api_path), view, name='article_mention_api'),
-    path('{0}/articles/<int:pk>'.format(api_path), ArticleAPI.as_view(), name='article_api'),
-    path('{0}/articles'.format(api_path), ArticlesAPI.as_view(), name='articles_api'),
+    # TODO Rewrite them depends on your necessities, but notify to the team
+    # TODO Comments at the end of line are explicative. Consider remove it if you want
+    #path('{0}/articles/<int:pk>/comments'.format(api_path), view, name='article_comments_api'),  # GET, POST
+    #path('{0}/articles/<int:pk>/favorites'.format(api_path), view, name='article_favorite_api'),  # POST, DELETE
+    #path('{0}/articles/<int:pk>/highlights/<int:pk>'.format(api_path), view, name='article_highlight_api'),  # DELETE
+    #path('{0}/articles/<int:pk>/highlights'.format(api_path), view, name='article_highlights_api'),  # POST
+    # FIXME next endpoint send a mention notification, not list mentions
+    #path('{0}/articles/<int:pk>/mention'.format(api_path), view, name='article_mention_api'),
+    path('{0}/articles/<int:pk>'.format(api_path), ArticleAPI.as_view(), name='article_api'),  # PUT, DELETE
+    path('{0}/articles'.format(api_path), ArticlesAPI.as_view(), name='articles_api'),  # GET, POST
 
-    path('{0}/users/<int:pk>/follow'.format(api_path), view, name='user_follow_api'),
-    path('{0}/users/<int:pk>/unfollow'.format(api_path), view, name='user_unfollow_api'),
-    path('{0}/users/<int:pk>'.format(api_path), UserAPI.as_view(), name='user_api'),
-    path('{0}/users'.format(api_path), UsersAPI.as_view(), name='users_api'),
+    #path('{0}/users/<int:pk>/highlights'.format(api_path), view, name='user_highlights_api'),  # GET
+    #path('{0}/users/<int:pk>/follow'.format(api_path), view, name='user_follow_api'),
+    #path('{0}/users/<int:pk>/unfollow'.format(api_path), view, name='user_unfollow_api'),
+    path('{0}/users/<int:pk>'.format(api_path), UserAPI.as_view(), name='user_api'),  # PUT, DELETE
+    path('{0}/users'.format(api_path), UsersAPI.as_view(), name='users_api'),  # GET, POST
 ]
