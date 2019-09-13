@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from articles.views import LatestArticlesView, ArticleDetailView
+from users.views import user_articles
+
 from users.api import UsersAPI, UserAPI
 from articles.api import ArticlesAPI, ArticleAPI
 
@@ -24,7 +27,12 @@ api_path = 'api/v1'
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    # API
+    path('author/<str:username>', user_articles, name='user_articles'),
+
+    path('article/<str:slug>/', ArticleDetailView.as_view(), name='article_detail'),
+    path('', LatestArticlesView.as_view(), name='latest_articles'),
+
+# API
     # TODO Rewrite them depends on your necessities, but notify to the team
     # TODO Comments at the end of line are explicative. Consider remove it if you want
     #path('{0}/articles/<int:pk>/comments'.format(api_path), view, name='article_comments_api'),  # GET, POST

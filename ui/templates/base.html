@@ -1,0 +1,24 @@
+{% load sass_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block head_title %}WellDone{% endblock %}</title>
+    <link rel="stylesheet" href="{% sass_src 'base.scss' %}" type="text/css">
+    {% block css %}{% endblock %}
+</head>
+<body>
+    <header>
+        <h1>WellDone</h1>
+        <nav>
+            <a href="{% url 'latest_articles' %}">Home</a> |
+        </nav>
+    </header>
+    <main>
+        {% block body_main %}{% endblock %}
+    </main>
+    <footer>
+        WellDone &copy; {% now 'Y' %}. Any rights reserved.
+    </footer>
+</body>
+</html>

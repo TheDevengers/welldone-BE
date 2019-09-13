@@ -1,5 +1,6 @@
 from django.db import models  
 
+
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name='Category')
 
@@ -7,4 +8,4 @@ class Category(models.Model):
         verbose_name_plural = 'Categories'
     
     def __str__(self):
-        return self.name 
+        return self.name

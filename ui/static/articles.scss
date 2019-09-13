@@ -1,0 +1,22 @@
+.article__item {
+  display: grid;
+  grid-template-areas:
+      'image  title'
+      'image  intro'
+      'image  info';
+  grid-template-columns: 25% auto;
+
+  a {
+    grid-area: title;
+  }
+  small {
+    grid-area: info;
+  }
+  p {
+    grid-area: intro;
+  }
+  img {
+    grid-area: image;
+    width: 100%;
+  }
+}
