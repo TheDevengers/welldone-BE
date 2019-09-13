@@ -16,11 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from articles.views import LatestArticlesView, ArticleDetailView
-from users.views import user_articles
-
-from users.api import UsersAPI, UserAPI
-from articles.api import ArticlesAPI, ArticleAPI
+from articles.api.api import ArticleAPI, ArticlesAPI
+from articles.views.lists import LatestArticlesView
+from articles.views.views import ArticleDetailView
+from users.api.api import UserAPI, UsersAPI
+from users.views.views import user_articles
 
 api_path = 'api/v1'
 
