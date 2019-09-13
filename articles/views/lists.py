@@ -28,9 +28,3 @@ class LatestArticlesView(View):
         html = render(request, 'articles/latest.html', context)
 
         return HttpResponse(html)
-
-
-class ArticleDetailView(View):
-    def get(self, request):
-        # TODO Implementar vista
-        return HttpResponse()
