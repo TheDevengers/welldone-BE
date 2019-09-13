@@ -7,7 +7,7 @@ from django.views import View
 
 from articles.models import Article
 
-DEFAULT_SHOWN = 1
+DEFAULT_SHOWN = 10
 
 
 class LatestArticlesView(View):

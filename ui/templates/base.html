@@ -1,8 +1,11 @@
+{% load sass_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{% block head_title %}WellDone{% endblock %}</title>
+    <link rel="stylesheet" href="{% sass_src 'base.scss' %}" type="text/css">
+    {% block css %}{% endblock %}
 </head>
 <body>
     <header>

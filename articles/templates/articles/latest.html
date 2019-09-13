@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 
+{% block css %}
+    {% load sass_tags %}
+    <link rel="stylesheet" href="{% sass_src 'articles.scss' %}" type="text/css">
+{% endblock %}
+
 {% block body_main %}
     <div class="article__list">
         {% for article in latest_articles %}
@@ -11,7 +16,7 @@
                     Published at {{ article.publication_date }} by
                     <a href="{% url 'user_articles' article.author.username %}">{{ article.author.username }}</a>
                 </small>
-                <img src="{{ article.image }}" alt="{{ article.introduction }}" title="{{ article.title }}">
+                <img src="{{ article.image }}" alt="{{ article.title }}" title="{{ article.title }}">
                 <p>{{ article.introduction }}</p>
             </div>
         {% endfor %}
