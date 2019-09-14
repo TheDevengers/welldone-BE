@@ -16,11 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from articles.views import LatestArticlesView, ArticleDetailView
-from users.views import user_articles
+from articles.views.views import ArticleDetailView
+from articles.views.lists import LatestArticlesView
+from users.views.views import user_articles
 
-from users.api import UsersAPI, UserAPI
-from articles.api import ArticlesAPI, ArticleAPI
+from users.api.api import UsersAPI, UserAPI
+from articles.api.api import ArticlesAPI, ArticleAPI, CategoriesAPI
 
 api_path = 'api/v1'
 
@@ -49,4 +50,8 @@ urlpatterns = [
     #path('{0}/users/<int:pk>/unfollow'.format(api_path), view, name='user_unfollow_api'),
     path('{0}/users/<int:pk>'.format(api_path), UserAPI.as_view(), name='user_api'),  # PUT, DELETE
     path('{0}/users'.format(api_path), UsersAPI.as_view(), name='users_api'),  # GET, POST
+
+    #Categories
+    path('{0}/categories'.format(api_path), CategoriesAPI.as_view(), name='categories_api'),  # GET,
+
 ]
