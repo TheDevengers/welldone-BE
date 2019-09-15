@@ -35,7 +35,7 @@ class Article(models.Model):
         # https://books.agiliq.com/projects/django-orm-cookbook/en/latest/slugfield.html
         self.slug = slugify(self.title)
 
-        if self.state == 'PUBLISHED':
+        if self.state == PUBLISHED:
             self.publication_date = datetime.now()
 
         super(Article, self).save(*args, **kwargs)
