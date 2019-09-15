@@ -18,7 +18,7 @@ class ArticleSerializer(ModelSerializer):
     categories = CategorySerializer(many=True)
     state = serializers.CharField()
     slug = serializers.SerializerMethodField('get_slug')
-    image = serializers.URLField(required=False)
+    image = serializers.URLField(required=False, allow_blank=True)
 
     def get_slug(self, obj):
         return slugify(obj.title)
