@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from articles.api.api import ArticleAPI, ArticlesAPI
+from articles.api.api import ArticleAPI, ArticlesAPI, CategoriesAPI
 from articles.views.lists import LatestArticlesView
 from articles.views.views import ArticleDetailView
 from users.api.api import UserAPI, UsersAPI
