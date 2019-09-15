@@ -1,0 +1,59 @@
+body {
+  display: grid;
+  grid-template-areas:
+      'header'
+      'main'
+      'footer';
+  grid-column-gap: 0;
+  grid-template-columns: auto;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+}
+
+header {
+  grid-area: header;
+  border-bottom: 2px solid dimgrey;
+  padding: 1em;
+
+  display: grid;
+  grid-template-areas:
+    'brand  searcher'
+    'nav    nav';
+  grid-template-columns: auto 70%;
+  align-items: center;
+
+  h1 {
+    grid-area: brand;
+  }
+
+  .searcher {
+    grid-area: searcher;
+    label {
+      display: none;
+    }
+    input {
+      padding: 1em;
+      width: 100%;
+      border: 1px solid grey;
+      border-radius: 25px;
+    }
+  }
+
+  nav {
+    grid-area: nav;
+  }
+}
+main {
+  grid-area: main;
+  padding: 2em;
+}
+footer {
+  grid-area: footer;
+  background: black;
+  color: whitesmoke;
+  padding: 2em;
+}
+
+a {
+  text-decoration: none;
+}
