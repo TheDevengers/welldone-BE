@@ -1,2 +1,2 @@
-from .singup_web_view import Singup
+from .signup_web_view import Signup
 from .views import user_articles

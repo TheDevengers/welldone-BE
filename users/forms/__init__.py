@@ -1,1 +1,1 @@
-from .singup_form import SignupForm
+from .signup_form import SignupForm

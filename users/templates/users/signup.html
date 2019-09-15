@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+
+{% block main_title %}
+Singup
+{% endblock %}
+
+
+{% block body_main %}
+
+    {% for message in messages %}
+        <p>{{ message }}</p>
+    {% endfor %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div>
+            <button type="submit">singup</button>
+        </div>
+    </form>
+
+{% endblock %}

@@ -21,13 +21,13 @@ from users.views import user_articles
 
 from users.api import UsersAPI, UserAPI
 from articles.api import ArticlesAPI, ArticleAPI
-from users.views import Singup
+from users.views import Signup
 
 api_path = 'api/v1'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('singup/', Singup.as_view(), name='singup_web'),
+    path('user/signup', Signup.as_view(), name='signup_web'),
 
     path('author/<str:username>', user_articles, name='user_articles'),
 
