@@ -18,7 +18,7 @@ from django.urls import path
 
 from articles.api.api import ArticleAPI, ArticlesAPI
 from articles.views.lists import LatestArticlesView
-from articles.views.views import ArticleDetailView
+from articles.views.detail import ArticleDetailView
 from users.api.api import UserAPI, UsersAPI
 from users.views.views import user_articles
 
