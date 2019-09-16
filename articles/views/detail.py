@@ -7,9 +7,9 @@ from articles.models import Article
 
 class ArticleDetailView(View):
 
-    def get(self, request, pk):
+    def get(self, request, slug):
 
-        article = get_object_or_404(Article.objects.select_related('author'), pk=pk)
+        article = get_object_or_404(Article.objects.select_related('author'), slug=slug)
 
         context = {'article': article}
 
