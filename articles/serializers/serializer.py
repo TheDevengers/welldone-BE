@@ -7,6 +7,8 @@ from articles.models import Category, Article
 
 class CategorySerializer(ModelSerializer):
 
+    id = serializers.IntegerField()
+
     class Meta:
         model = Category
         fields = ['id', 'name']
@@ -26,7 +28,6 @@ class ArticleSerializer(ModelSerializer):
     class Meta:
         model = Article
         fields = ['id', 'title', 'introduction', 'body', 'categories', 'state', 'slug', 'image']
-        read_only_fields = ['id']
         depth = 1
 
     def create(self, validated_data):
@@ -35,7 +36,7 @@ class ArticleSerializer(ModelSerializer):
 
         categories = []
         for category_data in categories_data:
-            obj = Category.objects.get(name=category_data['name'])
+            obj = Category.objects.get(id=category_data['id'])
             categories.append(obj)
         article.categories.add(*categories)
         return article
