@@ -11,6 +11,7 @@ class ArticlesAPI(APIView):
     serializer = ArticleSerializer(data=request.data)
 
     if serializer.is_valid():
+      # TODO Recibir id del autor de la peticion no a través de un parametro
       author = User.objects.get(id=request.data['user_id'])
       new_article = serializer.save(author=author)
       article_serializer = ArticleSerializer(new_article)
