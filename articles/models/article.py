@@ -13,14 +13,17 @@ ART_STATE = {
 
 
 class Article(models.Model):
+
+    prepopulated_fields = {"slug": "title"}
+
     title = models.CharField(max_length=100, verbose_name='Title')
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Author', related_name='articles')
     introduction = models.TextField(max_length=250, verbose_name='Introduction')
     body = models.TextField(max_length=2000, verbose_name='Body')
     categories = models.ManyToManyField(Category, verbose_name='Categories')
-    response_to = models.ForeignKey('self', on_delete=models.CASCADE, verbose_name='Response to')
+    response_to = models.ForeignKey('self', on_delete=models.CASCADE, null=True, verbose_name='Response to')
     state = models.CharField(max_length=2, verbose_name='Article state', choices=ART_STATE, default=DRAFT)
-    slug = models.SlugField(verbose_name='Slug')
+    slug = models.SlugField(verbose_name='Slug', default='', editable=False)
     image = models.URLField(verbose_name='Image noted', null=True)
     publication_date = models.DateTimeField(verbose_name='Publication date', default=datetime.now)
     creation_date = models.DateTimeField(verbose_name='Creation date', auto_now_add=True)
