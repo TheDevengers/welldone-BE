@@ -17,17 +17,16 @@ from django.contrib import admin
 from django.urls import path
 
 from articles.api.api import ArticleAPI, ArticlesAPI
-from articles.views.lists import LatestArticlesView
+from articles.views.lists import LatestArticlesView, AuthorArticlesView
 from articles.views.views import ArticleDetailView
 from users.api.api import UserAPI, UsersAPI
-from users.views.views import user_articles
 
 api_path = 'api/v1'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('author/<str:username>', user_articles, name='user_articles'),
+    path('author/<str:username>', AuthorArticlesView.as_view(), name='user_articles'),
 
     path('article/<str:slug>/', ArticleDetailView.as_view(), name='article_detail'),
     path('', LatestArticlesView.as_view(), name='latest_articles'),
