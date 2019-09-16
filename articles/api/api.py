@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
-from articles.models.category import Category
-from articles.serializers.serializer import CategorySerializer, ArticleSerializer
+from articles.models import Category
+from articles.serializers import CategorySerializer, ArticleSerializer
 
 from rest_framework.response import Response
 from rest_framework.views import APIView
