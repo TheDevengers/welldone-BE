@@ -28,8 +28,8 @@ api_path = 'api/v1'
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
+    path('{0}/token/'.format(api_path), jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('{0}/token/refresh/'.format(api_path), jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
 
     path('author/<str:username>', user_articles, name='user_articles'),
 
