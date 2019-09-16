@@ -4,12 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block head_title %}WellDone{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% sass_src 'base.scss' %}" type="text/css">
     {% block css %}{% endblock %}
 </head>
 <body>
     <header>
         <h1>WellDone</h1>
+        <form action="" method="get" class="searcher">
+            <label for="search">Search for</label>
+            <input type="search" name="search" id="search" placeholder="search...">
+        </form>
         <nav>
             <a href="{% url 'latest_articles' %}">Home</a> |
         </nav>
