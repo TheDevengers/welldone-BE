@@ -24,7 +24,7 @@ class Article(models.Model):
     state = models.CharField(max_length=2, verbose_name='Article state', choices=ART_STATE, default=DRAFT)
     slug = models.SlugField(max_length=100, verbose_name='Slug', unique=True, null=True, blank=True)
     image = models.URLField(verbose_name='Image noted', null=True, blank=True)
-    publication_date = models.DateTimeField(verbose_name='Publication date', null=True)
+    publication_date = models.DateTimeField(verbose_name='Publication date', default=datetime.now)
     creation_date = models.DateTimeField(verbose_name='Creation date', auto_now_add=True)
     modification_date = models.DateTimeField(verbose_name='Modification date', auto_now=True)
 
@@ -34,8 +34,5 @@ class Article(models.Model):
     def save(self, *args, **kwargs):
         # https://books.agiliq.com/projects/django-orm-cookbook/en/latest/slugfield.html
         self.slug = slugify(self.title)
-
-        if self.state == PUBLISHED:
-            self.publication_date = datetime.now()
 
         super(Article, self).save(*args, **kwargs)
