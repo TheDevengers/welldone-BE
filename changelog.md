@@ -2,6 +2,10 @@
 
 ## release X
 
+### feature category articles
+
+* Listado de artículos de una categoría
+
 ### feature create article
 
 * Creación endpoint GET /categories para que devuelva las categorías existentes ya que a la hora de crear un artículo, las categorías solo pueden ser la que estén ya creadas por defecto en bbdd

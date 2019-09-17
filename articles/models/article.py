@@ -19,7 +19,7 @@ class Article(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Author', related_name='articles')
     introduction = models.TextField(max_length=250, verbose_name='Introduction')
     body = models.TextField(max_length=2000, verbose_name='Body')
-    categories = models.ManyToManyField(Category, verbose_name='Categories')
+    categories = models.ManyToManyField(Category, verbose_name='Categories', related_name='articles')
     response_to = models.ForeignKey('self', on_delete=models.CASCADE, verbose_name='Response to', null=True, blank=True)
     state = models.CharField(max_length=2, verbose_name='Article state', choices=ART_STATE, default=DRAFT)
     slug = models.SlugField(max_length=100, verbose_name='Slug', unique=True, null=True, blank=True)
