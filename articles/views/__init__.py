@@ -1,1 +1,2 @@
-from .views import LatestArticlesView, ArticleDetailView
+from .views import ArticleDetailView
+from .lists import LatestArticlesView
