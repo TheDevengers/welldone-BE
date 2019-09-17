@@ -33,5 +33,11 @@ class Article(models.Model):
 
     def save(self, *args, **kwargs):
         # https://books.agiliq.com/projects/django-orm-cookbook/en/latest/slugfield.html
+        # TODO Modificar slug para que no salte error cuando dos articulos tengan el mismo título
+        # TODO Redimensionar imagen
         self.slug = slugify(self.title)
+
+        if not any(self.state in _tuple for _tuple in ART_STATE):
+            raise ValueError(self.state, ' it is not a valid state')
+
         super(Article, self).save(*args, **kwargs)
