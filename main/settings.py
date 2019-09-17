@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'users',
     'ui',
     'sass_processor',
+    'widget_tweaks'
 ]
 
 MIDDLEWARE = [
