@@ -1,4 +1,6 @@
 {% load sass_tags %}
+{% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +18,13 @@
             <input type="search" name="search" id="search" placeholder="search...">
         </form>
         <nav>
+            {% if user.username %} {{ user.username }} | {% endif %}
             <a href="{% url 'latest_articles' %}">Home</a> |
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout_web' %}"> Logout </a> |
+            {% else %}
+                <a href="{% url 'signup_web' %}"> Sing up </a> |
+            {% endif %}
         </nav>
     </header>
     <main>

@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
 
+
 class ArticlesAPI(APIView):
   def post(self, request):
     serializer = ArticleSerializer(data=request.data)
@@ -19,6 +20,7 @@ class ArticlesAPI(APIView):
     else:
       print(serializer.errors)
       return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class ArticleAPI(APIView):
   def get(self, request, pk):
