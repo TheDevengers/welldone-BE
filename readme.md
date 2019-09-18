@@ -39,6 +39,9 @@ Run `docker-compose up -d` and Compose starts and runs your entire app:
 
 `-d: Detached mode: Run container in the background, print new container name.`
 
+
+Open http://localhost:8000 to view it in the browser.
+
 INFO:
  - docker-compose up: It instructs Docker to create the container, and execute it according to docker-compose.yml
  - docker-compose down: It turns off all the services you raised with docker-compose up
