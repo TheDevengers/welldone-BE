@@ -24,7 +24,11 @@ class LatestArticlesView(View):
 
         articles = paginator.get_page(page)
 
-        context = {'latest_articles': articles, 'shown_param': shown_param}
+        context = {
+            'latest_articles': articles,
+            'shown_param': shown_param,
+            'page_title': 'Latest articles',
+        }
 
         html = render(request, 'articles/list.html', context)
 
@@ -46,7 +50,11 @@ class AuthorArticlesView(View):
 
         articles = paginator.get_page(page)
 
-        context = {'latest_articles': articles, 'shown_param': shown_param}
+        context = {
+            'latest_articles': articles,
+            'shown_param': shown_param,
+            'page_title': author.username + ' articles',
+        }
 
         html = render(request, 'articles/list.html', context)
 
