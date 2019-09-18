@@ -5,6 +5,7 @@ from django.contrib import messages
 
 from users.forms import LoginForm
 
+
 class Login(View):
 
     def get(self, request):
@@ -29,6 +30,7 @@ class Login(View):
                 return redirect('latest_articles')
         context = {'form': form}
         return render(request, 'users/login.html', context)
+
 
 class Logout(View):
 
