@@ -15,6 +15,7 @@ ART_STATE = {
 
 
 class Article(models.Model):
+
     title = models.CharField(max_length=100, verbose_name='Title')
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Author', related_name='articles')
     introduction = models.TextField(max_length=250, verbose_name='Introduction')

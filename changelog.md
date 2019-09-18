@@ -2,10 +2,6 @@
 
 ## release X
 
-### feature category articles
-
-* Listado de artículos de una categoría
-
 ### feature create article
 
 * Creación endpoint GET /categories para que devuelva las categorías existentes ya que a la hora de crear un artículo, las categorías solo pueden ser la que estén ya creadas por defecto en bbdd
@@ -20,3 +16,19 @@
 * Inclusión de urls públicas para desarrollo.
 * Instalación de librerias Django Sass
 * Inclusión de fuente Roboto
+
+### feature article detail
+
+* Creada clase ArticleDetailView en articles/views/detail.py.
+* Creada plantilla HTML básica en articles/templates/articles/detail.html.
+* Corregido import de ArticleDetailView en urls.py.
+* Comentado el path de articulos de usuario en urls.py hasta desarrollar la HU.
+
+### feature user article list
+
+* Refactorización de código y estructura.
+* Listado de artículos de usuario básico.
+
+### feature category articles
+
+* Listado de artículos de una categoría
