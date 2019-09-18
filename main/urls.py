@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from users.views import Signup, Logout
+from users.views import Signup, Logout, Login
 from articles.api import ArticleAPI, ArticlesAPI, CategoriesAPI
 from articles.views import LatestArticlesView, ArticleDetailView
 from users.api import UserAPI, UsersAPI
@@ -28,6 +28,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/signup', Signup.as_view(), name='signup_web'),
     path('user/logout', Logout.as_view(), name='logout_web'),
+    path('user/login', Login.as_view(), name='login_web'),
 
     path('author/<str:username>', user_articles, name='user_articles'),
 
