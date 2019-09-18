@@ -2,6 +2,11 @@
 
 ## release X
 
+### feature user article list
+
+* Refactorización de código y estructura.
+* Listado de artículos de usuario básico.
+
 ### feature create article
 
 * Creación endpoint GET /categories para que devuelva las categorías existentes ya que a la hora de crear un artículo, las categorías solo pueden ser la que estén ya creadas por defecto en bbdd

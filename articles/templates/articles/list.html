@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% block head_title %} WellDone | {{ page_title }} {% endblock %}
+
 {% block css %}
     {% load sass_tags %}
     <link rel="stylesheet" href="{% sass_src 'articles.scss' %}" type="text/css">
