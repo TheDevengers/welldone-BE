@@ -92,6 +92,16 @@ DATABASES = {
     }
 }
 
+# Mail settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+SENDGRID_API_KEY = env("SENDGRID_API_KEY")
+ENV_EMAIL_HOST = 'smtp.sendgrid.net'
+ENV_EMAIL_PORT = 587
+ENV_EMAIL_HOST_USER = 'apikey'
+ENV_EMAIL_HOST_PASSWORD = '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'
+ENV_EMAIL_USE_TLS = True
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
