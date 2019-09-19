@@ -34,7 +34,7 @@ urlpatterns = [
 
     path('author/<str:username>', AuthorArticlesView.as_view(), name='user_articles'),
 
-    path('article/<str:slug>/', ArticleDetailView.as_view(), name='article_detail'),
+    path('<str:username>/<str:slug>/', ArticleDetailView.as_view(), name='article_detail'),
     path('', LatestArticlesView.as_view(), name='latest_articles'),
 
 # API
