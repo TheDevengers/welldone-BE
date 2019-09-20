@@ -32,3 +32,4 @@
 ### feature category articles
 
 * Listado de artículos de una categoría
+* Refactorización del código de las views de listado, las cuales comparten mismo funcionamiento
