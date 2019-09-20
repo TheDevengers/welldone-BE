@@ -2,11 +2,6 @@
 
 ## release X
 
-### feature user article list
-
-* Refactorización de código y estructura.
-* Listado de artículos de usuario básico.
-
 ### feature create article
 
 * Creación endpoint GET /categories para que devuelva las categorías existentes ya que a la hora de crear un artículo, las categorías solo pueden ser la que estén ya creadas por defecto en bbdd
@@ -28,3 +23,13 @@
 * Creada plantilla HTML básica en articles/templates/articles/detail.html.
 * Corregido import de ArticleDetailView en urls.py.
 * Comentado el path de articulos de usuario en urls.py hasta desarrollar la HU.
+
+### feature user article list
+
+* Refactorización de código y estructura.
+* Listado de artículos de usuario básico.
+
+### feature category articles
+
+* Listado de artículos de una categoría
+* Refactorización del código de las views de listado, las cuales comparten mismo funcionamiento
