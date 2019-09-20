@@ -16,9 +16,9 @@
     <p>{{ article.introduction }}</p>
     <p>{{ article.body }}</p>
     <br>
-    <h2>Comentarios:</h2>
+    <h2 id="comments">Comentarios:</h2>
     <br>
-    <section id="#comments">
+    <section>
         {% for comment in comments %}
             <i><p>By <a href="{% url 'user_articles' comment.author.username %}">{{ article.author.first_name }} {{ article.author.last_name }}</a>,
                 on {{ comment.creation_date }}</p></i>
@@ -27,5 +27,20 @@
             <br>
         {% endfor %}
 
+        <div class="pagination">
+        <span class="pagination__links">
+            {% if comments.has_previous %}
+                <a href="?page=1{{ shown_param }}#comments" title="First page">&laquo;</a>
+                <a href="?page={{ comments.previous_page_number }}{{ shown_param }}#comments" title="Previous page">&lsaquo;</a>
+            {% endif %}
+            <span>
+                Page {{ comments.number }} of {{ comments.paginator.num_pages }}
+            </span>
+            {% if comments.has_next %}
+                <a href="?page={{ comments.next_page_number }}{{ shown_param }}#comments" title="Next page">&rsaquo;</a>
+                <a href="?page={{ comments.paginator.num_pages }}{{ shown_param }}#comments" title="Last page">&raquo;</a>
+            {% endif %}
+        </span>
+        </div>
     </section>
 {% endblock %}

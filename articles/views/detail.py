@@ -14,7 +14,7 @@ class ArticleDetailView(View):
 
     def get(self, request, username, slug):
         comments_page = request.GET.get('page')
-        comments_shown = request.GET.get('shown', DEFAULT_SHOWN)
+        comments_shown = request.GET.get('shown', DEFAULT_COMMENTS_SHOWN)
         shown_param = '&shown={0}'.format(comments_shown) if comments_shown != DEFAULT_COMMENTS_SHOWN else ''
         article = get_object_or_404(Article.objects.select_related('author'), Q(slug=slug) & Q(publication_date__lte=datetime.now()) & Q(state__exact='PB'))
 
