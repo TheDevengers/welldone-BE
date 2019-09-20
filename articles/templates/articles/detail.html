@@ -15,13 +15,16 @@
         {% endfor %}
     <p>{{ article.introduction }}</p>
     <p>{{ article.body }}</p>
-
+    <br>
+    <h2>Comentarios:</h2>
+    <br>
     <section id="#comments">
         {% for comment in comments %}
-            <p>By <a href="{% url 'user_articles' comment.author.username %}">{{ article.author.first_name }} {{ article.author.last_name }}</a>,
-                on {{ comment.creation_date }}</p>
-            <h2>{{ comment.title }}</h2>
+            <i><p>By <a href="{% url 'user_articles' comment.author.username %}">{{ article.author.first_name }} {{ article.author.last_name }}</a>,
+                on {{ comment.creation_date }}</p></i>
+            <h4>{{ comment.title }}</h4>
             <p>{{ comment.text }}</p>
+            <br>
         {% endfor %}
 
     </section>
