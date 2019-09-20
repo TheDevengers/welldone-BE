@@ -14,7 +14,7 @@ class ArticleDetailView(View):
 
         article = get_object_or_404(Article.objects.select_related('author'), Q(slug=slug) & Q(publication_date__lte=datetime.now()) & Q(state__exact='PB'))
 
-        comments = Comment.objects.select_related('article').all().filter(article=article.pk)
+        comments = Comment.objects.select_related('article').all().filter(article=article.pk).order_by('-creation_date')
 
         context = {'article': article,
                    'username': username,
