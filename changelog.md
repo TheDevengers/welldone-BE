@@ -28,3 +28,13 @@
 * Creada plantilla HTML básica en articles/templates/articles/detail.html.
 * Corregido import de ArticleDetailView en urls.py.
 * Comentado el path de articulos de usuario en urls.py hasta desarrollar la HU.
+
+### feature article comments
+
+* Modificada la clase ArticleDetailView en `articles/views/detail.py` para incluir comentarios del artículo en base a query string.
+* Modificada plantilla HTML `articles/templates/articles/detail.html` incluyendo sección de comentarios.
+* Cambiado campo creation_date del modelo Comment de DateField a DateTimeField, para poder realizar ordenación de comentarios desde el más reciente.
+* Corregido bug en los href de `lists.html` para que sigan la ruta `/<str:username>/<str:slug>` definida en el PR de `fix/PUB_article_detail`
+* Incluida paginación en los comentarios. El método se basa en lo ya creado para la paginación de articulos en `articles/views/list.py`.
+
+Respecto a la paginación, he creado en Trello una HU opcional para mejorar la paginación con JS + llamada al API. Creo que sería un método más eficiente, pero más laborioso, al menos para mí. De momento dejo cumplido el requisito con la implementación más sencilla.
