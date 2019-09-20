@@ -13,4 +13,13 @@
     {% endfor %}
     <p>{{article.introduction}}</p>
     <p>{{article.body}}</p>
+
+    <section id="#comments">
+        {% for comment in comments %}
+        <p>By <a href="{% url 'user_articles' comment.author.username %}">{{article.author.first_name}} {{article.author.last_name}}</a>, on {{ comment.creation_date }}</p>
+            <h2>{{ comment.title }}</h2>
+            <p>{{ comment.text }}</p>
+        {% endfor %}
+
+    </section>
 {% endblock %}
