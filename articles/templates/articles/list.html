@@ -11,14 +11,14 @@
     <div class="article__list">
         {% for article in latest_articles %}
             <article class="article__item">
-                <a class="article__item__title" href="{% url 'article_detail' article.slug %}">
+                <a class="article__item__title" href="{% url 'article_detail' article.author.username article.slug %}">
                     <h2>{{ article.title }}</h2>
                 </a>
                 <small class="article__item__info">
                     <a href="{% url 'user_articles' article.author.username %}">{{ article.author.username }}</a>
                     | {{ article.publication_date }}
                 </small>
-                <a class="article__item__image" href="{% url 'article_detail' article.slug %}">
+                <a class="article__item__image" href="{% url 'article_detail' article.author.username article.slug %}">
                     <img src="{{ article.image }}" alt="{{ article.title }}" title="{{ article.title }}">
                 </a>
                 <p class="article__item__intro">{{ article.introduction }}</p>
