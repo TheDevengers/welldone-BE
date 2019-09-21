@@ -1,30 +1,43 @@
-from datetime import datetime
-
-from django.core.paginator import Paginator
+from django.contrib.auth.models import User
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import View
 
-from articles.models import Article
+from articles.controllers import ListArticles
+from articles.models import Article, Category
 
 DEFAULT_SHOWN = 10
 
 
 class LatestArticlesView(View):
+
     def get(self, request):
-        page = request.GET.get('page')
-        shown = request.GET.get('shown', DEFAULT_SHOWN)
-        shown_param = '&shown={0}'.format(shown) if shown != DEFAULT_SHOWN else ''
+        context = ListArticles.filter(request, Article.objects)
 
-        article_list = Article.objects.select_related('author').all()\
-            .filter(publication_date__lte=datetime.now(), state__exact='PB')\
-            .order_by('-publication_date')
-        paginator = Paginator(article_list, shown)
+        html = render(request, 'articles/list.html', context)
 
-        articles = paginator.get_page(page)
+        return HttpResponse(html)
 
-        context = {'latest_articles': articles, 'shown_param': shown_param}
 
-        html = render(request, 'articles/latest.html', context)
+class AuthorArticlesView(View):
+    def get(self, request, username=None):
+        author = get_object_or_404(User, username=username)
+
+        context = ListArticles.filter(request, author.articles)
+        context['page_title'] = author.username + ' articles'
+
+        html = render(request, 'articles/list.html', context)
+
+        return HttpResponse(html)
+
+
+class CategoryArticlesView(View):
+    def get(self, request, slug=None):
+        category = get_object_or_404(Category, slug=slug)
+
+        context = ListArticles.filter(request, category.articles)
+        context['page_title'] = category.name + ' articles'
+
+        html = render(request, 'articles/list.html', context)
 
         return HttpResponse(html)

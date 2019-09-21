@@ -6,7 +6,7 @@ We use 3.7.x to create this project. Probably works with some older versions as 
 ## How to clone this repo
 
 1. Create a virtual environment and activate it, the way you like. Below you can find some ways, they are not unique, but they can help.
-2. Install all dependencies using ```pip install requirements.txt```
+2. Install all dependencies using ```pip install -r requirements.txt```
 3. Create a copy of ```.env.example``` file and change the name to ```.env```
 4. Create a migration of the applications ```python manage.py migrate```
 5. Create a superuser ```python manage.py createsuperuser``` f.e.: suadmin@PompeuFabra-2019

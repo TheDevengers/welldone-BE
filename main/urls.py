@@ -19,9 +19,9 @@ from rest_framework_simplejwt import views as jwt_views
 
 from users.views import Signup, Logout, Login
 from articles.api import ArticleAPI, ArticlesAPI, CategoriesAPI
-from articles.views import LatestArticlesView, ArticleDetailView
+from articles.views import LatestArticlesView, ArticleDetailView, AuthorArticlesView, CategoryArticlesView
 from users.api import UserAPI, UsersAPI
-from users.views import user_articles
+from users.views import Signup, Logout
 
 api_path = 'api/v1'
 
@@ -34,12 +34,13 @@ urlpatterns = [
     path('{0}/token/'.format(api_path), jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('{0}/token/refresh/'.format(api_path), jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
 
-    path('author/<str:username>', user_articles, name='user_articles'),
+    path('author/<str:username>', AuthorArticlesView.as_view(), name='user_articles'),
+    path('category/<str:slug>', CategoryArticlesView.as_view(), name='category_articles'),
 
-    path('article/<str:slug>/', ArticleDetailView.as_view(), name='article_detail'),
+    path('<str:username>/<str:slug>/', ArticleDetailView.as_view(), name='article_detail'),
     path('', LatestArticlesView.as_view(), name='latest_articles'),
 
-# API
+    # API
     # TODO Rewrite them depends on your necessities, but notify to the team
     # TODO Comments at the end of line are explicative. Consider remove it if you want
     #path('{0}/articles/<int:pk>/comments'.format(api_path), view, name='article_comments_api'),  # GET, POST

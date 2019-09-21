@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% block head_title %} WellDone | {{ page_title }} {% endblock %}
+
 {% block css %}
     {% load sass_tags %}
     <link rel="stylesheet" href="{% sass_src 'articles.scss' %}" type="text/css">
@@ -7,7 +9,7 @@
 
 {% block body_main %}
     <div class="article__list">
-        {% for article in latest_articles %}
+        {% for article in article_list %}
             <article class="article__item">
                 <a class="article__item__title" href="{% url 'article_detail' article.slug %}">
                     <h2>{{ article.title }}</h2>
@@ -22,7 +24,7 @@
                 <p class="article__item__intro">{{ article.introduction }}</p>
                 <div class="article__item__categories">
                     {% for category in article.categories.all %}
-                        <a href="#" title="Filtrar por {{ category }}">{{ category }}</a>
+                        <a href="{% url 'category_articles' category.slug %}" title="{{ category }} articles">{{ category }}</a>
                     {% endfor %}
                 </div>
             </article>
@@ -31,16 +33,16 @@
 
     <div class="pagination">
         <span class="pagination__links">
-            {% if latest_articles.has_previous %}
+            {% if article_list.has_previous %}
                 <a href="?page=1{{ shown_param }}" title="First page">&laquo;</a>
-                <a href="?page={{ latest_articles.previous_page_number }}{{ shown_param }}" title="Previous page">&rsaquo;</a>
+                <a href="?page={{ article_list.previous_page_number }}{{ shown_param }}" title="Previous page">&rsaquo;</a>
             {% endif %}
             <span>
-                Page {{ latest_articles.number }} of {{ latest_articles.paginator.num_pages }}
+                Page {{ article_list.number }} of {{ latest_articles.paginator.num_pages }}
             </span>
-            {%  if latest_articles.has_next %}
-                <a href="?page={{ latest_articles.next_page_number }}{{ shown_param }}" title="Next page">&rsaquo;</a>
-                <a href="?page={{ latest_articles.paginator.num_pages }}{{ shown_param }}" title="Last page">&raquo;</a>
+            {%  if article_list.has_next %}
+                <a href="?page={{ article_list.next_page_number }}{{ shown_param }}" title="Next page">&rsaquo;</a>
+                <a href="?page={{ article_list.paginator.num_pages }}{{ shown_param }}" title="Last page">&raquo;</a>
             {% endif %}
         </span>
     </div>
