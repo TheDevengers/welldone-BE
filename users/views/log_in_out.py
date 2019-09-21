@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth import logout as django_logout, login as django_login, authenticate
 from django.contrib import messages
-from django.core.mail import send_mail
 
 from users.forms import LoginForm
 
@@ -27,11 +26,6 @@ class Login(View):
             if user is None:
                 messages.error(request, 'usuario o contraseña incorrectos')
             else:
-                send_mail(subject='Subject here',
-                          message='Here is the message.',
-                          from_email='noreply@welldone.space',
-                          recipient_list=['basanta79@gmail.com'],
-                          fail_silently=False)
                 django_login(request, user)
                 return redirect('latest_articles')
         context = {'form': form}
