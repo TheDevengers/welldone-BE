@@ -11,7 +11,7 @@
     <p>Published on {{ article.publication_date }}</p>
     <p>Categories:
         {% for category in article.categories.all %}
-            <span>{{ category.name }}</span>
+            <a href="{% url 'category_articles' category.slug %}" title="{{ category }} articles">{{ category }}</a>
         {% endfor %}
     <p>{{ article.introduction }}</p>
     <p>{{ article.body }}</p>
