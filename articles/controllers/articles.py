@@ -10,7 +10,7 @@ class ListArticles(object):
 
     @staticmethod
     def filter(request, article_objects):
-        search = request.GET.get('search')
+        search = request.GET.get('search') if request.GET.get('search') else ''
         page = request.GET.get('page')
         shown = request.GET.get('shown', DEFAULT_SHOWN)
         shown_param = '&shown={0}'.format(shown) if shown != DEFAULT_SHOWN else ''
