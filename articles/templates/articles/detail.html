@@ -3,14 +3,44 @@
 {% block head_title %} WellDone | {{ article.title }} {% endblock %}
 
 {% block body_main %}
-    <h1>{{article.title}}</h1>
-    <img src={{article.image}} alt={{article.title}} title="{{ article.name }} by {{ article.author.first_name }} {{ article.author.last_name }}" height="200">
-    <p>By <a href="{% url 'user_articles' article.author.username %}">{{article.author.first_name}} {{article.author.last_name}}</a></p>
-    <p>Published on {{article.publication_date}}</p>
+    <h1>{{ article.title }}</h1>
+    <img src={{ article.image }} alt={{ article.title }}
+         title="{{ article.name }} by {{ article.author.first_name }} {{ article.author.last_name }}" height="200">
+    <p>By <a href="{% url 'user_articles' article.author.username %}">{{ article.author.first_name }} {{ article.author.last_name }}</a>
+    </p>
+    <p>Published on {{ article.publication_date }}</p>
     <p>Categories:
-    {% for category in article.categories.all %}
-        <a href="{% url 'category_articles' category.slug %}" title="{{ category }} articles">{{ category }}</a>
-    {% endfor %}
-    <p>{{article.introduction}}</p>
-    <p>{{article.body}}</p>
+        {% for category in article.categories.all %}
+            <a href="{% url 'category_articles' category.slug %}" title="{{ category }} articles">{{ category }}</a>
+        {% endfor %}
+    <p>{{ article.introduction }}</p>
+    <p>{{ article.body }}</p>
+    <br>
+    <h2 id="comments">Comentarios:</h2>
+    <br>
+    <section>
+        {% for comment in comments %}
+            <i><p>By <a href="{% url 'user_articles' comment.author.username %}">{{ article.author.first_name }} {{ article.author.last_name }}</a>,
+                on {{ comment.creation_date }}</p></i>
+            <h4>{{ comment.title }}</h4>
+            <p>{{ comment.text }}</p>
+            <br>
+        {% endfor %}
+
+        <div class="pagination">
+        <span class="pagination__links">
+            {% if comments.has_previous %}
+                <a href="?page=1{{ shown_param }}#comments" title="First page">&laquo;</a>
+                <a href="?page={{ comments.previous_page_number }}{{ shown_param }}#comments" title="Previous page">&lsaquo;</a>
+            {% endif %}
+            <span>
+                Page {{ comments.number }} of {{ comments.paginator.num_pages }}
+            </span>
+            {% if comments.has_next %}
+                <a href="?page={{ comments.next_page_number }}{{ shown_param }}#comments" title="Next page">&rsaquo;</a>
+                <a href="?page={{ comments.paginator.num_pages }}{{ shown_param }}#comments" title="Last page">&raquo;</a>
+            {% endif %}
+        </span>
+        </div>
+    </section>
 {% endblock %}
