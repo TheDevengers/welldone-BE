@@ -26,3 +26,27 @@ WIN(bash): ```source env/Scripts/activate```
 The virtual environment is activated when the prompt has the virtualenv name inside parenthesis.
 
 For configure it in Visual Studio Code follow this: https://code.visualstudio.com/docs/python/tutorial-django
+
+
+## Build and run your app with Compose
+
+First: Donwload [docker]('https://www.docker.com/products/docker-desktop'), also as a complement you can download [kitematic]('https://kitematic.com/') to use Docker more graphic.
+
+[Instalation]('https://docs.docker.com/compose/install/#install-compose') guide.
+
+
+Run `docker-compose up -d` and Compose starts and runs your entire app:
+
+`-d: Detached mode: Run container in the background, print new container name.`
+
+
+Open http://localhost:8000 to view it in the browser.
+
+INFO:
+ - docker-compose up: It instructs Docker to create the container, and execute it according to docker-compose.yml
+ - docker-compose down: It turns off all the services you raised with docker-compose up
+ - docker-compose ps: This allows you to see the containers running.
+
+DOC: [docker-compose cheatsheet]('https://devhints.io/docker-compose')
+
+
