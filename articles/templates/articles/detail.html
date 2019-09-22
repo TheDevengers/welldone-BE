@@ -1,4 +1,10 @@
 {% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block css %}
+    {% load sass_tags %}
+    <link rel="stylesheet" href="{% sass_src 'form.scss' %}" type="text/css">
+{% endblock %}
 
 {% block head_title %} WellDone | {{ article.title }} {% endblock %}
 
@@ -18,6 +24,26 @@
     <br>
     <h2 id="comments">Comentarios:</h2>
     <br>
+    {% if user.is_authenticated %}
+        <div class="form-area">
+            <form  method="post" action="{% url 'article_comments' article.slug %}">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                {{ form.active.errors }}
+
+                {{ form.title.label_tag }} <br>
+                {{ form.title|add_class:"form-field" }} <br>
+                {{ form.title.errors }} <br>
+
+                {{ form.text.label_tag }} <br>
+                {{ form.text|add_class:"form-texttarea" }} <br>
+                {{ form.text.errors }} <br>
+                <div>
+                    <button class="button-form" type="submit">add comment</button>
+                </div>
+            </form>
+        </div>
+    {% endif %}
     <section>
         {% for comment in comments %}
             <i><p>By <a href="{% url 'user_articles' comment.author.username %}">{{ article.author.first_name }} {{ article.author.last_name }}</a>,

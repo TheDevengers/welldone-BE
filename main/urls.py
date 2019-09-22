@@ -36,7 +36,7 @@ urlpatterns = [
     path('category/<str:slug>', CategoryArticlesView.as_view(), name='category_articles'),
 
     path('<str:username>/<str:slug>/', ArticleDetailView.as_view(), name='article_detail'),
-    path('comments/', CommentsView.as_view(), name='article_comments'),
+    path('comments/<str:slug>', CommentsView.as_view(), name='article_comments'),
     path('', LatestArticlesView.as_view(), name='latest_articles'),
 
     # API
