@@ -4,7 +4,7 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 
 DEFAULT_SHOWN = 10
-
+SEARCH_RESULTS = 20
 
 class ListArticles(object):
 
@@ -17,8 +17,11 @@ class ListArticles(object):
 
         article_list = article_objects.select_related('author').all()\
             .filter(publication_date__lte=datetime.now(), state__exact='PB')\
-            .filter(Q(title__icontains=search) | Q(introduction__icontains=search) | Q(body__icontains=search))\
             .order_by('-publication_date')
+
+        article_list = article_list.filter(Q(title__icontains=search) | Q(introduction__icontains=search) | Q(body__icontains=search))\
+            .all()[:SEARCH_RESULTS] if request.GET.get('search') else article_list
+
         paginator = Paginator(article_list, shown)
 
         articles = paginator.get_page(page)
