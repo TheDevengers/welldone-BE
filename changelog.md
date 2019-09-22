@@ -43,3 +43,9 @@
 * Incluida paginación en los comentarios. El método se basa en lo ya creado para la paginación de articulos en `articles/views/list.py`.
 
 Respecto a la paginación, he creado en Trello una HU opcional para mejorar la paginación con JS + llamada al API. Creo que sería un método más eficiente, pero más laborioso, al menos para mí. De momento dejo cumplido el requisito con la implementación más sencilla.
+
+### feature list create article
+
+* Añadido endpoint de consulta de listado de artículos. Devuelve todos los artículos del usuario autenticado.
+* Modificado endpoint de creación de artículo. Se le han añadido los mismos permisos que al listado y el autor se vincula al usuario autenticado.
+* Documentación de la API en README.

@@ -25,6 +25,10 @@ Singup
                 {% csrf_token %}
                 {{ form.non_field_errors }}
                 {{ form.active.errors }}
+                {{ form2.non_field_errors }}
+                {{ form2.active.errors }}
+                {{ form2.errors }}
+                {{ form.errors }}
 
                 {{ form.username.label_tag }} <br>
                 {{ form.username|add_class:"form-field" }} <br>
@@ -49,6 +53,18 @@ Singup
                 {{ form.email.label_tag }} <br>
                 {{ form.email|add_class:"form-field" }} <br>
                 {{ form.email.errors }} <br>
+
+                {{ form2.description.label_tag }} <br>
+                {{ form2.description|add_class:"form-field" }} <br>
+                {{ form2.description.errors }} <br>
+
+                {{ form2.birth_date.label_tag }} <br>
+                {{ form2.birth_date|add_class:"form-field" }} <br>
+                {{ form2.birth_date.errors }} <br>
+
+                {{ form2.birth_place.label_tag }} <br>
+                {{ form2.birth_place|add_class:"form-field" }} <br>
+                {{ form2.birth_place.errors }} <br>
 
                 <div>
                     <button class="button-form" type="submit">singup</button>

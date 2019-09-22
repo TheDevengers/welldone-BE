@@ -37,4 +37,45 @@ from main.notifier.mail import SendMail
 SendMail.send_no_reply_email(to_emails='mail address',
                              subject='mail subject',
                              content='content of mail, can be html') 
+``
+## Build and run your app with Compose
+
+First: Donwload [docker]('https://www.docker.com/products/docker-desktop'), also as a complement you can download [kitematic]('https://kitematic.com/') to use Docker more graphic.
+
+[Instalation]('https://docs.docker.com/compose/install/#install-compose') guide.
+
+
+Run `docker-compose up -d` and Compose starts and runs your entire app:
+
+`-d: Detached mode: Run container in the background, print new container name.`
+
+
+Open http://localhost:8000 to view it in the browser.
+
+INFO:
+ - docker-compose up: It instructs Docker to create the container, and execute it according to docker-compose.yml
+ - docker-compose down: It turns off all the services you raised with docker-compose up
+ - docker-compose ps: This allows you to see the containers running.
+
+DOC: [docker-compose cheatsheet]('https://devhints.io/docker-compose')
+
+## API
+
+Request to http://localhost:8000/api/v1
+
+### Authentication
+
+For more info: https://github.com/davesque/django-rest-framework-simplejwt
+```
+POST /token/             To get access and refresh token
+POST /token/refresh/     To get access token from refresh token
+```
+
+### Articles
+
+```
+GET /articles           Authenticated users get own list article
+POST /articles          Authenticated users create article as author
+
+GET /categories         Get list of categories
 ```

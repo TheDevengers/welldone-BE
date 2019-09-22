@@ -1,1 +1,1 @@
-from .serializer import ArticleSerializer, CategorySerializer
+from .serializer import ArticleSerializer, CategorySerializer, ArticleListSerializer
