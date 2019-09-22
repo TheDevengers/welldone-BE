@@ -23,11 +23,8 @@ class ArticleListSerializer(ModelSerializer):
 
 class ArticleSerializer(ModelSerializer):
 
-    title = serializers.CharField()
     categories = CategorySerializer(many=True)
-    state = serializers.CharField()
     slug = serializers.SerializerMethodField('get_slug')
-    image = serializers.URLField(required=False, allow_blank=True)
 
     def get_slug(self, obj):
         return slugify(obj.title)
