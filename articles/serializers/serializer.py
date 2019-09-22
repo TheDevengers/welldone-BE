@@ -14,13 +14,17 @@ class CategorySerializer(ModelSerializer):
         fields = ['id', 'name']
 
 
+class ArticleListSerializer(ModelSerializer):
+
+    class Meta:
+        model = Article
+        fields = ['id', 'title', 'introduction', 'author', 'categories', 'image', 'publication_date']
+
+
 class ArticleSerializer(ModelSerializer):
 
-    title = serializers.CharField()
     categories = CategorySerializer(many=True)
-    state = serializers.CharField()
     slug = serializers.SerializerMethodField('get_slug')
-    image = serializers.URLField(required=False, allow_blank=True)
 
     def get_slug(self, obj):
         return slugify(obj.title)
@@ -40,4 +44,3 @@ class ArticleSerializer(ModelSerializer):
             categories.append(obj)
         article.categories.add(*categories)
         return article
-

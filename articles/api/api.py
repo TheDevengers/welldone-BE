@@ -1,40 +1,42 @@
-from django.contrib.auth.models import User
-from articles.models import Category
-from articles.serializers import CategorySerializer, ArticleSerializer
+from django.db.models import Q
+from rest_framework.generics import ListCreateAPIView
+
+from articles.models import Category, Article
+from articles.permissions import ArticlePermission
+from articles.serializers import CategorySerializer, ArticleSerializer, ArticleListSerializer
 
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
 
 
-class ArticlesAPI(APIView):
-  def post(self, request):
-    serializer = ArticleSerializer(data=request.data)
+class ArticlesAPI(ListCreateAPIView):
+    permission_classes = [ArticlePermission]
 
-    if serializer.is_valid():
-      # TODO Recibir id del autor de la peticion no a través de un parametro
-      author = User.objects.get(id=request.data['user_id'])
-      new_article = serializer.save(author=author)
-      article_serializer = ArticleSerializer(new_article)
-      return Response(article_serializer.data, status=status.HTTP_201_CREATED)
-    else:
-      print(serializer.errors)
-      return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def get_queryset(self):
+        queryset = Article.objects.all()
+        return queryset.filter(Q(author=self.request.user))
+
+    def get_serializer_class(self):
+        return ArticleListSerializer if self.request.method == 'GET' else ArticleSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
 
 
 class ArticleAPI(APIView):
-  def get(self, request, pk):
-    return Response()
+    def get(self, request, pk):
+        return Response()
 
-  def put(self, request, pk):
-    return Response()
+    def put(self, request, pk):
+        return Response()
 
-  def delete(self, request, pk):
-    return Response()
+    def delete(self, request, pk):
+        return Response()
 
 
 class CategoriesAPI(APIView):
-  def get(self, request):
-    queryset = Category.objects.all()
-    serializer = CategorySerializer(queryset, many=True)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+    def get(self, request):
+        queryset = Category.objects.all()
+        serializer = CategorySerializer(queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)

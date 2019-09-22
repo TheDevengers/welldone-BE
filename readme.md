@@ -27,7 +27,6 @@ The virtual environment is activated when the prompt has the virtualenv name ins
 
 For configure it in Visual Studio Code follow this: https://code.visualstudio.com/docs/python/tutorial-django
 
-
 ## Build and run your app with Compose
 
 First: Donwload [docker]('https://www.docker.com/products/docker-desktop'), also as a complement you can download [kitematic]('https://kitematic.com/') to use Docker more graphic.
@@ -49,4 +48,23 @@ INFO:
 
 DOC: [docker-compose cheatsheet]('https://devhints.io/docker-compose')
 
+## API
 
+Request to http://localhost:8000/api/v1
+
+### Authentication
+
+For more info: https://github.com/davesque/django-rest-framework-simplejwt
+```
+POST /token/             To get access and refresh token
+POST /token/refresh/     To get access token from refresh token
+```
+
+### Articles
+
+```
+GET /articles           Authenticated users get own list article
+POST /articles          Authenticated users create article as author
+
+GET /categories         Get list of categories
+```
