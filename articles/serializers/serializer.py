@@ -14,6 +14,13 @@ class CategorySerializer(ModelSerializer):
         fields = ['id', 'name']
 
 
+class ArticleListSerializer(ModelSerializer):
+
+    class Meta:
+        model = Article
+        fields = ['id', 'title', 'introduction', 'author', 'categories', 'image', 'publication_date']
+
+
 class ArticleSerializer(ModelSerializer):
 
     title = serializers.CharField()
@@ -40,4 +47,3 @@ class ArticleSerializer(ModelSerializer):
             categories.append(obj)
         article.categories.add(*categories)
         return article
-
