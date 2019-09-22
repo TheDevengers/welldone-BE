@@ -1,12 +1,10 @@
-
-from rest_framework import serializers
-
+from rest_framework.serializers import ModelSerializer
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
 
-class UserSignUpSerializer(serializers.ModelSerializer):
+class UserSignUpSerializer(ModelSerializer):
     """DRF Serializer For User Registration"""
 
     class Meta:
@@ -19,3 +17,4 @@ class UserSignUpSerializer(serializers.ModelSerializer):
         user_instance = User.objects.create(**validated_data)
         user_instance.set_password(password)
         user_instance.save()
+        return user_instance

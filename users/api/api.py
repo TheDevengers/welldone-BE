@@ -1,4 +1,4 @@
-from rest_framework import generics
+from rest_framework.generics import CreateAPIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
@@ -10,7 +10,7 @@ from users.serializers import UserSignUpSerializer
 User = get_user_model()
 
 
-class UsersAPI(generics.CreateAPIView):
+class UsersAPI(CreateAPIView):
 
     serializer_class = UserSignUpSerializer
 
