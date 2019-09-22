@@ -3,7 +3,7 @@ from datetime import datetime
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.views import View
 
 from articles.models import Article, Comment
@@ -33,3 +33,8 @@ class ArticleDetailView(View):
         html = render(request, 'articles/detail.html', context)
 
         return HttpResponse(html)
+
+
+class CommentsView(View):
+    def post(self, request):
+        return redirect('articles/detail.html')
