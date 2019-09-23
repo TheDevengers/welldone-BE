@@ -12,10 +12,8 @@ class Signup(View):
         if request.user.is_authenticated:
             return redirect('latest_articles')
         form = SignupForm()
-        form2 = ExtendedUserPropertiesForm()
         context = dict(
             form=form,
-            form2=form2
         )
         return render(request, 'users/signup.html', context)
     
