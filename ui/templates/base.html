@@ -15,7 +15,7 @@
         <h1>WellDone</h1>
         <form action="" method="get" class="searcher">
             <label for="search">Search for</label>
-            <input type="search" name="search" id="search" placeholder="search...">
+            <input type="search" name="search" id="search" placeholder="search..." value={{ search }}>
         </form>
         <nav>
             {% if user.username %} {{ user.username }} | {% endif %}
