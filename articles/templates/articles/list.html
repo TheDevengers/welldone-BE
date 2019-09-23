@@ -38,15 +38,15 @@
     <div class="pagination">
         <span class="pagination__links">
             {% if article_list.has_previous %}
-                <a href="?page=1{{ shown_param }}" title="First page">&laquo;</a>
-                <a href="?page={{ article_list.previous_page_number }}{{ shown_param }}" title="Previous page">&lsaquo;</a>
+                <a href="?{{ search_param }}page=1{{ shown_param }}" title="First page">&laquo;</a>
+                <a href="?{{ search_param }}page={{ article_list.previous_page_number }}{{ shown_param }}" title="Previous page">&lsaquo;</a>
             {% endif %}
             <span>
-                Page {{ article_list.number }} of {{ latest_articles.paginator.num_pages }}
+                Page {{ article_list.number }} of {{ article_list.paginator.num_pages }}
             </span>
             {% if article_list.has_next %}
-                <a href="?page={{ article_list.next_page_number }}{{ shown_param }}" title="Next page">&rsaquo;</a>
-                <a href="?page={{ article_list.paginator.num_pages }}{{ shown_param }}" title="Last page">&raquo;</a>
+                <a href="?{{ search_param }}page={{ article_list.next_page_number }}{{ shown_param }}" title="Next page">&rsaquo;</a>
+                <a href="?{{ search_param }}page={{ article_list.paginator.num_pages }}{{ shown_param }}" title="Last page">&raquo;</a>
             {% endif %}
         </span>
     </div>
