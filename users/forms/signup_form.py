@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
 
+from users.models import Profile
 
 class SignupForm(UserCreationForm):
     first_name = forms.CharField(label="First name")
@@ -17,3 +17,9 @@ class SignupForm(UserCreationForm):
             user.save()
         return user
 
+
+class ExtendedUserPropertiesForm(forms.ModelForm):
+
+    class Meta:
+        model = Profile
+        fields = ['description', 'birth_place', 'birth_date', 'user']
