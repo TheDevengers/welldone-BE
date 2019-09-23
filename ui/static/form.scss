@@ -1,0 +1,84 @@
+@import "media_queries";
+@import "variables";
+
+.form-area{
+  display: grid;
+  grid-template-areas: none;
+  grid-template-columns: 1fr;
+  font-size: #{$font-size-m};
+
+  @include desktop {
+    grid-template-areas: 'left middle rigth';
+    grid-template-columns: 30% 40% 30%;
+    font-size: #{$font-size-d};
+  }
+}
+
+.button-form{
+  display: inline-block;
+  border-radius: 8px;
+  background-color: green;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: #{$font-size-m};
+  padding: 30px;
+  min-width: 100px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  @include desktop {
+    font-size: #{$font-size-d};
+    padding: 10px;
+  }
+}
+.button-form span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button-form span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button-form:hover span {
+  padding-right: 25px;
+}
+
+.button-form:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.form-field{
+  border:none;
+  background: lightgrey;
+  border-radius: 8px;
+  font-size: #{$font-size-m};
+  width: 100%;
+  padding: 10px;
+  @include desktop {
+    font-size: #{$font-size-d};
+  }
+
+}
+
+.form-texttarea {
+  border: none;
+  background: lightgrey;
+  border-radius: 8px;
+  font-size: #{$font-size-m};
+  width: 100%;
+  resize: none;
+  padding: 10px;
+  @include desktop {
+    font-size: #{$font-size-d};
+  }
+}
