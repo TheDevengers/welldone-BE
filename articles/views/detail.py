@@ -3,10 +3,12 @@ from datetime import datetime
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.views import View
 
 from articles.models import Article, Comment
+from articles.forms import CommentForm
+from articles.controllers import CommentsController
 
 DEFAULT_COMMENTS_SHOWN = 10
 
@@ -24,12 +26,21 @@ class ArticleDetailView(View):
 
         comments = paginator.get_page(comments_page)
 
+        form = CommentForm()
+
         context = {'article': article,
                    'username': username,
                    'comments': comments,
                    'shown_param': shown_param,
+                   'form': form
                    }
 
         html = render(request, 'articles/detail.html', context)
 
         return HttpResponse(html)
+
+
+class CommentsView(View):
+    def post(self, request, slug=None):
+        CommentsController.create_new_comment(request=request, slug=slug)
+        return redirect('article_detail', username=request.user, slug=slug)

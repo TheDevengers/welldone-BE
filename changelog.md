@@ -49,3 +49,11 @@ Respecto a la paginación, he creado en Trello una HU opcional para mejorar la p
 * Añadido endpoint de consulta de listado de artículos. Devuelve todos los artículos del usuario autenticado.
 * Modificado endpoint de creación de artículo. Se le han añadido los mismos permisos que al listado y el autor se vincula al usuario autenticado.
 * Documentación de la API en README.
+
+### feature add new article comment
+
+* Creación de la nueva vista CommentsView
+* Añadir nuevo endpoint /comments/slug
+* Modificar plantilla HTML para incluir el formulario de creacion nuevo comentario
+* Creación formulario CommentForm
+* Creación nuevo controlador CommentController
