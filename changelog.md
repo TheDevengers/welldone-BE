@@ -49,3 +49,9 @@ Respecto a la paginación, he creado en Trello una HU opcional para mejorar la p
 * Añadido endpoint de consulta de listado de artículos. Devuelve todos los artículos del usuario autenticado.
 * Modificado endpoint de creación de artículo. Se le han añadido los mismos permisos que al listado y el autor se vincula al usuario autenticado.
 * Documentación de la API en README.
+
+### feature shown comments number
+
+* Modificado detail.html para mostrar el número de comentarios del artículo arriba junto a la fecha de publicación y abajo justo antes de los comentarios.
+* El contador superior de comentarios está dentro de una etiqueta anchor que dirige a la sección inferior de comentarios.
+* Añadido formato condicional para usar el singular 'comentario' si sólo hay un comentario.
