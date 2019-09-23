@@ -29,9 +29,6 @@ urlpatterns = [
     path('user/signup', Signup.as_view(), name='signup_web'),
     path('user/logout', Logout.as_view(), name='logout_web'),
 
-    path('{0}/token/'.format(api_path), jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('{0}/token/refresh/'.format(api_path), jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
-
     path('author/<str:username>', AuthorArticlesView.as_view(), name='user_articles'),
     path('category/<str:slug>', CategoryArticlesView.as_view(), name='category_articles'),
 
@@ -40,6 +37,8 @@ urlpatterns = [
     path('', LatestArticlesView.as_view(), name='latest_articles'),
 
     # API
+    path('{0}/token/'.format(api_path), jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('{0}/token/refresh/'.format(api_path), jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
     # TODO Rewrite them depends on your necessities, but notify to the team
     # TODO Comments at the end of line are explicative. Consider remove it if you want
     #path('{0}/articles/<int:pk>/comments'.format(api_path), view, name='article_comments_api'),  # GET, POST
