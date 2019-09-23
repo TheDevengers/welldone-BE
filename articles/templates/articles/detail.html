@@ -9,6 +9,11 @@
     <p>By <a href="{% url 'user_articles' article.author.username %}">{{ article.author.first_name }} {{ article.author.last_name }}</a>
     </p>
     <p>Published on {{ article.publication_date }}</p>
+    {% if comments.paginator.count == 1 %}
+    <p><a href="#comments">{{ comments.paginator.count }} comentario</a></p>
+    {% else %}
+    <p><a href="#comments">{{ comments.paginator.count }} comentarios</a></p>
+    {% endif %}
     <p>Categories:
         {% for category in article.categories.all %}
             <a href="{% url 'category_articles' category.slug %}" title="{{ category }} articles">{{ category }}</a>
@@ -16,7 +21,13 @@
     <p>{{ article.introduction }}</p>
     <p>{{ article.body }}</p>
     <br>
-    <h2 id="comments">Comentarios:</h2>
+
+    {% if comments.paginator.count == 1 %}
+        <h2 id="comments">{{ comments.paginator.count }} Comentario:</h2>
+    {% else %}
+        <h2 id="comments">{{ comments.paginator.count }} Comentarios:</h2>
+    {% endif %}
+
     <br>
     <section>
         {% for comment in comments %}
