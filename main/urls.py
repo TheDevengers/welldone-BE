@@ -15,12 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.contrib.auth import views as auth_views
 from rest_framework_simplejwt import views as jwt_views
 
 from users.views import Signup, Logout, Login
 from articles.api import ArticleAPI, ArticlesAPI, CategoriesAPI
 from articles.views import LatestArticlesView, ArticleDetailView, AuthorArticlesView, CategoryArticlesView
-from users.api import UserAPI, UsersAPI
+from users.api import UserAPI, UsersAPI, PasswordRecoveryApi
 from users.views import Signup, Logout
 
 api_path = 'api/v1'
@@ -30,6 +31,7 @@ urlpatterns = [
     path('user/signup', Signup.as_view(), name='signup_web'),
     path('user/logout', Logout.as_view(), name='logout_web'),
     path('user/login', Login.as_view(), name='login_web'),
+    path(r'password_reset', auth_views.PasswordResetView.as_view(), name='password_reset_url'),
 
     path('author/<str:username>', AuthorArticlesView.as_view(), name='user_articles'),
     path('category/<str:slug>', CategoryArticlesView.as_view(), name='category_articles'),
@@ -38,6 +40,8 @@ urlpatterns = [
     path('', LatestArticlesView.as_view(), name='latest_articles'),
 
     # API
+    path(r'{0}/passwordreset/'.format(api_path), PasswordRecoveryApi.as_view(), name='password_reset_api_url'),
+path(r'password_reset/confirm/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('{0}/token/'.format(api_path), jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('{0}/token/refresh/'.format(api_path), jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
     # TODO Rewrite them depends on your necessities, but notify to the team
