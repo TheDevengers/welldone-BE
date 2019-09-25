@@ -5,6 +5,7 @@
 {% block css %}
     {% load sass_tags %}
     <link rel="stylesheet" href="{% sass_src 'articles.scss' %}" type="text/css">
+    <link rel="stylesheet" href="{% sass_src 'pagination.scss' %}" type="text/css">
 {% endblock %}
 
 {% block body_main %}
@@ -31,19 +32,5 @@
         {% endfor %}
     </div>
 
-    <div class="pagination">
-        <span class="pagination__links">
-            {% if article_list.has_previous %}
-                <a href="?page=1{{ shown_param }}" title="First page">&laquo;</a>
-                <a href="?page={{ article_list.previous_page_number }}{{ shown_param }}" title="Previous page">&rsaquo;</a>
-            {% endif %}
-            <span>
-                Page {{ article_list.number }} of {{ latest_articles.paginator.num_pages }}
-            </span>
-            {%  if article_list.has_next %}
-                <a href="?page={{ article_list.next_page_number }}{{ shown_param }}" title="Next page">&rsaquo;</a>
-                <a href="?page={{ article_list.paginator.num_pages }}{{ shown_param }}" title="Last page">&raquo;</a>
-            {% endif %}
-        </span>
-    </div>
+    {% include 'pagination.html' with list=article_list params=shown_param %}
 {% endblock %}

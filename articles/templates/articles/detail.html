@@ -4,6 +4,7 @@
 {% block css %}
     {% load sass_tags %}
     <link rel="stylesheet" href="{% sass_src 'form.scss' %}" type="text/css">
+    <link rel="stylesheet" href="{% sass_src 'pagination.scss' %}" type="text/css">
 {% endblock %}
 
 {% block head_title %} WellDone | {{ article.title }} {% endblock %}
@@ -53,20 +54,6 @@
             <br>
         {% endfor %}
 
-        <div class="pagination">
-        <span class="pagination__links">
-            {% if comments.has_previous %}
-                <a href="?page=1{{ shown_param }}#comments" title="First page">&laquo;</a>
-                <a href="?page={{ comments.previous_page_number }}{{ shown_param }}#comments" title="Previous page">&lsaquo;</a>
-            {% endif %}
-            <span>
-                Page {{ comments.number }} of {{ comments.paginator.num_pages }}
-            </span>
-            {% if comments.has_next %}
-                <a href="?page={{ comments.next_page_number }}{{ shown_param }}#comments" title="Next page">&rsaquo;</a>
-                <a href="?page={{ comments.paginator.num_pages }}{{ shown_param }}#comments" title="Last page">&raquo;</a>
-            {% endif %}
-        </span>
-        </div>
+        {% include 'pagination.html' with list=comments params=shown_param %}
     </section>
 {% endblock %}

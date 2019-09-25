@@ -1,0 +1,18 @@
+{# Pagination include recibe 2 parameters: #}
+{# list: the list used to paginate #}
+{# params: query params added to pagination links #}
+<div class="pagination">
+    <span class="pagination__links">
+        {% if list.has_previous %}
+            <a href="?page=1{{ params }}" title="First page">&laquo;</a>
+            <a href="?page={{ list.previous_page_number }}{{ params }}" title="Previous page">&lsaquo;</a>
+        {% endif %}
+        <span>
+            Page {{ list.number }} of {{ list.paginator.num_pages }}
+        </span>
+        {%  if list.has_next %}
+            <a href="?page={{ list.next_page_number }}{{ params }}" title="Next page">&rsaquo;</a>
+            <a href="?page={{ list.paginator.num_pages }}{{ params }}" title="Last page">&raquo;</a>
+        {% endif %}
+    </span>
+</div>

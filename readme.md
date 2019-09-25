@@ -37,7 +37,8 @@ from main.notifier.mail import SendMail
 SendMail.send_no_reply_email(to_emails='mail address',
                              subject='mail subject',
                              content='content of mail, can be html') 
-``
+```
+
 ## Build and run your app with Compose
 
 First: Donwload [docker]('https://www.docker.com/products/docker-desktop'), also as a complement you can download [kitematic]('https://kitematic.com/') to use Docker more graphic.

@@ -66,4 +66,4 @@ Respecto a la paginación, he creado en Trello una HU opcional para mejorar la p
 * Serializador de actualización de artículo:
     * Si algún valor no es indicado, dejará los valores previos.
     * Si se indica una categoría inexistente, no se tendrá en cuenta.
-    
+* Refactorización de la paginación a un único lugar. Ha de ser incluido cuando quiera usarse, y cargarse sus propios estilos css.
