@@ -57,3 +57,11 @@ Respecto a la paginación, he creado en Trello una HU opcional para mejorar la p
 * Modificar plantilla HTML para incluir el formulario de creacion nuevo comentario
 * Creación formulario CommentForm
 * Creación nuevo controlador CommentController
+
+### feature search articles
+
+* Modificado el controller `articles.py` para filtrar articulos por búsqueda si la URL incluye el parámetro `search`, el cual se genera al realizar el usar el buscador del header. Se busca en los campos `title`, `ìntroduction` y `body`, y se limitan los resultados a máximo 20 artículos por defecto.
+* Modificado la plantilla `list.html`para mostrar un mensaje de que no se encuentran resultados de búsqueda en caso de que el objeto `articles_list` tenga 0 elementos.
+
+La búsqueda es case insensitive, pero busca las palabras con acentos, lo cual no es muy bueno de cara a la UX. Incluiré en Trello una HU opcional para mejorar la búsqueda, quizás usando el operador __iregex.
+https://docs.djangoproject.com/en/2.2/ref/models/querysets/#iregex
