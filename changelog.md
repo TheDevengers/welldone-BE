@@ -65,3 +65,9 @@ Respecto a la paginación, he creado en Trello una HU opcional para mejorar la p
 
 La búsqueda es case insensitive, pero busca las palabras con acentos, lo cual no es muy bueno de cara a la UX. Incluiré en Trello una HU opcional para mejorar la búsqueda, quizás usando el operador __iregex.
 https://docs.djangoproject.com/en/2.2/ref/models/querysets/#iregex
+
+### feature shown comments number
+
+* Modificado detail.html para mostrar el número de comentarios del artículo arriba junto a la fecha de publicación y abajo justo antes de los comentarios.
+* El contador superior de comentarios está dentro de una etiqueta anchor que dirige a la sección inferior de comentarios.
+* Añadido formato condicional para usar el singular 'comentario' si sólo hay un comentario.
