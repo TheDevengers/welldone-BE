@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from rest_framework_simplejwt import views as jwt_views
 
+from users.views import Signup, Logout, Login
 from articles.api import ArticleAPI, ArticlesAPI, CategoriesAPI
 from articles.views import LatestArticlesView, ArticleDetailView, AuthorArticlesView, CategoryArticlesView, CommentsView
 from users.api import UserAPI, UsersAPI
@@ -28,6 +29,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/signup', Signup.as_view(), name='signup_web'),
     path('user/logout', Logout.as_view(), name='logout_web'),
+    path('user/login', Login.as_view(), name='login_web'),
 
     path('author/<str:username>', AuthorArticlesView.as_view(), name='user_articles'),
     path('category/<str:slug>', CategoryArticlesView.as_view(), name='category_articles'),

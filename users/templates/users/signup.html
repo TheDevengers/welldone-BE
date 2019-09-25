@@ -25,6 +25,10 @@ Singup
                 {% csrf_token %}
                 {{ form.non_field_errors }}
                 {{ form.active.errors }}
+                {{ form2.non_field_errors }}
+                {{ form2.active.errors }}
+                {{ form2.errors }}
+                {{ form.errors }}
 
                 {{ form.username.label_tag }} <br>
                 {{ form.username|add_class:"form-field" }} <br>
