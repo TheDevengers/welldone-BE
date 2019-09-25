@@ -63,8 +63,11 @@ POST /token/refresh/     To get access token from refresh token
 ### Articles
 
 ```
-GET /articles           Authenticated users get own list article
-POST /articles          Authenticated users create article as author
+GET     /articles           Authenticated users get own list article
+POST    /articles           Authenticated users create article as author
+PUT     /articles/<pk>      Authenticated users modify entire own articles
+PATCH   /articles/<pk>      Authenticated users modify partiallly own articles
+DELETE  /articles/<pk>      Authenticated users delete own articles
 
 GET /categories         Get list of categories
 ```

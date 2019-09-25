@@ -49,3 +49,13 @@ Respecto a la paginación, he creado en Trello una HU opcional para mejorar la p
 * Añadido endpoint de consulta de listado de artículos. Devuelve todos los artículos del usuario autenticado.
 * Modificado endpoint de creación de artículo. Se le han añadido los mismos permisos que al listado y el autor se vincula al usuario autenticado.
 * Documentación de la API en README.
+
+### feature article API post & delete method
+
+* Añadida varible de entorno para modificar la duración de ACCESS_TOKEN.
+* Adaptación a las vistas de API genéricas.
+* Modificación en la creación de slug: solo funciona cuando se crea un artículo. Si se edita ha de indicarse expresamente el nuevo slug.
+* Serializador de actualización de artículo:
+    * Si algún valor no es indicado, dejará los valores previos.
+    * Si se indica una categoría inexistente, no se tendrá en cuenta.
+    
