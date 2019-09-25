@@ -2,7 +2,6 @@ from django.contrib.auth import login as django_login
 
 from users.forms import SignupForm
 
-
 class SignupController(object):
 
     @staticmethod
@@ -13,6 +12,8 @@ class SignupController(object):
             user = form.save()
             django_login(request, user)
             return True, 'latest_articles'
-        context = {'form': form}
+        context = dict(
+            form=form,
+        )
         return False, context
 

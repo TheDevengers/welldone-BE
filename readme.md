@@ -27,6 +27,17 @@ The virtual environment is activated when the prompt has the virtualenv name ins
 
 For configure it in Visual Studio Code follow this: https://code.visualstudio.com/docs/python/tutorial-django
 
+## Send Mails
+We use Sendgrid service to send emails. There are limit of 100 Emails per day, so use it wisely.
+The system uses the API connection so new librery must to be installed in teh system, look at requirements.txt.
+The way to send an email is easy:
+```
+from main.notifier.mail import SendMail
+
+SendMail.send_no_reply_email(to_emails='mail address',
+                             subject='mail subject',
+                             content='content of mail, can be html') 
+``
 ## Build and run your app with Compose
 
 First: Donwload [docker]('https://www.docker.com/products/docker-desktop'), also as a complement you can download [kitematic]('https://kitematic.com/') to use Docker more graphic.

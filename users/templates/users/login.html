@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block css %}
+    {% load sass_tags %}
+    <link rel="stylesheet" href="{% sass_src 'users.scss' %}" type="text/css">
+{% endblock %}
+
+{% block main_title %}
+Login
+{% endblock %}
+
+
+{% block body_main %}
+
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+
+
+    <div class="form-area">
+        <div class="left"></div>
+        <div class="middle">
+            <form  method="post">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                {{ form.active.errors }}
+
+                {{ form.usr.label_tag }} <br>
+                {{ form.usr|add_class:"form-field" }} <br>
+                {{ form.usr.errors }} <br>
+
+                {{ form.pwd.label_tag }} <br>
+                {{ form.pwd|add_class:"form-field" }} <br>
+                {{ form.pwd.errors }} <br>
+
+                <div>
+                    <button class="button-form" type="submit">Login</button>
+                </div>
+            </form>
+        </div>
+        <div class="rigth"></div>
+    </div>
+
+{% endblock %}

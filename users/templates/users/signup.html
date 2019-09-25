@@ -3,7 +3,7 @@
 
 {% block css %}
     {% load sass_tags %}
-    <link rel="stylesheet" href="{% sass_src 'users.scss' %}" type="text/css">
+    <link rel="stylesheet" href="{% sass_src 'form.scss' %}" type="text/css">
 {% endblock %}
 
 {% block main_title %}
@@ -25,6 +25,10 @@ Singup
                 {% csrf_token %}
                 {{ form.non_field_errors }}
                 {{ form.active.errors }}
+                {{ form2.non_field_errors }}
+                {{ form2.active.errors }}
+                {{ form2.errors }}
+                {{ form.errors }}
 
                 {{ form.username.label_tag }} <br>
                 {{ form.username|add_class:"form-field" }} <br>

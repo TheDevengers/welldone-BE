@@ -14,6 +14,7 @@ import os
 from datetime import timedelta
 
 import environ
+import sendgrid_backend
 
 env = environ.Env()
 environ.Env.read_env()
@@ -93,6 +94,11 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+# Mail settings
+EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+SENDGRID_API_KEY = env('SENDGRID_API_KEY')
+
 
 
 # Password validation
