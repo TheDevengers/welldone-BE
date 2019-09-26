@@ -16,7 +16,7 @@ class ListArticles(object):
         shown = request.GET.get('shown', DEFAULT_SHOWN)
         query_params = None
         query_params = query_params + '&shown={0}'.format(shown) if shown != DEFAULT_SHOWN else ''
-        query_params = query_params + '&search={0}'.format(search) if search != '' else search
+        query_params = query_params + '&search={0}'.format(search) if search != '' else ''
 
         article_list = article_objects.select_related('author').all()\
             .filter(publication_date__lte=datetime.now(), state__exact='PB')\
