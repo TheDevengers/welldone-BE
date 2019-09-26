@@ -58,6 +58,20 @@ Respecto a la paginación, he creado en Trello una HU opcional para mejorar la p
 * Creación formulario CommentForm
 * Creación nuevo controlador CommentController
 
+### feature search articles
+
+* Modificado el controller `articles.py` para filtrar articulos por búsqueda si la URL incluye el parámetro `search`, el cual se genera al realizar el usar el buscador del header. Se busca en los campos `title`, `ìntroduction` y `body`, y se limitan los resultados a máximo 20 artículos por defecto.
+* Modificado la plantilla `list.html`para mostrar un mensaje de que no se encuentran resultados de búsqueda en caso de que el objeto `articles_list` tenga 0 elementos.
+
+La búsqueda es case insensitive, pero busca las palabras con acentos, lo cual no es muy bueno de cara a la UX. Incluiré en Trello una HU opcional para mejorar la búsqueda, quizás usando el operador __iregex.
+https://docs.djangoproject.com/en/2.2/ref/models/querysets/#iregex
+
+### feature shown comments number
+
+* Modificado detail.html para mostrar el número de comentarios del artículo arriba junto a la fecha de publicación y abajo justo antes de los comentarios.
+* El contador superior de comentarios está dentro de una etiqueta anchor que dirige a la sección inferior de comentarios.
+* Añadido formato condicional para usar el singular 'comentario' si sólo hay un comentario.
+
 ### feature article API post & delete method
 
 * Añadida varible de entorno para modificar la duración de ACCESS_TOKEN.
