@@ -9,6 +9,10 @@
 
 {% block body_main %}
     <div class="article__list">
+        <select id="date_order" name="date_order">
+            <option value="-date">Newer articles first</option>
+            <option value="date">Older articles first</option>
+        </select>
         {% if article_list.paginator.count == 0 %}
             <p>No results found. Please, try a new search</p>
         {% else %}
@@ -50,4 +54,6 @@
             {% endif %}
         </span>
     </div>
+    {% load static %}
+    <script src="{% static 'date-order.js' %}"></script>
 {% endblock %}
