@@ -71,3 +71,11 @@ https://docs.djangoproject.com/en/2.2/ref/models/querysets/#iregex
 * Modificado detail.html para mostrar el número de comentarios del artículo arriba junto a la fecha de publicación y abajo justo antes de los comentarios.
 * El contador superior de comentarios está dentro de una etiqueta anchor que dirige a la sección inferior de comentarios.
 * Añadido formato condicional para usar el singular 'comentario' si sólo hay un comentario.
+
+### feature order aticles by date
+
+* Añadido en `list.html` un menu <select> para ordenar los articulos por mas antiguos o mas recientes.
+* Editada la vista `articles.py` para modificar el orden por fecha del queryset dependiento de un parámetro `order` presente en la query con posibles valores `date` y `-date`.
+* Añadido script de JS en `list.html` para marcar la opción seleccionada por defecto en el menú y lanzar una petición GET con el nuevo orden de artículos al escucha run evento `change`del manú.
+* Tanto el código de la vista `detail.py` como de los scripts `date-order.js` y `get-url-params.js` está listo para detectar y corregir posibles errores del parámetro `order`, incluyendo su omisión (se toma por defecto `-date`), valores erróneos (se omiten) o múltiples valores (sólo se recoge el primero y se eliminan los restantes).
+* El código JS está escrito en ES5 para compatibilidad con navegadores antiguos.
