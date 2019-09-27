@@ -71,3 +71,13 @@ https://docs.djangoproject.com/en/2.2/ref/models/querysets/#iregex
 * Modificado detail.html para mostrar el número de comentarios del artículo arriba junto a la fecha de publicación y abajo justo antes de los comentarios.
 * El contador superior de comentarios está dentro de una etiqueta anchor que dirige a la sección inferior de comentarios.
 * Añadido formato condicional para usar el singular 'comentario' si sólo hay un comentario.
+
+### feature article API post & delete method
+
+* Añadida varible de entorno para modificar la duración de ACCESS_TOKEN.
+* Adaptación a las vistas de API genéricas.
+* Modificación en la creación de slug: solo funciona cuando se crea un artículo. Si se edita ha de indicarse expresamente el nuevo slug.
+* Serializador de actualización de artículo:
+    * Si algún valor no es indicado, dejará los valores previos.
+    * Si se indica una categoría inexistente, no se tendrá en cuenta.
+* Refactorización de la paginación a un único lugar. Ha de ser incluido cuando quiera usarse, y cargarse sus propios estilos css.

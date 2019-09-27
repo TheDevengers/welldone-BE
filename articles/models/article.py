@@ -36,7 +36,8 @@ class Article(models.Model):
         # https://books.agiliq.com/projects/django-orm-cookbook/en/latest/slugfield.html
         # TODO Modificar slug para que no salte error cuando dos articulos tengan el mismo título
         # TODO Redimensionar imagen
-        self.slug = slugify(self.title)
+        if not self.pk:
+            self.slug = slugify(self.title)
 
         if not any(self.state in _tuple for _tuple in ART_STATE):
             raise ValueError(self.state, ' it is not a valid state')

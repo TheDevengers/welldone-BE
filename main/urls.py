@@ -58,7 +58,6 @@ urlpatterns = [
     path('{0}/users/<int:pk>'.format(api_path), UserAPI.as_view(), name='user_api'),  # PUT, DELETE
     path('{0}/users'.format(api_path), UsersAPI.as_view(), name='users_api'),  # GET, POST
 
-    #Categories
     path('{0}/categories'.format(api_path), CategoriesAPI.as_view(), name='categories_api'),  # GET,
 
 ]

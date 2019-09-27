@@ -12,6 +12,7 @@ from articles.controllers import CommentsController
 
 DEFAULT_COMMENTS_SHOWN = 10
 
+
 class ArticleDetailView(View):
 
     def get(self, request, username, slug):

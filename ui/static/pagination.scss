@@ -1,0 +1,11 @@
+.pagination {
+  text-align: center;
+
+  &__links {
+    a {
+      font-size: 1.5em;
+      padding: 0 0.3em;
+      border: 1px solid grey;
+    }
+  }
+}
