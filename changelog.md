@@ -81,3 +81,10 @@ https://docs.djangoproject.com/en/2.2/ref/models/querysets/#iregex
     * Si algún valor no es indicado, dejará los valores previos.
     * Si se indica una categoría inexistente, no se tendrá en cuenta.
 * Refactorización de la paginación a un único lugar. Ha de ser incluido cuando quiera usarse, y cargarse sus propios estilos css.
+
+### feature add favorite
+
+* Creación nueva vista FavoriteView
+* Añadir nuevo endpoint /favorites/slug
+* Modificar plantilla HTML para incluir boton de añadir a favoritos
+* Creacion nuevo controlador FavoriteController
