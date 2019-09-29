@@ -84,5 +84,6 @@ https://docs.djangoproject.com/en/2.2/ref/models/querysets/#iregex
 
 ### feature docker
 
-* Añadidas variables de entorno a dockerfile
-* Refactorización del código
+* Añadidas variables de entorno a dockerfile.
+* Refactorización del código.
+* Añadidos permisos de ejecución a run.sh.
