@@ -1,9 +1,11 @@
-FROM python:3
+FROM python:3.7
 ENV PYTHONUNBUFFERED 1
 ENV SECRET_KEY=${SECRET_KEY}
+ENV SENDGRID_API_KEY=${SENDGRID_API_KEY}
+ENV ACCESS_TOKEN_LIFETIME=${ACCESS_TOKEN_LIFETIME}
 RUN mkdir /code
+COPY . /code/
 WORKDIR /code
-COPY requirements.txt /code/
 RUN pip install -r requirements.txt
 EXPOSE 8000
-COPY . /code/
+CMD ./run.sh

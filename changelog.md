@@ -81,3 +81,8 @@ https://docs.djangoproject.com/en/2.2/ref/models/querysets/#iregex
     * Si algún valor no es indicado, dejará los valores previos.
     * Si se indica una categoría inexistente, no se tendrá en cuenta.
 * Refactorización de la paginación a un único lugar. Ha de ser incluido cuando quiera usarse, y cargarse sus propios estilos css.
+
+### feature docker
+
+* Añadidas variables de entorno a dockerfile
+* Refactorización del código
