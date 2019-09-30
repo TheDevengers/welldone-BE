@@ -89,3 +89,18 @@ https://docs.djangoproject.com/en/2.2/ref/models/querysets/#iregex
 * Añadido script de JS en `list.html` para marcar la opción seleccionada por defecto en el menú y lanzar una petición GET con el nuevo orden de artículos al escucha run evento `change`del manú.
 * Tanto el código de la vista `detail.py` como de los scripts `date-order.js` y `get-url-params.js` está listo para detectar y corregir posibles errores del parámetro `order`, incluyendo su omisión (se toma por defecto `-date`), valores erróneos (se omiten) o múltiples valores (sólo se recoge el primero y se eliminan los restantes).
 * El código JS está escrito en ES5 para compatibilidad con navegadores antiguos.
+
+### feature add favorite
+
+* Creación nueva vista FavoriteView
+* Añadir nuevo endpoint /favorites/slug
+* Modificar plantilla HTML para incluir boton de añadir a favoritos
+* Creacion nuevo controlador FavoriteController
+
+### feature order articles by date
+
+* Añadido en `list.html` un menu `<select>` para ordenar los articulos por mas antiguos o mas recientes.
+* Editada la vista `articles.py` para modificar el orden por fecha del queryset dependiento de un parámetro `order` presente en la query con posibles valores `date` y `-date`.
+* Añadido script de JS en `list.html` para marcar la opción seleccionada por defecto en el menú y lanzar una petición GET con el nuevo orden de artículos al escucha run evento `change`del manú.
+* Tanto el código de la vista `detail.py` como de los scripts `date-order.js` y `get-url-params.js` está listo para detectar y corregir posibles errores del parámetro `order`, incluyendo su omisión (se toma por defecto `-date`), valores erróneos (se omiten) o múltiples valores (sólo se recoge el primero y se eliminan los restantes).
+* El código JS está escrito en ES5 para compatibilidad con navegadores antiguos.

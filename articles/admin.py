@@ -1,5 +1,5 @@
 from django.contrib import admin
-from articles.models import Article, Category, Comment, Highlight
+from articles.models import Article, Category, Comment, Highlight, Favorite
 
 admin.site.site_header = "Welldone admin"
 admin.site.site_title = "Welldone admin portal"
@@ -10,3 +10,4 @@ admin.site.register(Article)
 admin.site.register(Category)
 admin.site.register(Comment)
 admin.site.register(Highlight)
+admin.site.register(Favorite)
