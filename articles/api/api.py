@@ -1,5 +1,5 @@
 from django.db.models import Q
-from rest_framework.generics import ListCreateAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 
 from articles.models import Category, Article
 from articles.permissions import ArticlePermission
@@ -24,15 +24,10 @@ class ArticlesAPI(ListCreateAPIView):
         serializer.save(author=self.request.user)
 
 
-class ArticleAPI(APIView):
-    def get(self, request, pk):
-        return Response()
+class ArticleAPI(RetrieveUpdateDestroyAPIView):
 
-    def put(self, request, pk):
-        return Response()
-
-    def delete(self, request, pk):
-        return Response()
+    queryset = Article.objects.all().select_related('author')
+    serializer_class = ArticleSerializer
 
 
 class CategoriesAPI(APIView):

@@ -5,6 +5,7 @@
 {% block css %}
     {% load sass_tags %}
     <link rel="stylesheet" href="{% sass_src 'articles.scss' %}" type="text/css">
+    <link rel="stylesheet" href="{% sass_src 'pagination.scss' %}" type="text/css">
 {% endblock %}
 
 {% block body_main %}
@@ -13,48 +14,34 @@
             <option value="-date">Newer articles first</option>
             <option value="date">Older articles first</option>
         </select>
-        {% if article_list.paginator.count == 0 %}
+        {% for article in article_list %}
+            <article class="article__item">
+                <a class="article__item__title" href="{% url 'article_detail' article.author.username article.slug %}">
+                    <h2>{{ article.title }}</h2>
+                </a>
+                <small class="article__item__info">
+                    <a href="{% url 'user_articles' article.author.username %}">{{ article.author.username }}</a>
+                    | {{ article.publication_date }}
+                </small>
+                <a class="article__item__image" href="{% url 'article_detail' article.author.username article.slug %}">
+                    <img src="{{ article.image }}" alt="{{ article.title }}" title="{{ article.title }}">
+                </a>
+                <p class="article__item__intro">{{ article.introduction }}</p>
+                <div class="article__item__categories">
+                    {% for category in article.categories.all %}
+                        <a href="{% url 'category_articles' category.slug %}" title="{{ category }} articles">{{ category }}</a>
+                    {% endfor %}
+                </div>
+            </article>
+        {% empty %}
             <p>No results found. Please, try a new search</p>
-        {% else %}
-            {% for article in article_list %}
-                <article class="article__item">
-                    <a class="article__item__title" href="{% url 'article_detail' article.author.username article.slug %}">
-                        <h2>{{ article.title }}</h2>
-                    </a>
-                    <small class="article__item__info">
-                        <a href="{% url 'user_articles' article.author.username %}">{{ article.author.username }}</a>
-                        | {{ article.publication_date }}
-                    </small>
-                    <a class="article__item__image" href="{% url 'article_detail' article.author.username article.slug %}">
-                        <img src="{{ article.image }}" alt="{{ article.title }}" title="{{ article.title }}">
-                    </a>
-                    <p class="article__item__intro">{{ article.introduction }}</p>
-                    <div class="article__item__categories">
-                        {% for category in article.categories.all %}
-                            <a href="{% url 'category_articles' category.slug %}" title="{{ category }} articles">{{ category }}</a>
-                        {% endfor %}
-                    </div>
-                </article>
-            {% endfor %}
-        {% endif %}
+        {% endfor %}
     </div>
 
-    <div class="pagination">
-        <span class="pagination__links">
-            {% if article_list.has_previous %}
-                <a href="?{{ search_param }}page=1{{ shown_param }}" title="First page">&laquo;</a>
-                <a href="?{{ search_param }}page={{ article_list.previous_page_number }}{{ shown_param }}" title="Previous page">&lsaquo;</a>
-            {% endif %}
-            <span>
-                Page {{ article_list.number }} of {{ article_list.paginator.num_pages }}
-            </span>
-            {% if article_list.has_next %}
-                <a href="?{{ search_param }}page={{ article_list.next_page_number }}{{ shown_param }}" title="Next page">&rsaquo;</a>
-                <a href="?{{ search_param }}page={{ article_list.paginator.num_pages }}{{ shown_param }}" title="Last page">&raquo;</a>
-            {% endif %}
-        </span>
-    </div>
+    {% include 'pagination.html' with list=article_list params=query_params %}
+
     {% load static %}
     <script src="{% static 'get-url-params.js' %}"></script>
     <script src="{% static 'date-order.js' %}"></script>
+
 {% endblock %}

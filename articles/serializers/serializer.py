@@ -1,6 +1,5 @@
-from rest_framework.serializers import ModelSerializer
 from rest_framework import serializers
-from django.utils.text import slugify
+from rest_framework.serializers import ModelSerializer
 
 from articles.models import Category, Article
 
@@ -12,9 +11,12 @@ class CategorySerializer(ModelSerializer):
     class Meta:
         model = Category
         fields = ['id', 'name']
+        read_only_fields = ['name']
 
 
 class ArticleListSerializer(ModelSerializer):
+
+    categories = CategorySerializer(many=True)
 
     class Meta:
         model = Article
@@ -24,10 +26,6 @@ class ArticleListSerializer(ModelSerializer):
 class ArticleSerializer(ModelSerializer):
 
     categories = CategorySerializer(many=True)
-    slug = serializers.SerializerMethodField('get_slug')
-
-    def get_slug(self, obj):
-        return slugify(obj.title)
 
     class Meta:
         model = Article
@@ -44,3 +42,28 @@ class ArticleSerializer(ModelSerializer):
             categories.append(obj)
         article.categories.add(*categories)
         return article
+
+    def update(self, instance, validated_data):
+        categories_data = validated_data.pop('categories', '')
+
+        instance.title = validated_data.get('title', instance.title)
+        instance.introduction = validated_data.get('introduction', instance.introduction)
+        instance.body = validated_data.get('body', instance.body)
+        instance.state = validated_data.get('state', instance.state)
+        instance.slug = validated_data.get('slug', instance.slug)
+        instance.image = validated_data.get('image', instance.image)
+
+        categories = []
+        for category_data in categories_data:
+            try:
+                obj = Category.objects.get(id=category_data['id'])
+                categories.append(obj)
+            except Category.DoesNotExist:
+                obj = None
+
+        if categories:
+            instance.categories.set(categories)
+
+        instance.save()
+
+        return instance

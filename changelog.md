@@ -72,9 +72,19 @@ https://docs.djangoproject.com/en/2.2/ref/models/querysets/#iregex
 * El contador superior de comentarios está dentro de una etiqueta anchor que dirige a la sección inferior de comentarios.
 * Añadido formato condicional para usar el singular 'comentario' si sólo hay un comentario.
 
-### feature order aticles by date
+### feature article API post & delete method
 
-* Añadido en `list.html` un menu <select> para ordenar los articulos por mas antiguos o mas recientes.
+* Añadida varible de entorno para modificar la duración de ACCESS_TOKEN.
+* Adaptación a las vistas de API genéricas.
+* Modificación en la creación de slug: solo funciona cuando se crea un artículo. Si se edita ha de indicarse expresamente el nuevo slug.
+* Serializador de actualización de artículo:
+    * Si algún valor no es indicado, dejará los valores previos.
+    * Si se indica una categoría inexistente, no se tendrá en cuenta.
+* Refactorización de la paginación a un único lugar. Ha de ser incluido cuando quiera usarse, y cargarse sus propios estilos css.
+
+### feature order articles by date
+
+* Añadido en `list.html` un menu `<select>` para ordenar los articulos por mas antiguos o mas recientes.
 * Editada la vista `articles.py` para modificar el orden por fecha del queryset dependiento de un parámetro `order` presente en la query con posibles valores `date` y `-date`.
 * Añadido script de JS en `list.html` para marcar la opción seleccionada por defecto en el menú y lanzar una petición GET con el nuevo orden de artículos al escucha run evento `change`del manú.
 * Tanto el código de la vista `detail.py` como de los scripts `date-order.js` y `get-url-params.js` está listo para detectar y corregir posibles errores del parámetro `order`, incluyendo su omisión (se toma por defecto `-date`), valores erróneos (se omiten) o múltiples valores (sólo se recoge el primero y se eliminan los restantes).

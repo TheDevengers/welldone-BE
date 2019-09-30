@@ -37,7 +37,8 @@ from main.notifier.mail import SendMail
 SendMail.send_no_reply_email(to_emails='mail address',
                              subject='mail subject',
                              content='content of mail, can be html') 
-``
+```
+
 ## Build and run your app with Compose
 
 First: Donwload [docker]('https://www.docker.com/products/docker-desktop'), also as a complement you can download [kitematic]('https://kitematic.com/') to use Docker more graphic.
@@ -74,8 +75,11 @@ POST /token/refresh/     To get access token from refresh token
 ### Articles
 
 ```
-GET /articles           Authenticated users get own list article
-POST /articles          Authenticated users create article as author
+GET     /articles           Authenticated users get own list article
+POST    /articles           Authenticated users create article as author
+PUT     /articles/<pk>      Authenticated users modify entire own articles
+PATCH   /articles/<pk>      Authenticated users modify partiallly own articles
+DELETE  /articles/<pk>      Authenticated users delete own articles
 
 GET /categories         Get list of categories
 ```
