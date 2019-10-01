@@ -55,7 +55,7 @@ urlpatterns = [
     #path('{0}/users/<int:pk>/highlights'.format(api_path), view, name='user_highlights_api'),  # GET
     #path('{0}/users/<int:pk>/follow'.format(api_path), view, name='user_follow_api'),
     #path('{0}/users/<int:pk>/unfollow'.format(api_path), view, name='user_unfollow_api'),
-    path('{0}/users/<int:pk>'.format(api_path), UserAPI.as_view(), name='user_api'),  # PUT, DELETE
+    path('{0}/users/<int:pk>'.format(api_path), UserAPI.as_view(), name='user_api'),  # GET, PUT, DELETE
     path('{0}/users'.format(api_path), UsersAPI.as_view(), name='users_api'),  # GET, POST
 
     path('{0}/categories'.format(api_path), CategoriesAPI.as_view(), name='categories_api'),  # GET,
