@@ -1,11 +1,12 @@
 FROM python:3.7
 ENV PYTHONUNBUFFERED 1
-ENV SECRET_KEY=${SECRET_KEY}
-ENV SENDGRID_API_KEY=${SENDGRID_API_KEY}
-ENV ACCESS_TOKEN_LIFETIME=${ACCESS_TOKEN_LIFETIME}
 RUN mkdir /django-project
-ADD . /django-project/
-#WORKDIR /django-project
-#RUN pip install -r requirements.txt
+COPY . /django-project/
+WORKDIR /django-project
+RUN /bin/bash -c 'source main/.env'
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
+#RUN python manage.py collectstatic --noinput
+RUN python manage.py migrate --noinput
 EXPOSE 8000
 CMD ./run.sh
