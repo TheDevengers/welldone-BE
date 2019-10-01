@@ -137,6 +137,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+LOGIN_URL = env('LOGIN_URL')
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
