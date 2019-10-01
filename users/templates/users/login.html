@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load widget_tweaks %}
+{% load i18n %}
 
 {% block css %}
     {% load sass_tags %}
@@ -32,7 +33,9 @@ Login
 
                 {{ form.pwd.label_tag }} <br>
                 {{ form.pwd|add_class:"form-field" }} <br>
-                {{ form.pwd.errors }} <br>
+                {{ form.pwd.errors }}
+
+                <a href="{{ pwd_reset }}">{% trans 'forgot password?' %}</a>
 
                 <div>
                     <button class="button-form" type="submit">Login</button>
