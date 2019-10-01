@@ -49,3 +49,58 @@ Respecto a la paginación, he creado en Trello una HU opcional para mejorar la p
 * Añadido endpoint de consulta de listado de artículos. Devuelve todos los artículos del usuario autenticado.
 * Modificado endpoint de creación de artículo. Se le han añadido los mismos permisos que al listado y el autor se vincula al usuario autenticado.
 * Documentación de la API en README.
+
+### feature add new article comment
+
+* Creación de la nueva vista CommentsView
+* Añadir nuevo endpoint /comments/slug
+* Modificar plantilla HTML para incluir el formulario de creacion nuevo comentario
+* Creación formulario CommentForm
+* Creación nuevo controlador CommentController
+
+### feature search articles
+
+* Modificado el controller `articles.py` para filtrar articulos por búsqueda si la URL incluye el parámetro `search`, el cual se genera al realizar el usar el buscador del header. Se busca en los campos `title`, `ìntroduction` y `body`, y se limitan los resultados a máximo 20 artículos por defecto.
+* Modificado la plantilla `list.html`para mostrar un mensaje de que no se encuentran resultados de búsqueda en caso de que el objeto `articles_list` tenga 0 elementos.
+
+La búsqueda es case insensitive, pero busca las palabras con acentos, lo cual no es muy bueno de cara a la UX. Incluiré en Trello una HU opcional para mejorar la búsqueda, quizás usando el operador __iregex.
+https://docs.djangoproject.com/en/2.2/ref/models/querysets/#iregex
+
+### feature shown comments number
+
+* Modificado detail.html para mostrar el número de comentarios del artículo arriba junto a la fecha de publicación y abajo justo antes de los comentarios.
+* El contador superior de comentarios está dentro de una etiqueta anchor que dirige a la sección inferior de comentarios.
+* Añadido formato condicional para usar el singular 'comentario' si sólo hay un comentario.
+
+### feature article API post & delete method
+
+* Añadida varible de entorno para modificar la duración de ACCESS_TOKEN.
+* Adaptación a las vistas de API genéricas.
+* Modificación en la creación de slug: solo funciona cuando se crea un artículo. Si se edita ha de indicarse expresamente el nuevo slug.
+* Serializador de actualización de artículo:
+    * Si algún valor no es indicado, dejará los valores previos.
+    * Si se indica una categoría inexistente, no se tendrá en cuenta.
+* Refactorización de la paginación a un único lugar. Ha de ser incluido cuando quiera usarse, y cargarse sus propios estilos css.
+
+### feature order articles by date
+
+* Añadido en `list.html` un menu `<select>` para ordenar los articulos por mas antiguos o mas recientes.
+* Editada la vista `articles.py` para modificar el orden por fecha del queryset dependiento de un parámetro `order` presente en la query con posibles valores `date` y `-date`.
+* Añadido script de JS en `list.html` para marcar la opción seleccionada por defecto en el menú y lanzar una petición GET con el nuevo orden de artículos al escucha run evento `change`del manú.
+* Tanto el código de la vista `detail.py` como de los scripts `date-order.js` y `get-url-params.js` está listo para detectar y corregir posibles errores del parámetro `order`, incluyendo su omisión (se toma por defecto `-date`), valores erróneos (se omiten) o múltiples valores (sólo se recoge el primero y se eliminan los restantes).
+* El código JS está escrito en ES5 para compatibilidad con navegadores antiguos.
+
+### feature add favorite
+
+* Creación nueva vista FavoriteView
+* Añadir nuevo endpoint /favorites/slug
+* Modificar plantilla HTML para incluir boton de añadir a favoritos
+* Creacion nuevo controlador FavoriteController
+
+### feature order articles by date
+
+* Añadido en `list.html` un menu `<select>` para ordenar los articulos por mas antiguos o mas recientes.
+* Editada la vista `articles.py` para modificar el orden por fecha del queryset dependiento de un parámetro `order` presente en la query con posibles valores `date` y `-date`.
+* Añadido script de JS en `list.html` para marcar la opción seleccionada por defecto en el menú y lanzar una petición GET con el nuevo orden de artículos al escucha run evento `change`del manú.
+* Tanto el código de la vista `detail.py` como de los scripts `date-order.js` y `get-url-params.js` está listo para detectar y corregir posibles errores del parámetro `order`, incluyendo su omisión (se toma por defecto `-date`), valores erróneos (se omiten) o múltiples valores (sólo se recoge el primero y se eliminan los restantes).
+* El código JS está escrito en ES5 para compatibilidad con navegadores antiguos.

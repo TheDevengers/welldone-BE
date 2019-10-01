@@ -6,8 +6,6 @@ from django.views import View
 from articles.controllers import ListArticles
 from articles.models import Article, Category
 
-DEFAULT_SHOWN = 10
-
 
 class LatestArticlesView(View):
 

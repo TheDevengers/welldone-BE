@@ -1,4 +1,11 @@
 {% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block css %}
+    {% load sass_tags %}
+    <link rel="stylesheet" href="{% sass_src 'form.scss' %}" type="text/css">
+    <link rel="stylesheet" href="{% sass_src 'pagination.scss' %}" type="text/css">
+{% endblock %}
 
 {% block head_title %} WellDone | {{ article.title }} {% endblock %}
 
@@ -9,15 +16,47 @@
     <p>By <a href="{% url 'user_articles' article.author.username %}">{{ article.author.first_name }} {{ article.author.last_name }}</a>
     </p>
     <p>Published on {{ article.publication_date }}</p>
+    <p><a href="#comments">{{ comments.paginator.count }} comentario{{ comments.paginator.count|pluralize }}</a></p>
     <p>Categories:
         {% for category in article.categories.all %}
             <a href="{% url 'category_articles' category.slug %}" title="{{ category }} articles">{{ category }}</a>
         {% endfor %}
     <p>{{ article.introduction }}</p>
     <p>{{ article.body }}</p>
-    <br>
-    <h2 id="comments">Comentarios:</h2>
-    <br>
+
+    {% if user.is_authenticated %}
+        <div class="form-area">
+             <form  method="post" action="{% url 'article_favorites' article.slug %}">
+                 {% csrf_token %}
+                 {% if isFavorite == False %}
+                    <button class="button-form" type="submit">Add to favorite</button>
+                 {% else %}
+                    <button class="button-form" disabled>Is in your favorites</button>
+                 {% endif %}
+             </form>
+        </div>
+    {% endif %}
+    <h2 id="comments">{{ comments.paginator.count }} Comentario{{ comments.paginator.count|pluralize }}:</h2>
+    {% if user.is_authenticated %}
+        <div class="form-area">
+            <form  method="post" action="{% url 'article_comments' article.slug %}">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                {{ form.active.errors }}
+
+                {{ form.title.label_tag }} <br>
+                {{ form.title|add_class:"form-field" }} <br>
+                {{ form.title.errors }} <br>
+
+                {{ form.text.label_tag }} <br>
+                {{ form.text|add_class:"form-texttarea" }} <br>
+                {{ form.text.errors }} <br>
+                <div>
+                    <button class="button-form" type="submit">add comment</button>
+                </div>
+            </form>
+        </div>
+    {% endif %}
     <section>
         {% for comment in comments %}
             <i><p>By <a href="{% url 'user_articles' comment.author.username %}">{{ article.author.first_name }} {{ article.author.last_name }}</a>,
@@ -27,20 +66,6 @@
             <br>
         {% endfor %}
 
-        <div class="pagination">
-        <span class="pagination__links">
-            {% if comments.has_previous %}
-                <a href="?page=1{{ shown_param }}#comments" title="First page">&laquo;</a>
-                <a href="?page={{ comments.previous_page_number }}{{ shown_param }}#comments" title="Previous page">&lsaquo;</a>
-            {% endif %}
-            <span>
-                Page {{ comments.number }} of {{ comments.paginator.num_pages }}
-            </span>
-            {% if comments.has_next %}
-                <a href="?page={{ comments.next_page_number }}{{ shown_param }}#comments" title="Next page">&rsaquo;</a>
-                <a href="?page={{ comments.paginator.num_pages }}{{ shown_param }}#comments" title="Last page">&raquo;</a>
-            {% endif %}
-        </span>
-        </div>
+        {% include 'pagination.html' with list=comments params=shown_param %}
     </section>
 {% endblock %}
