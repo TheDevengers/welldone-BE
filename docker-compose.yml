@@ -3,7 +3,11 @@ version: '3'
 services:
   django:
     build: .
-    env_file:
-     - main/.env
+    container_name: django-project
+    volumes:
+      - .:/django-project
+#    restart: always
+#    env_file:
+#     - main/.env
     ports:
-      - "8000:8000"
+      - "80:8000"
