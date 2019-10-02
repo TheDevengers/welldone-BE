@@ -35,20 +35,20 @@ class UserListSerializer(ModelSerializer):
 
 
 class ProfileSerializer(ModelSerializer):
-    id = serializers.ReadOnlyField()
 
     class Meta:
         model = Profile
-        fields = ['id', 'description', 'birth_date', 'birth_place']
-        read_only_fields = ['id']
+        fields = ['description', 'birth_date', 'birth_place']
 
 
 class UserSerializer(ModelSerializer):
 
+    profile = ProfileSerializer()
+
     class Meta:
         model = User
         fields = ['id', 'first_name', 'last_name', 'email',
-                  'username', 'date_joined']
+                  'username', 'date_joined', 'profile']
         read_only_fields = ['id', 'date_joined']
 
     def validate_email(self, value):
@@ -57,11 +57,21 @@ class UserSerializer(ModelSerializer):
             raise ValidationError('The email {0} is already used'.format(value))
         return value
 
+    def create(self, validated_data):
+        profile_data = validated_data.pop('profile')
+        user = User.objects.create(**validated_data)
+        Profile.objects.create(user=user, **profile_data)
+        return user
+
     def update(self, instance, validated_data):
-        instance.first_name = validated_data.get('first_name')
-        instance.last_name = validated_data.get('last_name')
-        instance.username = validated_data.get('username')
-        instance.set_password(validated_data.get('password'))
-        instance.email = validated_data.get('email')
+        profile_data = validated_data.pop('profile')
+        profile = instance.profile
+
+        instance.email = validated_data.get('email', instance.email)
         instance.save()
+
+        profile.description = profile_data.get('description', profile.description)
+        profile.birth_date = profile_data.get('birth_date', profile.birth_date)
+        profile.birth_place = profile_data.get('birth_place', profile.birth_place)
+        profile.save()
         return instance
