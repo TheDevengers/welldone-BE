@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from django.contrib.auth import get_user_model
-
+from users.permissions import  UserPermission
 from users.serializers import UserSignUpSerializer, UserSerializer, UserListSerializer
 
 User = get_user_model()
@@ -31,6 +31,8 @@ class UsersAPI(ListCreateAPIView):
 
 
 class UserAPI(RetrieveUpdateDestroyAPIView):
+
+    permission_classes = [UserPermission]
 
     queryset = User.objects.all()
     serializer_class = UserSerializer
