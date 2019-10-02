@@ -19,7 +19,7 @@ from rest_framework_simplejwt import views as jwt_views
 
 from users.views import Signup, Logout, Login
 from articles.api import ArticleAPI, ArticlesAPI, CategoriesAPI
-from articles.views import LatestArticlesView, ArticleDetailView, AuthorArticlesView, CategoryArticlesView, CommentsView
+from articles.views import LatestArticlesView, ArticleDetailView, AuthorArticlesView, CategoryArticlesView, CommentsView, FavoriteView
 from users.api import UserAPI, UsersAPI
 from users.views import Signup, Logout
 
@@ -36,6 +36,7 @@ urlpatterns = [
 
     path('<str:username>/<str:slug>/', ArticleDetailView.as_view(), name='article_detail'),
     path('comments/<str:slug>', CommentsView.as_view(), name='article_comments'),
+    path('favorite/<str:slug>', FavoriteView.as_view(), name='article_favorites'),
     path('', LatestArticlesView.as_view(), name='latest_articles'),
 
     # API

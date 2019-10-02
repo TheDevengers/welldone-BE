@@ -10,6 +10,10 @@
 
 {% block body_main %}
     <div class="article__list">
+        <select id="date_order" name="date_order">
+            <option value="-date">Newer articles first</option>
+            <option value="date">Older articles first</option>
+        </select>
         {% for article in article_list %}
             <article class="article__item">
                 <a class="article__item__title" href="{% url 'article_detail' article.author.username article.slug %}">
@@ -35,4 +39,9 @@
     </div>
 
     {% include 'pagination.html' with list=article_list params=query_params %}
+
+    {% load static %}
+    <script src="{% static 'get-url-params.js' %}"></script>
+    <script src="{% static 'date-order.js' %}"></script>
+
 {% endblock %}
