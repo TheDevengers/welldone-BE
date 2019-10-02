@@ -1,8 +1,6 @@
-from rest_framework.generics import CreateAPIView, ListCreateAPIView
-from rest_framework.generics import get_object_or_404
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.views import APIView
 
 from django.contrib.auth import get_user_model
 
@@ -32,24 +30,7 @@ class UsersAPI(ListCreateAPIView):
         return UserListSerializer if self.request.method == 'GET' else UserSignUpSerializer
 
 
-class UserAPI(APIView):
+class UserAPI(RetrieveUpdateDestroyAPIView):
 
-    def get(self, request, pk):
-        user = get_object_or_404(User, pk=pk)
-        serializer = UserSerializer(user)
-        return Response(serializer.data)
-
-    def put(self, request, pk):
-        user = get_object_or_404(User, pk=pk)
-        serializer = UserSerializer(user, data=request.data)
-        if serializer.is_valid():
-            updated_user = serializer.save()
-            user_serializer = UserSerializer(updated_user)
-            return Response(user_serializer.data)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def delete(self, request, pk):
-        user = get_object_or_404(User, pk=pk)
-        user.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    queryset = User.objects.all()
+    serializer_class = UserSerializer

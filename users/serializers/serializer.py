@@ -9,6 +9,13 @@ from users.models import Profile
 User = get_user_model()
 
 
+class ProfileSerializer(ModelSerializer):
+
+    class Meta:
+        model = Profile
+        fields = ['description', 'birth_date', 'birth_place']
+
+
 class UserSignUpSerializer(ModelSerializer):
     email = EmailField(validators=[UniqueValidator(queryset=User.objects.all())])
 
@@ -22,6 +29,7 @@ class UserSignUpSerializer(ModelSerializer):
         user_instance = User.objects.create(**validated_data)
         user_instance.set_password(password)
         user_instance.save()
+        Profile.objects.create(user=user_instance)
         return user_instance
 
 
@@ -32,13 +40,6 @@ class UserListSerializer(ModelSerializer):
         fields = ['id', 'first_name', 'last_name', 'email',
                   'username']
         read_only_fields = ['id']
-
-
-class ProfileSerializer(ModelSerializer):
-
-    class Meta:
-        model = Profile
-        fields = ['description', 'birth_date', 'birth_place']
 
 
 class UserSerializer(ModelSerializer):
@@ -56,12 +57,6 @@ class UserSerializer(ModelSerializer):
         if has_to_check_email and User.objects.filter(email=value).exists():
             raise ValidationError('The email {0} is already used'.format(value))
         return value
-
-    def create(self, validated_data):
-        profile_data = validated_data.pop('profile')
-        user = User.objects.create(**validated_data)
-        Profile.objects.create(user=user, **profile_data)
-        return user
 
     def update(self, instance, validated_data):
         profile_data = validated_data.pop('profile')
