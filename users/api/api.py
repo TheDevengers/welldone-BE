@@ -1,4 +1,4 @@
-from rest_framework.generics import CreateAPIView
+from rest_framework.generics import CreateAPIView, ListCreateAPIView
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 from rest_framework import status
@@ -11,9 +11,8 @@ from users.serializers import UserSignUpSerializer, UserSerializer, UserListSeri
 User = get_user_model()
 
 
-class UsersAPI(CreateAPIView):
-
-    serializer_class = UserSignUpSerializer
+class UsersAPI(ListCreateAPIView):
+    queryset = User.objects.all()
 
     def post(self, request, *args, **kwargs):
         first_name = request.data.get('first_name')
@@ -29,10 +28,8 @@ class UsersAPI(CreateAPIView):
                 serializer.save()
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-    def get(self, request):
-        users = User.objects.all()
-        serializer = UserListSerializer(users, many = True)
-        return Response(serializer.data)
+    def get_serializer_class(self):
+        return UserListSerializer if self.request.method == 'GET' else UserSignUpSerializer
 
 
 class UserAPI(APIView):

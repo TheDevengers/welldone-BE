@@ -9,15 +9,6 @@ from users.models import Profile
 User = get_user_model()
 
 
-class UserListSerializer(ModelSerializer):
-
-    class Meta:
-        model = User
-        fields = ['id', 'first_name', 'last_name', 'email',
-                  'username']
-        read_only_fields = ['id']
-
-
 class UserSignUpSerializer(ModelSerializer):
     email = EmailField(validators=[UniqueValidator(queryset=User.objects.all())])
 
@@ -32,6 +23,15 @@ class UserSignUpSerializer(ModelSerializer):
         user_instance.set_password(password)
         user_instance.save()
         return user_instance
+
+
+class UserListSerializer(ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ['id', 'first_name', 'last_name', 'email',
+                  'username']
+        read_only_fields = ['id']
 
 
 class ProfileSerializer(ModelSerializer):
@@ -56,7 +56,6 @@ class UserSerializer(ModelSerializer):
         if has_to_check_email and User.objects.filter(email=value).exists():
             raise ValidationError('The email {0} is already used'.format(value))
         return value
-
 
     def update(self, instance, validated_data):
         instance.first_name = validated_data.get('first_name')
