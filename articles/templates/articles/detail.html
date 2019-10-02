@@ -14,9 +14,23 @@
     <img src={{ article.image }} alt={{ article.title }}
          title="{{ article.name }} by {{ article.author.first_name }} {{ article.author.last_name }}" height="200">
     <p>By <a href="{% url 'user_articles' article.author.username %}">{{ article.author.first_name }} {{ article.author.last_name }}</a>
+        {% if user.is_authenticated %}
+            <div class="form-area">
+                {% if not isFollowed %}
+                    <form method="post" action="{% url 'user_follow' article.author %}">
+                    {% csrf_token %}
+                    <button class="button-form" type="submit">Follow</button>
+                {% else %}
+                    <form method="post" action="{% url 'user_unfollow' article.author %}">
+                    {% csrf_token %}
+                    <button class="button-form" type="submit">Unfollow</button>
+                {% endif %}
+                </form>
+            </div>
+        {% endif %}
     </p>
     <p>Published on {{ article.publication_date }}</p>
-    <p><a href="#comments">{{ comments.paginator.count }} comentario{{ comments.paginator.count|pluralize }}</a></p>
+    <p><a href="#comments">{{ comments.paginator.count }} comment{{ comments.paginator.count|pluralize }}</a></p>
     <p>Categories:
         {% for category in article.categories.all %}
             <a href="{% url 'category_articles' category.slug %}" title="{{ category }} articles">{{ category }}</a>
@@ -29,14 +43,14 @@
              <form  method="post" action="{% url 'article_favorites' article.slug %}">
                  {% csrf_token %}
                  {% if isFavorite == False %}
-                    <button class="button-form" type="submit">Add to favorite</button>
+                    <button class="button-form" type="submit">Add to favorites</button>
                  {% else %}
                     <button class="button-form" disabled>Is in your favorites</button>
                  {% endif %}
              </form>
         </div>
     {% endif %}
-    <h2 id="comments">{{ comments.paginator.count }} Comentario{{ comments.paginator.count|pluralize }}:</h2>
+    <h2 id="comments">{{ comments.paginator.count }} Comment{{ comments.paginator.count|pluralize }}:</h2>
     {% if user.is_authenticated %}
         <div class="form-area">
             <form  method="post" action="{% url 'article_comments' article.slug %}">
@@ -52,7 +66,7 @@
                 {{ form.text|add_class:"form-texttarea" }} <br>
                 {{ form.text.errors }} <br>
                 <div>
-                    <button class="button-form" type="submit">add comment</button>
+                    <button class="button-form" type="submit">Add comment</button>
                 </div>
             </form>
         </div>
