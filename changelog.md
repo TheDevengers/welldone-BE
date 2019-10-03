@@ -107,9 +107,9 @@ https://docs.djangoproject.com/en/2.2/ref/models/querysets/#iregex
 
 ### feature follo and unfollow user
 
-* Añadida en `detail-py` comprobación de si el susuario logueado sigue al autor del artículo a renderizar.
+* Añadida en `detail-py` comprobación de si el usuario logueado sigue al autor del artículo a renderizar.
 * Añadido boton de follow/unfollow en `detail.html`.
 * Añadidas las URLs para follow/unfollow en `urlpatterns`.
 * Creada la vista `FollowersController` con los métodos estáticos `follow` y `unfollow`.
 * Creadas las vistas `FollowView` y `UnfollowView` que utilizan a `FollowerController` para añadir o borrar registros del modelo `Follower`.
-* Añadidas prevenciones en `detail.html` y `FollowerController` para evitar que un usuario se pueda seguir a sí mismo.
+* Añadidas prevenciones en `detail.html` y `FollowerController` para evitar que un usuario se pueda seguir a sí mismo y para que usuarios anónimos puedan hacer follow/unfollow.
