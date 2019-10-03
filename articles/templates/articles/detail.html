@@ -28,7 +28,7 @@
         <div class="form-area">
              <form  method="post" action="{% url 'article_favorites' article.slug %}">
                  {% csrf_token %}
-                 {% if isFavorite == False %}
+                 {% if is_favorite == False %}
                     <button class="button-form" type="submit">Add to favorite</button>
                  {% else %}
                     <button class="button-form" disabled>Is in your favorites</button>
