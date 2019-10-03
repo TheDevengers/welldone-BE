@@ -98,7 +98,7 @@ DATABASES = {
 # Mail settings
 EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 SENDGRID_API_KEY = env('SENDGRID_API_KEY')
-
+SENDGRID_SANDBOX_MODE_IN_DEBUG = False
 
 
 # Password validation
@@ -138,6 +138,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGIN_URL = env('LOGIN_URL')
 
 LOGGING = {
     'version': 1,

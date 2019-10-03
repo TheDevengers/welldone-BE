@@ -16,12 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from rest_framework_simplejwt import views as jwt_views
-
-from users.views import Signup, Logout, Login
+from users.views import Signup, Logout, Login, PasswordResetView, PasswordResetConfirmView, PasswordResetDoneView, \
+    PasswordResetCompleteView
 from articles.api import ArticleAPI, ArticlesAPI, CategoriesAPI
 from articles.views import LatestArticlesView, ArticleDetailView, AuthorArticlesView, CategoryArticlesView, CommentsView, FavoriteView
 from users.api import UserAPI, UsersAPI
-from users.views import Signup, Logout
 
 api_path = 'api/v1'
 
@@ -30,6 +29,10 @@ urlpatterns = [
     path('user/signup', Signup.as_view(), name='signup_web'),
     path('user/logout', Logout.as_view(), name='logout_web'),
     path('user/login', Login.as_view(), name='login_web'),
+    path(r'password_reset', PasswordResetView.as_view(), name='password_reset_url'),
+    path(r'password_reset_done', PasswordResetDoneView.as_view(), name='password_reset_done'),
+    path(r'password_reset_confirm/<uidb64>/<token>', PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path(r'password_reset_complete', PasswordResetCompleteView.as_view(), name='password_reset_complete'),
 
     path('author/<str:username>', AuthorArticlesView.as_view(), name='user_articles'),
     path('category/<str:slug>', CategoryArticlesView.as_view(), name='category_articles'),
