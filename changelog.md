@@ -104,3 +104,12 @@ https://docs.djangoproject.com/en/2.2/ref/models/querysets/#iregex
 * Añadido script de JS en `list.html` para marcar la opción seleccionada por defecto en el menú y lanzar una petición GET con el nuevo orden de artículos al escucha run evento `change`del manú.
 * Tanto el código de la vista `detail.py` como de los scripts `date-order.js` y `get-url-params.js` está listo para detectar y corregir posibles errores del parámetro `order`, incluyendo su omisión (se toma por defecto `-date`), valores erróneos (se omiten) o múltiples valores (sólo se recoge el primero y se eliminan los restantes).
 * El código JS está escrito en ES5 para compatibilidad con navegadores antiguos.
+
+### feature follo and unfollow user
+
+* Añadida en `detail-py` comprobación de si el susuario logueado sigue al autor del artículo a renderizar.
+* Añadido boton de follow/unfollow en `detail.html`.
+* Añadidas las URLs para follow/unfollow en `urlpatterns`.
+* Creada la vista `FollowersController` con los métodos estáticos `follow` y `unfollow`.
+* Creadas las vistas `FollowView` y `UnfollowView` que utilizan a `FollowerController` para añadir o borrar registros del modelo `Follower`.
+* Añadidas prevenciones en `detail.html` y `FollowerController` para evitar que un usuario se pueda seguir a sí mismo.
