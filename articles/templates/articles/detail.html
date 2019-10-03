@@ -28,7 +28,7 @@
         <div class="form-area">
              <form  method="post" action="{% url 'article_favorites' article.slug %}">
                  {% csrf_token %}
-                 {% if isFavorite == False %}
+                 {% if is_favorite == False %}
                     <button class="button-form" type="submit">Add to favorite</button>
                  {% else %}
                     <button class="button-form" disabled>Is in your favorites</button>
@@ -59,7 +59,7 @@
     {% endif %}
     <section>
         {% for comment in comments %}
-            <i><p>By <a href="{% url 'user_articles' comment.author.username %}">{{ article.author.first_name }} {{ article.author.last_name }}</a>,
+            <i><p>By <a href="{% url 'user_articles' comment.author.username %}">{{ comment.author.first_name }} {{ comment.author.last_name }}</a>,
                 on {{ comment.creation_date }}</p></i>
             <h4>{{ comment.title }}</h4>
             <p>{{ comment.text }}</p>

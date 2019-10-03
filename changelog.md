@@ -104,3 +104,8 @@ https://docs.djangoproject.com/en/2.2/ref/models/querysets/#iregex
 * Añadido script de JS en `list.html` para marcar la opción seleccionada por defecto en el menú y lanzar una petición GET con el nuevo orden de artículos al escucha run evento `change`del manú.
 * Tanto el código de la vista `detail.py` como de los scripts `date-order.js` y `get-url-params.js` está listo para detectar y corregir posibles errores del parámetro `order`, incluyendo su omisión (se toma por defecto `-date`), valores erróneos (se omiten) o múltiples valores (sólo se recoge el primero y se eliminan los restantes).
 * El código JS está escrito en ES5 para compatibilidad con navegadores antiguos.
+
+### fix add favorite
+
+* Comprobar que el usuario esté autenticado antes de comprobar si el articulo es en favoritos
+* Modificar template para mostrar nombre del autor del comentario y no el nombre del autor del articulo
