@@ -30,7 +30,7 @@ class ArticleDetailView(View):
         form = CommentForm()
 
         isFavorite = False
-        if Favorite.objects.filter(article=article, user=request.user).exists():
+        if request.user.is_authenticated and Favorite.objects.filter(article=article, user=request.user).exists():
             isFavorite = True
 
         context = {'article': article,
