@@ -14,7 +14,7 @@
     <img src={{ article.image }} alt={{ article.title }}
          title="{{ article.name }} by {{ article.author.first_name }} {{ article.author.last_name }}" height="200">
     <p>By <a href="{% url 'user_articles' article.author.username %}">{{ article.author.first_name }} {{ article.author.last_name }}</a>
-        {% if user.is_authenticated %}
+        {% if user.is_authenticated and request.user != article.author%}
             <div class="form-area">
                 {% if not isFollowed %}
                     <form method="post" action="{% url 'user_follow' article.author %}">

@@ -8,11 +8,12 @@ class FollowersController(object):
 
     @staticmethod
     def follow(request, username):
-        follower = Follower()
-        follower.follower = request.user
-        followed = get_object_or_404(User, username=username)
-        follower.followed = followed
-        follower.save()
+        if request.user != username:
+            follower = Follower()
+            follower.follower = request.user
+            followed = get_object_or_404(User, username=username)
+            follower.followed = followed
+            follower.save()
 
     @staticmethod
     def unfollow(request, username):
