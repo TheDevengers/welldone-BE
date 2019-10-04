@@ -14,7 +14,7 @@ class ArticleForm(ModelForm):
     title = forms.CharField(label="Title")
     introduction = forms.CharField(label="Intro")
     body = forms.CharField(label="Body", widget=forms.Textarea(attrs={'rows': 10}))
-    categories = forms.ModelMultipleChoiceField(label="Category", queryset=Category.objects.all(), widget=forms.CheckboxSelectMultiple)
+    categories = forms.ModelMultipleChoiceField(label="Category (Ctrl + click to multiple selection)", queryset=Category.objects.all(), widget=forms.SelectMultiple)
     image = forms.URLField(required=False)
     state = forms.ChoiceField(
         label="Publish ?",
