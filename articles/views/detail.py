@@ -7,8 +7,8 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.views import View
 
 from articles.models import Article, Comment, Favorite
-from articles.forms import CommentForm
-from articles.controllers import CommentsController, FavoriteController
+from articles.forms import CommentForm, ArticleForm
+from articles.controllers import CommentsController, FavoriteController, CreateArticle
 
 DEFAULT_COMMENTS_SHOWN = 10
 
@@ -29,6 +29,8 @@ class ArticleDetailView(View):
 
         form = CommentForm()
 
+        response = ArticleForm()
+
         is_favorite = True if request.user.is_authenticated and Favorite.objects.filter(article=article, user=request.user).exists() else False
 
         context = {'article': article,
@@ -36,7 +38,8 @@ class ArticleDetailView(View):
                    'comments': comments,
                    'shown_param': shown_param,
                    'form': form,
-                   'is_favorite': is_favorite
+                   'is_favorite': is_favorite,
+                   'response': response
                    }
 
         html = render(request, 'articles/detail.html', context)
@@ -53,4 +56,10 @@ class CommentsView(View):
 class FavoriteView(View):
     def post(self, request, slug=None):
         FavoriteController.add_favorite(request=request, slug=slug)
+        return redirect('article_detail', username=request.user, slug=slug)
+
+
+class ResponseToView(View):
+    def post(self, request, slug=None):
+        CreateArticle.create_new_article(request=request, slug=slug)
         return redirect('article_detail', username=request.user, slug=slug)
