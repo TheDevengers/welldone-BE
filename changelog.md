@@ -109,3 +109,7 @@ https://docs.djangoproject.com/en/2.2/ref/models/querysets/#iregex
 
 * Comprobar que el usuario esté autenticado antes de comprobar si el articulo es en favoritos
 * Modificar template para mostrar nombre del autor del comentario y no el nombre del autor del articulo
+
+### fix favicon
+
+* Añadir favicon en el `<head>` de `base.html`
