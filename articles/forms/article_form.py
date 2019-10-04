@@ -6,8 +6,8 @@ DRAFT = 'DR'
 PUBLISHED = 'PB'
 
 ART_STATE = {
-    (DRAFT, 'Draft'),
-    (PUBLISHED, 'Published'),
+    (DRAFT, 'No'),
+    (PUBLISHED, 'Yes'),
 }
 
 class ArticleForm(ModelForm):
@@ -17,7 +17,7 @@ class ArticleForm(ModelForm):
     categories = forms.ModelMultipleChoiceField(label="Category", queryset=Category.objects.all(), widget=forms.CheckboxSelectMultiple)
     image = forms.URLField(required=False)
     state = forms.ChoiceField(
-        label="State",
+        label="Publish ?",
         choices=ART_STATE
     )
 
