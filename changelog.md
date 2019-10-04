@@ -109,3 +109,12 @@ https://docs.djangoproject.com/en/2.2/ref/models/querysets/#iregex
 
 * Comprobar que el usuario esté autenticado antes de comprobar si el articulo es en favoritos
 * Modificar template para mostrar nombre del autor del comentario y no el nombre del autor del articulo
+
+### feature response with an article
+
+* Crear nueva url `response_to/` en urls.py
+* Crear formulario para crear un artículo
+* Modificar vista de `ArticleDetail` en `detail.py` para incluir formulario de creacion de nuevo articulo
+* Crear controlador `CreateArticle` en `articles.py` para crear el nuevo artículo en respuesta a otro artículo
+* Creación de vista `ResponseToView` en `detail.py`
+* Modificacion de template y estilos para incluir el formulario de creacion de articulo en respuesta a otro y botón para abrir el formulario
