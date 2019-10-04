@@ -71,6 +71,43 @@
             </form>
         </div>
     {% endif %}
+    {% if user.is_authenticated %}
+            <div class="form-area">
+                <form  method="post" action="{% url 'article_response_to' article.slug %}">
+                    {% csrf_token %}
+                    {{ response.non_field_errors }}
+                    {{ response.active.errors }}
+
+                    {{ response.title.label_tag }} <br>
+                    {{ response.title|add_class:"form-field" }} <br>
+                    {{ response.title.errors }} <br>
+
+                    {{ response.introduction.label_tag }} <br>
+                    {{ response.introduction|add_class:"form-field" }} <br>
+                    {{ response.introduction.errors }} <br>
+
+                    {{ response.body.label_tag }} <br>
+                    {{ response.body|add_class:"form-texttarea" }} <br>
+                    {{ response.body.errors }} <br>
+
+                    {{ response.image.label_tag }} <br>
+                    {{ response.image|add_class:"form-texttarea" }} <br>
+                    {{ response.image.errors }} <br>
+
+                    {{ response.categories.label_tag }} <br>
+                    {{ response.categories|add_class:"form-texttarea" }} <br>
+                    {{ response.categories.errors }} <br>
+
+                    {{ response.state.label_tag }} <br>
+                    {{ response.state|add_class:"form-texttarea" }} <br>
+                    {{ response.state.errors }} <br>
+
+                    <div>
+                        <button class="button-form" type="submit">add article</button>
+                    </div>
+                </form>
+            </div>
+        {% endif %}
     <section>
         {% for comment in comments %}
             <i><p>By <a href="{% url 'user_articles' comment.author.username %}">{{ comment.author.first_name }} {{ comment.author.last_name }}</a>,
