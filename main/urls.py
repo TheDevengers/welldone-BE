@@ -16,11 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from rest_framework_simplejwt import views as jwt_views
+
 from users.views import Signup, Logout, Login, PasswordResetView, PasswordResetConfirmView, PasswordResetDoneView, \
-    PasswordResetCompleteView
+    PasswordResetCompleteView, FollowView, UnfollowView, MyTokenObtainPairView
 from articles.api import ArticleAPI, ArticlesAPI, CategoriesAPI
 from articles.views import LatestArticlesView, ArticleDetailView, AuthorArticlesView, CategoryArticlesView, CommentsView, FavoriteView
 from users.api import UserAPI, UsersAPI
+
 
 api_path = 'api/v1'
 
@@ -40,10 +42,13 @@ urlpatterns = [
     path('<str:username>/<str:slug>/', ArticleDetailView.as_view(), name='article_detail'),
     path('comments/<str:slug>', CommentsView.as_view(), name='article_comments'),
     path('favorite/<str:slug>', FavoriteView.as_view(), name='article_favorites'),
+    path('follow/<str:username>', FollowView.as_view(), name='user_follow'),
+    path('unfollow/<str:username>', UnfollowView.as_view(), name='user_unfollow'),
     path('', LatestArticlesView.as_view(), name='latest_articles'),
 
     # API
-    path('{0}/token/'.format(api_path), jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    #path('{0}/token/'.format(api_path), jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('{0}/token/'.format(api_path), MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('{0}/token/refresh/'.format(api_path), jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
     # TODO Rewrite them depends on your necessities, but notify to the team
     # TODO Comments at the end of line are explicative. Consider remove it if you want
