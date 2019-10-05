@@ -6,9 +6,10 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views import View
 
-from articles.models import Article, Comment
+from articles.models import Article, Comment, Favorite
 from articles.forms import CommentForm
-from articles.controllers import CommentsController
+from articles.controllers import CommentsController, FavoriteController
+from users.models import Follower
 
 DEFAULT_COMMENTS_SHOWN = 10
 
@@ -29,11 +30,17 @@ class ArticleDetailView(View):
 
         form = CommentForm()
 
+        is_followed = True if request.user.is_authenticated and Follower.objects.filter(follower=request.user, followed=article.author).exists() else False
+
+        is_favorite = True if request.user.is_authenticated and Favorite.objects.filter(article=article, user=request.user).exists() else False
+
         context = {'article': article,
                    'username': username,
                    'comments': comments,
                    'shown_param': shown_param,
-                   'form': form
+                   'form': form,
+                   'is_followed': is_followed,
+                   'is_favorite': is_favorite
                    }
 
         html = render(request, 'articles/detail.html', context)
@@ -44,4 +51,10 @@ class ArticleDetailView(View):
 class CommentsView(View):
     def post(self, request, slug=None):
         CommentsController.create_new_comment(request=request, slug=slug)
+        return redirect('article_detail', username=request.user, slug=slug)
+
+
+class FavoriteView(View):
+    def post(self, request, slug=None):
+        FavoriteController.add_favorite(request=request, slug=slug)
         return redirect('article_detail', username=request.user, slug=slug)

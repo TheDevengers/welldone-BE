@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, resolve_url
 from django.views import View
 from django.contrib.auth import logout as django_logout, login as django_login, authenticate
 from django.contrib import messages
@@ -14,7 +14,11 @@ class Login(View):
 
         form = LoginForm()
 
-        context = {'form': form}
+        context = dict(
+            form=form,
+            pwd_reset=resolve_url('password_reset_url')
+        )
+
         return render(request, 'users/login.html', context)
 
     def post(self, request):
