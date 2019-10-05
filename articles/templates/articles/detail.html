@@ -16,7 +16,7 @@
     <p>By <a href="{% url 'user_articles' article.author.username %}">{{ article.author.first_name }} {{ article.author.last_name }}</a>
         {% if user.is_authenticated and request.user != article.author%}
             <div class="form-area">
-                {% if not isFollowed %}
+                {% if not is_followed %}
                     <form method="post" action="{% url 'user_follow' article.author %}">
                     {% csrf_token %}
                     <button class="button-form" type="submit">Follow</button>
@@ -42,8 +42,8 @@
         <div class="form-area">
              <form  method="post" action="{% url 'article_favorites' article.slug %}">
                  {% csrf_token %}
-                 {% if isFavorite == False %}
-                    <button class="button-form" type="submit">Add to favorites</button>
+                 {% if is_favorite == False %}
+                    <button class="button-form" type="submit">Add to favorite</button>
                  {% else %}
                     <button class="button-form" disabled>Is in your favorites</button>
                  {% endif %}
@@ -73,7 +73,7 @@
     {% endif %}
     <section>
         {% for comment in comments %}
-            <i><p>By <a href="{% url 'user_articles' comment.author.username %}">{{ article.author.first_name }} {{ article.author.last_name }}</a>,
+            <i><p>By <a href="{% url 'user_articles' comment.author.username %}">{{ comment.author.first_name }} {{ comment.author.last_name }}</a>,
                 on {{ comment.creation_date }}</p></i>
             <h4>{{ comment.title }}</h4>
             <p>{{ comment.text }}</p>

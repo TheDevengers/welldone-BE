@@ -30,17 +30,17 @@ class ArticleDetailView(View):
 
         form = CommentForm()
 
-        isFavorite = True if request.user.is_authenticated and Favorite.objects.filter(article=article, user=request.user).exists() else False
+        is_followed = True if request.user.is_authenticated and Follower.objects.filter(follower=request.user, followed=article.author).exists() else False
 
-        isFollowed = True if request.user.is_authenticated and Follower.objects.filter(follower=request.user, followed=article.author).exists() else False
+        is_favorite = True if request.user.is_authenticated and Favorite.objects.filter(article=article, user=request.user).exists() else False
 
         context = {'article': article,
                    'username': username,
                    'comments': comments,
                    'shown_param': shown_param,
                    'form': form,
-                   'isFavorite': isFavorite,
-                   'isFollowed': isFollowed
+                   'is_followed': is_followed,
+                   'is_favorite': is_favorite
                    }
 
         html = render(request, 'articles/detail.html', context)
