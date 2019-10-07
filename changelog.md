@@ -110,6 +110,11 @@ https://docs.djangoproject.com/en/2.2/ref/models/querysets/#iregex
 * Comprobar que el usuario esté autenticado antes de comprobar si el articulo es en favoritos
 * Modificar template para mostrar nombre del autor del comentario y no el nombre del autor del articulo
 
+
+### fix favicon
+
+* Añadir favicon en el `<head>` de `base.html`
+
 ### feature follow and unfollow user
 
 * Añadida en `detail-py` comprobación de si el usuario logueado sigue al autor del artículo a renderizar.
@@ -119,7 +124,6 @@ https://docs.djangoproject.com/en/2.2/ref/models/querysets/#iregex
 * Creadas las vistas `FollowView` y `UnfollowView` que utilizan a `FollowerController` para añadir o borrar registros del modelo `Follower`.
 * Añadidas prevenciones en `detail.html` y `FollowerController` para evitar que un usuario se pueda seguir a sí mismo y para que usuarios anónimos puedan hacer follow/unfollow.
 
-
 ### feature response with an article
 
 * Crear nueva url `response_to/` en urls.py
@@ -128,3 +132,4 @@ https://docs.djangoproject.com/en/2.2/ref/models/querysets/#iregex
 * Crear controlador `CreateArticle` en `articles.py` para crear el nuevo artículo en respuesta a otro artículo
 * Creación de vista `ResponseToView` en `detail.py`
 * Modificacion de template y estilos para incluir el formulario de creacion de articulo en respuesta a otro y botón para abrir el formulario
+
