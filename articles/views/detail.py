@@ -44,7 +44,7 @@ class ArticleDetailView(View):
                    'shown_param': shown_param,
                    'form': form,
                    'is_favorite': is_favorite,
-                   'response': response
+                   'response': response,
                    'is_followed': is_followed
                    }
 
