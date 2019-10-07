@@ -98,7 +98,7 @@ DATABASES = {
 # Mail settings
 EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 SENDGRID_API_KEY = env('SENDGRID_API_KEY')
-
+SENDGRID_SANDBOX_MODE_IN_DEBUG = False
 
 
 # Password validation
@@ -139,6 +139,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+LOGIN_URL = env('LOGIN_URL')
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -173,4 +175,5 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=int(env('ACCESS_TOKEN_LIFETIME'))),
+    'USER_ID_CLAIM': 'user_id',
 }

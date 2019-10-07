@@ -72,6 +72,14 @@ POST /token/             To get access and refresh token
 POST /token/refresh/     To get access token from refresh token
 ```
 
+### Users
+```
+GET /user/signup         To signup a new user
+GET /user/login          To user login
+GET /user/logout         To user logout
+GET /password_reset      To reset the password
+```
+
 ### Articles
 
 ```
