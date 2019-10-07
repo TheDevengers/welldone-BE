@@ -32,6 +32,13 @@
                         <a href="{% url 'category_articles' category.slug %}" title="{{ category }} articles">{{ category }}</a>
                     {% endfor %}
                 </div>
+                <div class="article__item__sharing">
+                    <a class="twitter-share-button"
+                       href="https://twitter.com/intent/tweet?text={{ article.title|urlencode }}&url={{ request.build_absolute_uri|slice:"0:-1" }}{% url 'article_detail' article.author.username article.slug %}"
+                       target="_blank">
+
+                    </a>
+                </div>
             </article>
         {% empty %}
             <p>No results found. Please, try a new search</p>
