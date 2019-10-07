@@ -6,6 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block head_title %}WellDone{% endblock %}</title>
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% sass_src 'base.scss' %}" type="text/css">
     {% block css %}{% endblock %}
