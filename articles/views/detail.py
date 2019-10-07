@@ -9,6 +9,7 @@ from django.views import View
 from articles.models import Article, Comment, Favorite
 from articles.forms import CommentForm
 from articles.controllers import CommentsController, FavoriteController
+from users.models import Follower
 
 DEFAULT_COMMENTS_SHOWN = 10
 
@@ -29,6 +30,8 @@ class ArticleDetailView(View):
 
         form = CommentForm()
 
+        is_followed = True if request.user.is_authenticated and Follower.objects.filter(follower=request.user, followed=article.author).exists() else False
+
         is_favorite = True if request.user.is_authenticated and Favorite.objects.filter(article=article, user=request.user).exists() else False
 
         context = {'article': article,
@@ -36,6 +39,7 @@ class ArticleDetailView(View):
                    'comments': comments,
                    'shown_param': shown_param,
                    'form': form,
+                   'is_followed': is_followed,
                    'is_favorite': is_favorite
                    }
 
