@@ -5,6 +5,7 @@
     {% load sass_tags %}
     <link rel="stylesheet" href="{% sass_src 'form.scss' %}" type="text/css">
     <link rel="stylesheet" href="{% sass_src 'pagination.scss' %}" type="text/css">
+    <script src="https://kit.fontawesome.com/6c46e41581.js" crossorigin="anonymous"></script>
 {% endblock %}
 
 {% block head_title %} WellDone | {{ article.title }} {% endblock %}
@@ -30,6 +31,13 @@
         {% endif %}
     </p>
     <p>Published on {{ article.publication_date }}</p>
+    <div class="article__sharing">
+        <a class="twitter-share-button"
+           href="https://twitter.com/intent/tweet?text={{ article.title|urlencode }}&url={{ request.build_absolute_uri|slice:"0:-1" }}{% url 'article_detail' article.author.username article.slug %}"
+           target="_blank">
+            <i class="fab fa-twitter-square fa-2x"></i>
+        </a>
+    </div>
     <p><a href="#comments">{{ comments.paginator.count }} comment{{ comments.paginator.count|pluralize }}</a></p>
     <p>Categories:
         {% for category in article.categories.all %}
