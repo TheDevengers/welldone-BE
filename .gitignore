@@ -17,3 +17,6 @@ __pycache__
 
 #Compiled statics
 /statics
+
+#Docker database
+/db_data/*

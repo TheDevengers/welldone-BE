@@ -6,6 +6,6 @@ services:
     container_name: django-project
     restart: always
     volumes:
-      - ./data/db.sqlite3:/django-project/db.sqlite3
+      - ./db_data/db.sqlite3:/db.sqlite3
     ports:
       - "80:8000"
