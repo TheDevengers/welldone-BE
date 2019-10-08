@@ -8,6 +8,7 @@
     <title>{% block head_title %}WellDone{% endblock %}</title>
     <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Passion+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% sass_src 'base.scss' %}" type="text/css">
     {% block css %}{% endblock %}
 </head>
@@ -33,7 +34,18 @@
         {% block body_main %}{% endblock %}
     </main>
     <footer>
-        WellDone &copy; {% now 'Y' %}. Any rights reserved.
+        <p>WellDone</p>
+        <ul class="links-list">
+            <li><a class="link" href="#">Get Started</a></li>
+            <li><a class="link" href="#">About WellDone</a></li>
+            <li><a class="link" href="#">Write</a></li>
+            <li><a class="link" href="#">Gift</a></li>
+            <li><a class="link" href="#">Help</a></li>
+            <li><a class="link" href="#">Press Contacts</a></li>
+            <li><a class="link" href="#">Careers</a></li>
+            <li><a class="link" href="#">Legal</a></li>
+        </ul>
+        <p class="copyright">WellDone &copy; {% now 'Y' %}. All rights reserved.</p>
     </footer>
 </body>
 </html>
