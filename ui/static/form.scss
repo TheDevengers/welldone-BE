@@ -77,6 +77,19 @@
 
 }
 
+.form-field-sm{
+  border:none;
+  background: lightgrey;
+  border-radius: 8px;
+  font-size: #{$font-size-m};
+  width: 100%;
+  padding: .5em 0 .5em 0;
+  @include desktop {
+    font-size: #{$font-size-d};
+  }
+
+}
+
 .form-texttarea {
   border: none;
   background: lightgrey;
