@@ -24,6 +24,9 @@ header {
 
   h1 {
     grid-area: brand;
+    font-family: 'Passion One', cursive;
+    font-size: 40px;
+    margin: 0
   }
 
   .searcher {
@@ -52,6 +55,46 @@ footer {
   background: black;
   color: whitesmoke;
   padding: 2em;
+  p {
+    font-family: 'Passion One', cursive;
+    font-size: 40px;
+    margin: 0;
+  }
+
+  .copyright {
+    box-sizing: inherit;
+    margin: 0;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif;
+    font-weight: 300;
+    line-height: 20px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 12px;
+  }
+
+  .links-list {
+    display: flex;
+    flex-wrap: wrap;
+    text-decoration: none;
+    list-style: none;
+    justify-content: flex-start
+  }
+
+  ul li {
+    display: inline-block;
+    padding: 5px 10px;
+  }
+
+  .link {
+    color: white
+  }
+
+  .link:hover {
+    color: green
+  }
+  
+  a {
+    text-decoration: none;
+  }
 }
 
 a {
