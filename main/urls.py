@@ -20,7 +20,7 @@ from rest_framework_simplejwt import views as jwt_views
 from users.views import Signup, Logout, Login, PasswordResetView, PasswordResetConfirmView, PasswordResetDoneView, \
     PasswordResetCompleteView, FollowView, UnfollowView, MyTokenObtainPairView
 from articles.api import ArticleAPI, ArticlesAPI, CategoriesAPI
-from articles.views import LatestArticlesView, ArticleDetailView, AuthorArticlesView, CategoryArticlesView, CommentsView, FavoriteView
+from articles.views import LatestArticlesView, ArticleDetailView, AuthorArticlesView, CategoryArticlesView, CommentsView, FavoriteView, ResponseToView
 from users.api import UserAPI, UsersAPI
 
 
@@ -44,6 +44,7 @@ urlpatterns = [
     path('favorite/<str:slug>', FavoriteView.as_view(), name='article_favorites'),
     path('follow/<str:username>', FollowView.as_view(), name='user_follow'),
     path('unfollow/<str:username>', UnfollowView.as_view(), name='user_unfollow'),
+    path('response_to/<str:slug>', ResponseToView.as_view(), name='article_response_to'),
     path('', LatestArticlesView.as_view(), name='latest_articles'),
 
     # API

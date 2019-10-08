@@ -5,11 +5,23 @@
     {% load sass_tags %}
     <link rel="stylesheet" href="{% sass_src 'form.scss' %}" type="text/css">
     <link rel="stylesheet" href="{% sass_src 'pagination.scss' %}" type="text/css">
+    <link rel="stylesheet" href="{% sass_src 'detail.scss' %}" type="text/css">
 {% endblock %}
 
 {% block head_title %} WellDone | {{ article.title }} {% endblock %}
 
 {% block body_main %}
+    <script>
+        function openCreateArticleForm(){
+            $('.add-comment').hide();
+            $('.response-article').toggle();
+        }
+
+        function openCreateCommentForm(){
+            $('.response-article').hide();
+            $('.add-comment').toggle();
+        }
+    </script>
     <h1>{{ article.title }}</h1>
     <img src={{ article.image }} alt={{ article.title }}
          title="{{ article.name }} by {{ article.author.first_name }} {{ article.author.last_name }}" height="200">
@@ -39,20 +51,23 @@
     <p>{{ article.body }}</p>
 
     {% if user.is_authenticated %}
-        <div class="form-area">
+        <div class="button-group">
              <form  method="post" action="{% url 'article_favorites' article.slug %}">
                  {% csrf_token %}
                  {% if is_favorite == False %}
-                    <button class="button-form" type="submit">Add to favorite</button>
+                    <button class="button-form" type="submit">Add to fav !</button>
                  {% else %}
-                    <button class="button-form" disabled>Is in your favorites</button>
+                    <button class="button-form" disabled>&#x2764;</button>
                  {% endif %}
              </form>
+            <button class="button-form" onclick="openCreateCommentForm()">Add a new comment</button>
+            <button class="button-form" onclick="openCreateArticleForm()">Response with an article</button>
         </div>
     {% endif %}
     <h2 id="comments">{{ comments.paginator.count }} Comment{{ comments.paginator.count|pluralize }}:</h2>
     {% if user.is_authenticated %}
-        <div class="form-area">
+        <div class="form-area add-comment">
+            <h3>Create a new comment</h3>
             <form  method="post" action="{% url 'article_comments' article.slug %}">
                 {% csrf_token %}
                 {{ form.non_field_errors }}
@@ -66,11 +81,49 @@
                 {{ form.text|add_class:"form-texttarea" }} <br>
                 {{ form.text.errors }} <br>
                 <div>
-                    <button class="button-form" type="submit">Add comment</button>
+                    <button class="button-form" type="submit">post</button>
                 </div>
             </form>
         </div>
     {% endif %}
+    {% if user.is_authenticated %}
+            <div class="form-area response-article">
+                 <h3>Create a new article</h3>
+                <form  method="post" action="{% url 'article_response_to' article.slug %}">
+                    {% csrf_token %}
+                    {{ response.non_field_errors }}
+                    {{ response.active.errors }}
+
+                    {{ response.title.label_tag }} <br>
+                    {{ response.title|add_class:"form-field" }} <br>
+                    {{ response.title.errors }} <br>
+
+                    {{ response.introduction.label_tag }} <br>
+                    {{ response.introduction|add_class:"form-field" }} <br>
+                    {{ response.introduction.errors }} <br>
+
+                    {{ response.body.label_tag }} <br>
+                    {{ response.body|add_class:"form-texttarea" }} <br>
+                    {{ response.body.errors }} <br>
+
+                    {{ response.image.label_tag }} <br>
+                    {{ response.image|add_class:"form-texttarea" }} <br>
+                    {{ response.image.errors }} <br>
+
+                    {{ response.categories.label_tag }} <br>
+                    {{ response.categories|add_class:"form-checkbox" }} <br>
+                    {{ response.categories.errors }} <br>
+
+                    {{ response.state.label_tag }} <br>
+                    {{ response.state|add_class:"form-texttarea" }} <br>
+                    {{ response.state.errors }} <br>
+
+                    <div>
+                        <button class="button-form" type="submit">post</button>
+                    </div>
+                </form>
+            </div>
+        {% endif %}
     <section>
         {% for comment in comments %}
             <i><p>By <a href="{% url 'user_articles' comment.author.username %}">{{ comment.author.first_name }} {{ comment.author.last_name }}</a>,
