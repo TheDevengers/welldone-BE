@@ -18,15 +18,21 @@
             <label for="search">Search for</label>
             <input type="search" name="search" id="search" placeholder="search..." value={{ search }}>
         </form>
-        <nav>
-            {% if user.username %} {{ user.username }} | {% endif %}
-            <a href="{% url 'latest_articles' %}">Home</a> |
+        <nav class="nav_user">
+            {% if user.username %} <span class="nav_button" > {{ user.username }} </span>{% endif %}
             {% if user.is_authenticated %}
-                <a href="{% url 'logout_web' %}"> Logout </a> |
+                <a class="nav_button" href="{% url 'logout_web' %}"> Logout </a>
             {% else %}
-                <a href="{% url 'login_web' %}"> Log in </a> |
-                <a href="{% url 'signup_web' %}"> Sing up </a> |
+                <a class="nav_button" href="{% url 'login_web' %}"> Log in </a>
+                <a class="nav_button" href="{% url 'signup_web' %}"> Sing up </a>
             {% endif %}
+        </nav>
+        <nav class="nav_content">
+            <ul class="nav_main">
+                <li class="nav_main_item"><a class="nav_main_button nav_button" href="{% url 'latest_articles' %}">Home</a></li>
+                <li class="nav_main_item"><a class="nav_main_button nav_button" href="{% url 'latest_articles' %}">Categories</a></li>
+                <li class="nav_main_item"><a class="nav_main_button nav_button" href="{% url 'latest_articles' %}">Authors</a></li>
+            </ul>
         </nav>
     </header>
     <main>
@@ -35,5 +41,6 @@
     <footer>
         WellDone &copy; {% now 'Y' %}. Any rights reserved.
     </footer>
+    {% block js %}{% endblock %}
 </body>
 </html>

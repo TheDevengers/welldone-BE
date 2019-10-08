@@ -1,0 +1,24 @@
+.nav_main{
+  list-style: none;
+  padding-inline-start: 0;
+}
+.nav_main_item{
+  display: inline;
+}
+
+.nav_main_button{
+  margin: 0 0.2em 0 0.2em;
+  padding: 0.2em .5em 0.2em .5em;
+  color: black;
+}
+
+.nav_user a{
+  padding: 0.2em .5em 0.2em .5em;
+  margin: 0 0.2em 0 0.2em;
+  text-decoration: none;
+  color: black;
+}
+
+.active{
+  background-color: #f0f0f0;
+}
