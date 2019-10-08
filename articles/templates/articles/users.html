@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block css %}
+    {% load sass_tags %}
+    <link rel="stylesheet" href="{% sass_src 'body-three-cols.scss' %}" type="text/css">
+{% endblock %}
+
+{% block head_title %} WellDone | Articles {% endblock %}
+
+{% block body_main %}
+    <div class="three-cols">
+        <div class="left"></div>
+        <div class="middle">
+            <div class="cat-grid">
+                {% for user in users %}
+                        <a href="{% url 'user_articles' user.username %}">{{ user.username }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="rigth"></div>
+    </div>
+{% endblock %}

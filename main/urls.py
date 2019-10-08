@@ -21,7 +21,7 @@ from users.views import Signup, Logout, Login, PasswordResetView, PasswordResetC
     PasswordResetCompleteView, FollowView, UnfollowView, MyTokenObtainPairView
 from articles.api import ArticleAPI, ArticlesAPI, CategoriesAPI
 from articles.views import LatestArticlesView, ArticleDetailView, AuthorArticlesView, CategoryArticlesView, \
-    CommentsView, FavoriteView, ResponseToView, CategoriesListView
+    CommentsView, FavoriteView, ResponseToView, CategoriesListView, UserListView
 from users.api import UserAPI, UsersAPI
 
 
@@ -37,6 +37,7 @@ urlpatterns = [
     path(r'password_reset_confirm/<uidb64>/<token>', PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path(r'password_reset_complete', PasswordResetCompleteView.as_view(), name='password_reset_complete'),
 
+    path('authors/', UserListView.as_view(), name='users_list'),
     path('author/<str:username>', AuthorArticlesView.as_view(), name='user_articles'),
     path('categories/', CategoriesListView.as_view(), name='categories_list'),
     path('category/<str:slug>', CategoryArticlesView.as_view(), name='category_articles'),
