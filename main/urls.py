@@ -20,7 +20,8 @@ from rest_framework_simplejwt import views as jwt_views
 from users.views import Signup, Logout, Login, PasswordResetView, PasswordResetConfirmView, PasswordResetDoneView, \
     PasswordResetCompleteView, FollowView, UnfollowView, MyTokenObtainPairView
 from articles.api import ArticleAPI, ArticlesAPI, CategoriesAPI
-from articles.views import LatestArticlesView, ArticleDetailView, AuthorArticlesView, CategoryArticlesView, CommentsView, FavoriteView
+from articles.views import LatestArticlesView, ArticleDetailView, AuthorArticlesView, CategoryArticlesView, \
+    CommentsView, FavoriteView, CategoriesListView
 from users.api import UserAPI, UsersAPI
 
 
@@ -37,6 +38,7 @@ urlpatterns = [
     path(r'password_reset_complete', PasswordResetCompleteView.as_view(), name='password_reset_complete'),
 
     path('author/<str:username>', AuthorArticlesView.as_view(), name='user_articles'),
+    path('categories/', CategoriesListView.as_view(), name='categories_list'),
     path('category/<str:slug>', CategoryArticlesView.as_view(), name='category_articles'),
 
     path('<str:username>/<str:slug>/', ArticleDetailView.as_view(), name='article_detail'),

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block css %}
+    {% load sass_tags %}
+    <link rel="stylesheet" href="{% sass_src 'body-three-cols.scss' %}" type="text/css">
+{% endblock %}
+
+{% block head_title %} WellDone | Categories {% endblock %}
+
+{% block body_main %}
+    <div class="three-cols">
+        <div class="left"></div>
+        <div class="middle">
+            <div class="cat-grid">
+                {% for category in categories %}
+                        <a href="{% url 'category_articles' category.slug %}">{{ category.name }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="rigth"></div>
+    </div>
+{% endblock %}
