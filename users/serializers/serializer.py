@@ -13,7 +13,7 @@ class ProfileSerializer(ModelSerializer):
 
     class Meta:
         model = Profile
-        fields = ['description', 'birth_date', 'birth_place']
+        fields = ['description', 'birth_date', 'birth_place', 'image_user']
 
 
 class UserSignUpSerializer(ModelSerializer):
