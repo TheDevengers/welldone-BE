@@ -2,17 +2,23 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View
 from django.contrib.auth.models import User
+from articles.controllers import UsersList
 
 class UserListView(View):
 
     def get(self, request):
-        search = request.GET.get('search-name')
-        if search:
-            users = User.objects.filter(username__icontains=search).order_by('username')
-        else:
-            users = User.objects.all().order_by('username')
+        search = request.GET.get('search')
+        page = request.GET.get('page', 1)
+        shown = request.GET.get('shown', 10)
+
+        users_list, query_params = UsersList.filter(search_name=search,
+                                                    page=page,
+                                                    shown=shown)
+
         context = dict(
-            users=users
+            users=users_list,
+            query_params=query_params,
+            search=search
         )
         return HttpResponse(render(request, 'articles/users.html', context))
 

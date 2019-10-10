@@ -23,6 +23,8 @@
 }
 
 .cat-grid a{
+  text-decoration: none;
+  color: black;
   border: 1px solid black;
   border-radius: .3em;
   width: 100%;
@@ -42,6 +44,7 @@
 
 .auth-grid a{
   text-decoration: none;
+  color: black;
   border-width: 0 0 0 10px;
   border-style: solid;
   border-radius: .3em;
