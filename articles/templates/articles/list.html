@@ -10,7 +10,7 @@
 
 {% block body_main %}
     <div class="article__list">
-        <select id="date_order" name="date_order">
+        <select class="date_order" id="date_order" name="date_order">
             <option value="-date">Newer articles first</option>
             <option value="date">Older articles first</option>
         </select>
@@ -20,7 +20,7 @@
                     <h2>{{ article.title }}</h2>
                 </a>
                 <small class="article__item__info">
-                    <a href="{% url 'user_articles' article.author.username %}">{{ article.author.username }}</a>
+                    <a href="{% url 'user_articles' article.author.username %}">{{ article.author.first_name }} {{ article.author.last_name }}</a>
                     | {{ article.publication_date }}
                 </small>
                 <a class="article__item__image" href="{% url 'article_detail' article.author.username article.slug %}">

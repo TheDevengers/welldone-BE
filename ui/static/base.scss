@@ -21,11 +21,14 @@ header {
   grid-template-areas:
     'brand          searcher      nav_user'
     'nav_content    nav_content   nav_content';
-  grid-template-columns: auto 70%;
+  grid-template-columns: auto 55% auto;
   align-items: center;
 
   h1 {
     grid-area: brand;
+    font-family: 'Passion One', cursive;
+    font-size: 70px;
+    margin: 0 25px;
   }
 
   .searcher {
@@ -45,6 +48,7 @@ header {
     grid-area: nav_user;
     align-self: center;
     justify-self: right;
+    margin: 0 25px;
   }
 
   .nav_content {
