@@ -5,6 +5,19 @@ nav.navbar-light {
     .searcher {
         width: 70%;
         padding-right: 2rem;
+
+        input {
+                font-size: 2rem;
+
+
+              @include desktop {
+                font-size: 1.2rem;
+              }
+
+              @include largeDesktop {
+                font-size: 1.2rem;
+              }
+        }
     }
 
     .navbar-nav .nav-link {
