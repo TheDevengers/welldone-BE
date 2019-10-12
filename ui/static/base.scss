@@ -49,6 +49,13 @@ header {
     align-self: center;
     justify-self: right;
     margin: 0 25px;
+
+    a.nav_button {
+      padding: 0.4em 1em;
+      background: cadetblue;
+      color: white;
+      border-radius: 25px;
+    }
   }
 
   .nav_content {

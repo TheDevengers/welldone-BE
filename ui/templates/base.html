@@ -21,7 +21,7 @@
             <input type="search" name="search" id="search" placeholder="search..." value={{ search }}>
         </form>
         <nav class="nav_user">
-            {% if user.username %} <span class="nav_button" > {{ user.username }} </span>{% endif %}
+            {% if user.username %} <span class="nav_button" > Hi, {{ user.first_name }}! </span>{% endif %}
             {% if user.is_authenticated %}
                 <a class="nav_button" href="{% url 'logout_web' %}"> Logout </a>
             {% else %}
