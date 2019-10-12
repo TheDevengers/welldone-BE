@@ -1,67 +1,25 @@
 @import "header.scss";
 
+html, body {
+    height:100%;
+    margin:0;
+}
+
 body {
-  display: grid;
-  grid-template-areas:
-      'header'
-      'main'
-      'footer';
-  grid-column-gap: 0;
-  grid-template-columns: auto;
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
-  grid-area: header;
   border-bottom: 2px solid dimgrey;
   padding: 1em 1em 0 1em;
 
-  display: grid;
-  grid-template-areas:
-    'brand          searcher      nav_user'
-    'nav_content    nav_content   nav_content';
-  grid-template-columns: auto 70%;
-  align-items: center;
-
-  h1 {
-    grid-area: brand;
-    font-family: 'Passion One', cursive;
-    font-size: 40px;
-    margin: 0
-  }
-
-  .searcher {
-    grid-area: searcher;
-    label {
-      display: none;
-    }
-    input {
-      padding: 1em;
-      width: 100%;
-      border: 1px solid grey;
-      border-radius: 20px;
-    }
-  }
-
-  .nav_user {
-    grid-area: nav_user;
-    align-self: center;
-    justify-self: right;
-  }
-
-  .nav_content {
-    grid-area: nav_content;
-    align-self: center;
-    justify-self: center;
-  }
 }
 main {
-  grid-area: main;
   padding: 2em;
 }
 footer {
-  grid-area: footer;
+  margin-top: auto;
   background: black;
   color: whitesmoke;
   padding: 2em;

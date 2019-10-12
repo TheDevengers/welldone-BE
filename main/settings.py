@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'ui',
     'sass_processor',
     'corsheaders',
-    'widget_tweaks'
+    'widget_tweaks',
+    'bootstrap4'
 ]
 
 MIDDLEWARE = [
