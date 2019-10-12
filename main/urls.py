@@ -19,8 +19,9 @@ from rest_framework_simplejwt import views as jwt_views
 
 from users.views import Signup, Logout, Login, PasswordResetView, PasswordResetConfirmView, PasswordResetDoneView, \
     PasswordResetCompleteView, FollowView, UnfollowView, MyTokenObtainPairView
-from articles.api import ArticleAPI, ArticlesAPI, CategoriesAPI
-from articles.views import LatestArticlesView, ArticleDetailView, AuthorArticlesView, CategoryArticlesView, CommentsView, FavoriteView, ResponseToView
+from articles.api import ArticleAPI, ArticlesAPI, CategoriesAPI, FavoritesAPI
+from articles.views import LatestArticlesView, ArticleDetailView, AuthorArticlesView, CategoryArticlesView, \
+    CommentsView, FavoriteView, ResponseToView, CategoriesListView, UserListView
 from users.api import UserAPI, UsersAPI
 
 
@@ -36,7 +37,9 @@ urlpatterns = [
     path(r'password_reset_confirm/<uidb64>/<token>', PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path(r'password_reset_complete', PasswordResetCompleteView.as_view(), name='password_reset_complete'),
 
+    path('authors/', UserListView.as_view(), name='users_list'),
     path('author/<str:username>', AuthorArticlesView.as_view(), name='user_articles'),
+    path('categories/', CategoriesListView.as_view(), name='categories_list'),
     path('category/<str:slug>', CategoryArticlesView.as_view(), name='category_articles'),
 
     path('<str:username>/<str:slug>/', ArticleDetailView.as_view(), name='article_detail'),
@@ -69,5 +72,6 @@ urlpatterns = [
     path('{0}/users'.format(api_path), UsersAPI.as_view(), name='users_api'),  # GET, POST
 
     path('{0}/categories'.format(api_path), CategoriesAPI.as_view(), name='categories_api'),  # GET,
+    path('{0}/favorites'.format(api_path), FavoritesAPI.as_view(), name='favorite_api')
 
 ]

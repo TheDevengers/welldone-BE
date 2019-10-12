@@ -133,3 +133,8 @@ https://docs.djangoproject.com/en/2.2/ref/models/querysets/#iregex
 * Creación de vista `ResponseToView` en `detail.py`
 * Modificacion de template y estilos para incluir el formulario de creacion de articulo en respuesta a otro y botón para abrir el formulario
 
+
+### feature get all favorite articles
+
+* Añadir nuevo endpoint del api `/favorites` en `urls.py`
+* Definir api para GET `/favorites` en `api.py`

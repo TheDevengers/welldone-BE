@@ -10,7 +10,6 @@
     <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Passion+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% sass_src 'base.scss' %}" type="text/css">
     {% block css %}{% endblock %}
 </head>
@@ -33,8 +32,8 @@
         <nav class="nav_content">
             <ul class="nav_main">
                 <li class="nav_main_item"><a class="nav_main_button nav_button" href="{% url 'latest_articles' %}">Home</a></li>
-                <li class="nav_main_item"><a class="nav_main_button nav_button" href="{% url 'latest_articles' %}">Categories</a></li>
-                <li class="nav_main_item"><a class="nav_main_button nav_button" href="{% url 'latest_articles' %}">Authors</a></li>
+                <li class="nav_main_item"><a class="nav_main_button nav_button" href="{% url 'categories_list' %}">Categories</a></li>
+                <li class="nav_main_item"><a class="nav_main_button nav_button" href="{% url 'users_list' %}">Authors</a></li>
             </ul>
         </nav>
     </header>
@@ -42,7 +41,18 @@
         {% block body_main %}{% endblock %}
     </main>
     <footer>
-        WellDone &copy; {% now 'Y' %}. Any rights reserved.
+        <p>WellDone</p>
+        <ul class="links-list">
+            <li><a class="link" href="#">Get Started</a></li>
+            <li><a class="link" href="#">About WellDone</a></li>
+            <li><a class="link" href="#">Write</a></li>
+            <li><a class="link" href="#">Gift</a></li>
+            <li><a class="link" href="#">Help</a></li>
+            <li><a class="link" href="#">Press Contacts</a></li>
+            <li><a class="link" href="#">Careers</a></li>
+            <li><a class="link" href="#">Legal</a></li>
+        </ul>
+        <p class="copyright">WellDone &copy; {% now 'Y' %}. All rights reserved.</p>
     </footer>
     {% block js %}{% endblock %}
 </body>
