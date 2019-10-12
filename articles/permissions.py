@@ -14,3 +14,13 @@ class ArticlePermission(BasePermission):
 
     def has_object_permission(self, request, view, obj):
         return obj.author == request.user
+
+
+class FavoritePermission(BasePermission):
+
+    def has_permission(self, request, view):
+        if request.user.is_authenticated:
+            return True
+
+    def has_object_permission(self, request, view, obj):
+        return obj.author == request.user
