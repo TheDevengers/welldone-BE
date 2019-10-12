@@ -7,25 +7,32 @@
       'image  info';
   grid-template-columns: 33% auto;
   margin-bottom: 2em;
+  margin-left: 2em;
   grid-column-gap: 1em;
   height: 250px;
   margin: 15px;
 
   &__title {
     grid-area: title;
-    
+    margin-left: 20px;
+
     h2 {
       font-family: 'Playfair Display', serif;
-      margin: 0;
+      margin: 10px 0 0 0;
+      font-size: 2em;
     }
 
   }
   &__info {
     grid-area: info;
     opacity: 0.7;
+    margin-left: 20px;
   }
   &__intro {
     grid-area: intro;
+    margin-top: 0;
+    font-size: 1.25em;
+    margin-left: 20px;
   }
   &__image {
     grid-area: image;
@@ -43,6 +50,7 @@
   &__categories {
     grid-area: categories;
     margin: 0 0 10px 0;
+    margin-left: 20px;
 
     a {
       padding: 0.2em 0.5em;
@@ -57,4 +65,5 @@
   background-color: cadetblue;
   padding: 5px;
   margin-bottom: 20px;
+  margin-left: 20px;
 }
