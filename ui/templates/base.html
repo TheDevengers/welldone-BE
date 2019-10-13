@@ -10,32 +10,56 @@
     <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Passion+One&display=swap" rel="stylesheet">
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
     <link rel="stylesheet" href="{% sass_src 'base.scss' %}" type="text/css">
     {% block css %}{% endblock %}
 </head>
 <body>
     <header>
-        <h1>WellDone</h1>
-        <form action="" method="get" class="searcher">
-            <label for="search">Search for</label>
-            <input type="search" name="search" id="search" placeholder="search..." value={{ search }}>
-        </form>
-        <nav class="nav_user">
-            {% if user.username %} <span class="nav_button" > {{ user.username }} </span>{% endif %}
-            {% if user.is_authenticated %}
-                <a class="nav_button" href="{% url 'logout_web' %}"> Logout </a>
-            {% else %}
-                <a class="nav_button" href="{% url 'login_web' %}"> Log in </a>
-                <a class="nav_button" href="{% url 'signup_web' %}"> Sign up </a>
-            {% endif %}
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="{% url 'latest_articles' %}"><img src="{% static 'images/wd.png'%}" alt="Welldone"></a>
+
+            <form action="" method="get" class="searcher">
+                <input class="form-control" type="search" name="search" id="search" placeholder="search..." value={{ search }}>
+            </form>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    {% if user.is_authenticated %}
+                    {% if user.username %}
+                    <li>
+                         <a class="nav-link" href="#"><span> Hi, {{ user.first_name }}!</span></a>
+                    </li>
+                    {% endif %}
+                     <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'logout_web' %}">Logout <span class="sr-only">(current)</span></a>
+                      </li>
+                    {% else %}
+                      <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'login_web' %}">Log in <span class="sr-only">(current)</span></a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'signup_web' %}">Sign up</a>
+                      </li>
+                    {% endif %}
+                </ul>
+              </div>
         </nav>
-        <nav class="nav_content">
-            <ul class="nav_main">
-                <li class="nav_main_item"><a class="nav_main_button nav_button" href="{% url 'latest_articles' %}">Home</a></li>
-                <li class="nav_main_item"><a class="nav_main_button nav_button" href="{% url 'categories_list' %}">Categories</a></li>
-                <li class="nav_main_item"><a class="nav_main_button nav_button" href="{% url 'users_list' %}">Authors</a></li>
-            </ul>
-        </nav>
+        <ul class="nav justify-content-center">
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'latest_articles' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'categories_list' %}">Categories</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'users_list' %}">Authors</a>
+          </li>
+        </ul>
     </header>
     <main>
         {% block body_main %}{% endblock %}
@@ -55,5 +79,6 @@
         <p class="copyright">WellDone &copy; {% now 'Y' %}. All rights reserved.</p>
     </footer>
     {% block js %}{% endblock %}
+    {% bootstrap_javascript jquery='full' %}
 </body>
 </html>
