@@ -18,7 +18,7 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" href="/"><img src="{% static 'images/wd.png'%}" alt="Welldone"></a>
+            <a class="navbar-brand" href="{% url 'latest_articles' %}"><img src="{% static 'images/wd.png'%}" alt="Welldone"></a>
 
             <form action="" method="get" class="searcher">
                 <input class="form-control" type="search" name="search" id="search" placeholder="search..." value={{ search }}>
@@ -32,7 +32,7 @@
                     {% if user.is_authenticated %}
                     {% if user.username %}
                     <li>
-                         <a class="nav-link" href="#"><span>{{ user.username }} </span></a>
+                         <a class="nav-link" href="#"><span> Hi, {{ user.first_name }}!</span></a>
                     </li>
                     {% endif %}
                      <li class="nav-item active">
