@@ -15,6 +15,11 @@
   &__title {
     grid-area: title;
     margin-left: 20px;
+    color: black;
+
+    &:hover {
+      text-decoration: none;
+    }
 
     h2 {
       font-family: 'Playfair Display', serif;
@@ -27,6 +32,14 @@
     grid-area: info;
     opacity: 0.7;
     margin-left: 20px;
+
+    a {
+      color: black;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
   }
   &__intro {
     grid-area: intro;

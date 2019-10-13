@@ -17,7 +17,7 @@
 .button-form{
   display: inline-block;
   border-radius: 8px;
-  background-color: green;
+  background-color: #000000;
   border: none;
   color: #FFFFFF;
   text-align: center;
@@ -55,8 +55,16 @@
   transition: 0.5s;
 }
 
+.button-form:hover {
+  background-color: #A9A9A9;
+  color: #000000;
+  font-weight: 700;
+}
+
 .button-form:hover span {
   padding-right: 25px;
+  background-color: #666666;
+  color: #cccccc;
 }
 
 .button-form:hover span:after {

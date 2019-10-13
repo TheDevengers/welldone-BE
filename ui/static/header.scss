@@ -1,3 +1,142 @@
+@import 'media_queries';
+@import 'variables';
+
+
+nav.navbar-light {
+    .searcher {
+        width: 55%;
+        padding-right: 2rem;
+
+        input {
+            border-radius: 20px;
+            font-size: $font-size-m;
+
+            @include desktop {
+                font-size: $font-size-d;
+            }
+
+            @include largeDesktop {
+                font-size: $font-size-d;
+            }
+        }
+    }
+
+    .navbar-nav .nav-link {
+       color: black;
+    }
+
+    @include desktop {
+        .navbar-nav .nav-link.nav-button {
+        padding: 0.4em 1em;
+        background: cadetblue;
+        color: white;
+        border-radius: 25px;
+      }
+    }
+
+    a {
+
+        img.brand_mobile {
+        height: 100px;
+
+        @include desktop {
+            display: none;
+            }
+        }
+
+        span.brand_desktop {
+            font-family: 'Passion One', cursive;
+            font-size: 70px;
+            margin: 0 25px;
+            color: black;
+            text-decoration: none;
+
+            @media (max-width: #{$desktop-width}) {
+                display: none;
+            }
+        }
+    }
+    
+    
+
+    ul {
+
+        text-align: right;
+
+        a {
+            font-size: $font-size-m;
+            color: black;
+        }
+
+        @include desktop {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: left;
+
+            li {
+                padding: .5rem;
+
+                a {
+                    transition: all .2s ease-in;
+                    font-size: $font-size-d;
+                    &:hover {
+                        color: black;
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+
+        @include largeDesktop {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            li {
+                padding: .5rem;
+                a {
+                    transition: all .2s ease-in;
+                    font-size: $font-size-d;
+                    &:hover {
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+
+.nav {
+    .nav-item {
+        a {
+          font-size: $font-size-m;
+          color: black;
+
+          &:hover {
+            color: black;
+            font-weight: bold;
+          }
+
+          @include desktop {
+               font-size: $font-size-d;
+          }
+
+          @include largeDesktop {
+           font-size: $font-size-d;
+          }
+        }
+    }
+}
+
+
+
+
+
+
+
 .nav_main{
   list-style: none;
   padding-inline-start: 0;
@@ -10,6 +149,15 @@
   margin: 0 0.2em 0 0.2em;
   padding: 0.2em .5em 0.2em .5em;
   color: black;
+  font-size: 2rem;
+
+  @include desktop {
+       font-size: 1.2rem;
+   }
+
+    @include largeDesktop {
+       font-size: 1.2rem;
+    }
 }
 
 .nav_user a{
@@ -17,8 +165,13 @@
   margin: 0 0.2em 0 0.2em;
   text-decoration: none;
   color: black;
-}
+  font-size: 2rem;
 
-.active{
-  background-color: #f0f0f0;
+  @include desktop {
+       font-size: 1.2rem;
+   }
+
+    @include largeDesktop {
+       font-size: 1.2rem;
+    }
 }
