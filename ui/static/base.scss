@@ -1,3 +1,5 @@
+@import "header.scss";
+
 body {
   display: grid;
   grid-template-areas:
@@ -13,17 +15,20 @@ body {
 header {
   grid-area: header;
   border-bottom: 2px solid dimgrey;
-  padding: 1em;
+  padding: 1em 1em 0 1em;
 
   display: grid;
   grid-template-areas:
-    'brand  searcher'
-    'nav    nav';
+    'brand          searcher      nav_user'
+    'nav_content    nav_content   nav_content';
   grid-template-columns: auto 70%;
   align-items: center;
 
   h1 {
     grid-area: brand;
+    font-family: 'Passion One', cursive;
+    font-size: 40px;
+    margin: 0
   }
 
   .searcher {
@@ -35,12 +40,20 @@ header {
       padding: 1em;
       width: 100%;
       border: 1px solid grey;
-      border-radius: 25px;
+      border-radius: 20px;
     }
   }
 
-  nav {
-    grid-area: nav;
+  .nav_user {
+    grid-area: nav_user;
+    align-self: center;
+    justify-self: right;
+  }
+
+  .nav_content {
+    grid-area: nav_content;
+    align-self: center;
+    justify-self: center;
   }
 }
 main {
@@ -52,6 +65,46 @@ footer {
   background: black;
   color: whitesmoke;
   padding: 2em;
+  p {
+    font-family: 'Passion One', cursive;
+    font-size: 40px;
+    margin: 0;
+  }
+
+  .copyright {
+    box-sizing: inherit;
+    margin: 0;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif;
+    font-weight: 300;
+    line-height: 20px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 12px;
+  }
+
+  .links-list {
+    display: flex;
+    flex-wrap: wrap;
+    text-decoration: none;
+    list-style: none;
+    justify-content: flex-start
+  }
+
+  ul li {
+    display: inline-block;
+    padding: 5px 10px;
+  }
+
+  .link {
+    color: white
+  }
+
+  .link:hover {
+    color: green
+  }
+  
+  a {
+    text-decoration: none;
+  }
 }
 
 a {

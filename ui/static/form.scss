@@ -17,12 +17,12 @@
 .button-form{
   display: inline-block;
   border-radius: 8px;
-  background-color: green;
+  background-color: #000000;
   border: none;
   color: #FFFFFF;
   text-align: center;
   font-size: #{$font-size-m};
-  padding: 30px;
+  padding: 1.2rem;
   min-width: 100px;
   transition: all 0.5s;
   cursor: pointer;
@@ -39,6 +39,13 @@
   transition: 0.5s;
 }
 
+.button-form:disabled,
+.button-form[disabled]{
+  background-color: #cccccc;
+  color: #666666;
+  cursor: default;
+}
+
 .button-form span:after {
   content: '\00bb';
   position: absolute;
@@ -48,8 +55,16 @@
   transition: 0.5s;
 }
 
+.button-form:hover {
+  background-color: #A9A9A9;
+  color: #000000;
+  font-weight: 700;
+}
+
 .button-form:hover span {
   padding-right: 25px;
+  background-color: #666666;
+  color: #cccccc;
 }
 
 .button-form:hover span:after {
@@ -70,6 +85,19 @@
 
 }
 
+.form-field-sm{
+  border:none;
+  background: lightgrey;
+  border-radius: 8px;
+  font-size: #{$font-size-m};
+  width: 100%;
+  padding: .5em 0 .5em 0;
+  @include desktop {
+    font-size: #{$font-size-d};
+  }
+
+}
+
 .form-texttarea {
   border: none;
   background: lightgrey;
@@ -78,6 +106,22 @@
   width: 100%;
   resize: none;
   padding: 10px;
+  @include desktop {
+    font-size: #{$font-size-d};
+  }
+}
+
+.form-checkbox{
+  border: none;
+  background: lightgrey;
+  border-radius: 8px;
+  font-size: #{$font-size-m};
+  width: 100%;
+  padding: 10px;
+  list-style: none;
+  .form-checkbox {
+    width: 5%;
+  }
   @include desktop {
     font-size: #{$font-size-d};
   }

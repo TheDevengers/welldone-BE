@@ -1,0 +1,123 @@
+@import 'responsive';
+
+
+.article-detail__title {
+    color: green;
+    text-align: center;
+}
+
+.article-detail__img {
+    display: block;
+    margin: 0 auto;
+    border-radius: 0.5rem;
+    height: 400px;
+}
+
+.article-detail__author {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    p {
+        font-size: 2rem;
+        margin: 0.8rem;
+
+        @include desktop {
+            font-size: 1.2rem;
+        }
+
+        @include largeDesktop {
+            font-size: 1.2rem;
+        }
+    }
+
+    .author__info {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        p {
+            display: inline-block;
+        }
+    }
+}
+
+.article-detail__content {
+    .content__body {
+
+        font-size: 2rem;
+
+        @include desktop {
+            font-size: 1.2rem;
+        }
+
+        @include largeDesktop {
+            font-size: 1.2rem;
+        }
+
+    }
+}
+
+.article-detail__categories {
+    .categories__category {
+        display: inline-block;
+        background-color: black;
+        border-radius: 0.5rem;
+        padding: 1.2rem;
+
+        a {
+            color: white;
+            font-size: 2rem;
+
+            @include desktop {
+                font-size: 1rem;
+            }
+
+            @include largeDesktop {
+                font-size: 1rem;
+            }
+        }
+    }
+}
+
+.article-details__actions {
+    padding: 2rem 0;
+
+    .response-article, .add-comment{
+        display: none;
+    }
+
+    .button-group {
+        display: flex;
+    }
+}
+
+
+.article-detail__comments {
+
+    .comments__comment {
+        border-radius: 0.5rem;
+        border: .2rem solid black;
+        padding: 2rem 1rem;
+        margin-bottom: 2rem;
+
+        h3 {
+            margin: 0;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        .comment__text {
+            padding: .8rem 0;
+        }
+
+        .comment__info {
+            font-size: 0.8rem;
+            font-style: italic;
+        }
+
+    }
+}
