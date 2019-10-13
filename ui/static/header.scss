@@ -1,4 +1,5 @@
-@import 'responsive';
+@import 'media_queries';
+@import 'variables';
 
 
 nav.navbar-light {
@@ -7,15 +8,15 @@ nav.navbar-light {
         padding-right: 2rem;
 
         input {
-                font-size: 2rem;
+                font-size: $font-size-m;
 
 
               @include desktop {
-                font-size: 1.2rem;
+                font-size: $font-size-d;
               }
 
               @include largeDesktop {
-                font-size: 1.2rem;
+                font-size: $font-size-d;
               }
         }
     }
@@ -33,7 +34,7 @@ nav.navbar-light {
         text-align: right;
 
         a {
-            font-size: 2rem;
+            font-size: $font-size-m;
             color: black;
         }
 
@@ -48,7 +49,7 @@ nav.navbar-light {
 
                 a {
                     transition: all .2s ease-in;
-                    font-size: 1.2rem;
+                    font-size: $font-size-d;
                     &:hover {
                         color: black;
                         font-weight: bold;
@@ -66,7 +67,7 @@ nav.navbar-light {
                 padding: .5rem;
                 a {
                     transition: all .2s ease-in;
-                    font-size: 1.2rem;
+                    font-size: $font-size-d;
                     &:hover {
                         font-weight: bold;
                     }
@@ -81,7 +82,7 @@ nav.navbar-light {
 .nav {
     .nav-item {
         a {
-          font-size: 2rem;
+          font-size: $font-size-m;
           color: black;
 
           &:hover {
@@ -90,11 +91,11 @@ nav.navbar-light {
           }
 
           @include desktop {
-               font-size: 1.2rem;
+               font-size: $font-size-d;
           }
 
           @include largeDesktop {
-           font-size: 1.2rem;
+           font-size: $font-size-d;
           }
         }
     }
