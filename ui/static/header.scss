@@ -4,20 +4,20 @@
 
 nav.navbar-light {
     .searcher {
-        width: 70%;
+        width: 55%;
         padding-right: 2rem;
 
         input {
-                font-size: $font-size-m;
+            border-radius: 20px;
+            font-size: $font-size-m;
 
-
-              @include desktop {
+            @include desktop {
                 font-size: $font-size-d;
-              }
+            }
 
-              @include largeDesktop {
+            @include largeDesktop {
                 font-size: $font-size-d;
-              }
+            }
         }
     }
 
@@ -25,9 +25,39 @@ nav.navbar-light {
        color: black;
     }
 
-    img {
-        height: 100px;
+    @include desktop {
+        .navbar-nav .nav-link.nav-button {
+        padding: 0.4em 1em;
+        background: cadetblue;
+        color: white;
+        border-radius: 25px;
+      }
     }
+
+    a {
+
+        img.brand_mobile {
+        height: 100px;
+
+        @include desktop {
+            display: none;
+            }
+        }
+
+        span.brand_desktop {
+            font-family: 'Passion One', cursive;
+            font-size: 70px;
+            margin: 0 25px;
+            color: black;
+            text-decoration: none;
+
+            @media (max-width: #{$desktop-width}) {
+                display: none;
+            }
+        }
+    }
+    
+    
 
     ul {
 

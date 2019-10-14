@@ -18,7 +18,10 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" href="{% url 'latest_articles' %}"><img src="{% static 'images/wd.png'%}" alt="Welldone"></a>
+            <h1><a class="navbar-brand" href="{% url 'latest_articles' %}">
+              <img class="brand_mobile"src="{% static 'images/wd.png'%}" alt="Welldone">
+              <span class="brand_desktop">WellDone</span>
+            </a></h1>
 
             <form action="" method="get" class="searcher">
                 <input class="form-control" type="search" name="search" id="search" placeholder="search..." value={{ search }}>
@@ -36,14 +39,14 @@
                     </li>
                     {% endif %}
                      <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'logout_web' %}">Logout <span class="sr-only">(current)</span></a>
+                        <a class="nav-link nav-button" href="{% url 'logout_web' %}">Logout <span class="sr-only">(current)</span></a>
                       </li>
                     {% else %}
                       <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'login_web' %}">Log in <span class="sr-only">(current)</span></a>
+                        <a class="nav-link nav-button" href="{% url 'login_web' %}">Log in <span class="sr-only">(current)</span></a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="{% url 'signup_web' %}">Sign up</a>
+                        <a class="nav-link nav-button" href="{% url 'signup_web' %}">Sign up</a>
                       </li>
                     {% endif %}
                 </ul>
