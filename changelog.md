@@ -138,3 +138,9 @@ https://docs.djangoproject.com/en/2.2/ref/models/querysets/#iregex
 
 * Añadir nuevo endpoint del api `/favorites` en `urls.py`
 * Definir api para GET `/favorites` en `api.py`
+
+### feature docker
+
+* Añadidas variables de entorno a dockerfile.
+* Refactorización del código.
+* Añadidos permisos de ejecución a run.sh.
