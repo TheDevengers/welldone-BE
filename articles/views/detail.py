@@ -53,9 +53,6 @@ class ArticleDetailView(View):
 
             return HttpResponse(html)
 
-        else:
-            HttpResponse('')  # Show a Error Template
-
 
 class CommentsView(View):
     def post(self, request, slug=None):
