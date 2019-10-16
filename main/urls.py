@@ -75,5 +75,7 @@ urlpatterns = [
 
 ]
 
-handler500 = 'articles.views.error_500'
+handler400 = 'articles.views.error_400'
+handler403 = 'articles.views.error_403'
 handler404 = 'articles.views.error_404'
+handler500 = 'articles.views.error_500'
