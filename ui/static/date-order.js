@@ -9,5 +9,5 @@ dateOrderList.addEventListener('change', (e) => {
   var queryString = Object.keys(params).map(function (key) {
     return key + '=' + params[key]
   }).join('&');
-  location.replace(location.origin + '?' + queryString)
+  location.replace(location.pathname + '?' + queryString)
 })
