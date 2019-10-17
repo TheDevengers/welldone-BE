@@ -26,6 +26,7 @@ class ListArticles(object):
         query_params = None
         query_params = query_params + '&shown={0}'.format(shown) if shown != DEFAULT_SHOWN else ''
         query_params = query_params + '&search={0}'.format(search) if search != '' else ''
+        query_params = query_params + '&order={0}'.format(date_order) if date_order != '' else ''
 
         article_list = article_objects.select_related('author').all()\
             .filter(publication_date__lte=datetime.now(), state__exact='PB')\
