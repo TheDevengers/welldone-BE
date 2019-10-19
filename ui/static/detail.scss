@@ -10,7 +10,10 @@
     display: block;
     margin: 0 auto;
     border-radius: 0.5rem;
-    height: 400px;
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
 }
 
 .article-detail__author {
