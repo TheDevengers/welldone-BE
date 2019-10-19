@@ -1,3 +1,6 @@
+@import 'media_queries';
+@import 'variables';
+
 .article__item {
   display: grid;
   grid-template-areas:
@@ -9,7 +12,7 @@
   margin-bottom: 2em;
   margin-left: 2em;
   grid-column-gap: 1em;
-  height: 250px;
+  min-height: 250px;
   margin: 15px;
 
   &__title {
@@ -38,6 +41,20 @@
     opacity: 0.7;
     margin-left: 20px;
 
+    font-size: $font-size-m - 0.4rem;
+     @include desktop {
+        font-size: $font-size-d - 0.5rem;
+     }
+
+     @include largeDesktop {
+         font-size: $font-size-d - 0.4rem;
+     }
+
+    &:hover {
+        text-decoration: none;
+        font-weight: bold;
+    }
+
     a {
       color: black;
 
@@ -51,6 +68,15 @@
     margin-top: 0;
     font-size: 1.25em;
     margin-left: 20px;
+
+    font-size: $font-size-m;
+    @include desktop {
+        font-size: $font-size-d;
+    }
+
+     @include largeDesktop {
+         font-size: $font-size-d;
+     }
   }
   &__image {
     grid-area: image;
@@ -71,11 +97,31 @@
     margin: 0 0 10px 0;
     margin-left: 20px;
 
+    ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+            display: inline-block;
+            margin-bottom: .5rem;
+        }
+    }
+
     a {
       padding: 0.2em 0.5em;
       background: cadetblue;
       color: white;
       border-radius: 8px;
+      margin-bottom: .5rem;
+
+      font-size: $font-size-m;
+      @include desktop {
+        font-size: $font-size-d;
+      }
+
+      @include largeDesktop {
+        font-size: $font-size-d;
+      }
 
       &:hover {
         text-decoration: none;

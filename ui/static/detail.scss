@@ -136,18 +136,27 @@
         }
 
         .comment__info {
-            font-size: 0.8rem;
             font-style: italic;
+             p {
+                font-size: $font-size-m - 0.4rem;
+                @include desktop {
+                    font-size: $font-size-d - 0.5rem;
+                }
+
+                 @include largeDesktop {
+                     font-size: $font-size-d - 0.4rem;
+                 }
+             }
 
             a {
                 color: cadetblue;
-                 font-size: $font-size-m;
+                 font-size: $font-size-m - 0.4rem;
                  @include desktop {
-                    font-size: $font-size-d;
+                    font-size: $font-size-d - 0.5rem;
                  }
 
                  @include largeDesktop {
-                     font-size: $font-size-d;
+                     font-size: $font-size-d - 0.4rem;
                  }
 
                 &:hover {

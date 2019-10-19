@@ -28,9 +28,11 @@
                 </a>
                 <p class="article__item__intro">{{ article.introduction }}</p>
                 <div class="article__item__categories">
-                    {% for category in article.categories.all %}
-                        <a href="{% url 'category_articles' category.slug %}" title="{{ category }} articles">{{ category }}</a>
+                    <ul>
+                        {% for category in article.categories.all %}
+                        <li><a href="{% url 'category_articles' category.slug %}" title="{{ category }} articles">{{ category }}</a></li>
                     {% endfor %}
+                    </ul>
                 </div>
             </article>
         {% empty %}
