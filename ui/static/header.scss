@@ -27,6 +27,20 @@ nav.navbar-light {
        color: black;
     }
 
+    .navbar-nav .navbar-text {
+        color: black;
+        font-weight: bold;
+        font-size: $font-size-m;
+
+        @include desktop {
+            font-size: $font-size-d;
+        }
+
+        @include largeDesktop {
+            font-size: $font-size-d;
+        }
+    }
+
     @include desktop {
         .navbar-nav .nav-link.nav-button {
             padding: 0.4em 1em;

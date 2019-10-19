@@ -50,17 +50,13 @@
          font-size: $font-size-d - 0.4rem;
      }
 
-    &:hover {
-        text-decoration: none;
-        font-weight: bold;
-    }
-
     a {
-      color: black;
+      color: cadetblue;
 
-      &:hover {
-        text-decoration: none;
-      }
+       &:hover {
+            text-decoration: none;
+            font-weight: bold;
+        }
     }
   }
   &__intro {
