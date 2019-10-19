@@ -7,6 +7,7 @@ from articles.controllers import UsersList
 class UserListView(View):
 
     def get(self, request):
+        search = request.GET.get('search')
         page = request.GET.get('page', 1)
         shown = request.GET.get('shown', 10)
 
