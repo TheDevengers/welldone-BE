@@ -1,4 +1,5 @@
 @import 'media_queries';
+@import 'variables';
 
 .article-detail__title {
     color: cadetblue;
@@ -120,6 +121,14 @@
 
         p {
             margin: 0;
+            font-size: $font-size-m;
+            @include desktop {
+                font-size: $font-size-d;
+            }
+
+            @include largeDesktop {
+                 font-size: $font-size-d;
+             }
         }
 
         .comment__text {
@@ -132,6 +141,14 @@
 
             a {
                 color: cadetblue;
+                 font-size: $font-size-m;
+                 @include desktop {
+                    font-size: $font-size-d;
+                 }
+
+                 @include largeDesktop {
+                     font-size: $font-size-d;
+                 }
 
                 &:hover {
                     text-decoration: none;

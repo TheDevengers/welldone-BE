@@ -65,6 +65,15 @@ nav.navbar-light {
                     }
                 }
 
+                @include largeDesktop {
+                    display: block;
+                    margin: 0 25px;
+
+                    @media (max-width: #{$desktop-width}) {
+                        display: none;
+                    }
+                }
+
             }
         }
     }
