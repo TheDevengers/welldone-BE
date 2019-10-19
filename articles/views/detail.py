@@ -22,9 +22,10 @@ class ArticleDetailView(View):
         comments_page = request.GET.get('page')
         comments_shown = request.GET.get('shown', DEFAULT_COMMENTS_SHOWN)
         shown_param = '&shown={0}'.format(comments_shown) if comments_shown != DEFAULT_COMMENTS_SHOWN else ''
-        article = get_object_or_404(Article.objects.select_related('author'), Q(slug=slug) & Q(publication_date__lte=datetime.now()) & Q(state__exact='PB'))
+        article = get_object_or_404(Article.objects.select_related('author'), Q(author__username=username) & Q(slug=slug) & Q(publication_date__lte=datetime.now()) & Q(state__exact='PB'))
 
-        comments_list = Comment.objects.select_related('article').all().filter(article=article.pk).order_by('-creation_date')
+        comments_list = Comment.objects.select_related('article').all().filter(article=article.pk).order_by(
+            '-creation_date')
 
         paginator = Paginator(comments_list, comments_shown)
 
@@ -34,9 +35,11 @@ class ArticleDetailView(View):
 
         response = ArticleForm()
 
-        is_followed = True if request.user.is_authenticated and Follower.objects.filter(follower=request.user, followed=article.author).exists() else False
+        is_followed = True if request.user.is_authenticated and Follower.objects.filter(follower=request.user,
+                                                                                        followed=article.author).exists() else False
 
-        is_favorite = True if request.user.is_authenticated and Favorite.objects.filter(article=article, user=request.user).exists() else False
+        is_favorite = True if request.user.is_authenticated and Favorite.objects.filter(article=article,
+                                                                                        user=request.user).exists() else False
 
         context = {'article': article,
                    'username': username,
@@ -51,6 +54,7 @@ class ArticleDetailView(View):
         html = render(request, 'articles/detail.html', context)
 
         return HttpResponse(html)
+
 
 
 class CommentsView(View):
