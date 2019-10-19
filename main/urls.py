@@ -24,7 +24,6 @@ from articles.views import LatestArticlesView, ArticleDetailView, AuthorArticles
     CommentsView, FavoriteView, ResponseToView, CategoriesListView, UserListView
 from users.api import UserAPI, UsersAPI
 
-
 api_path = 'api/v1'
 
 urlpatterns = [
@@ -75,3 +74,8 @@ urlpatterns = [
     path('{0}/favorites'.format(api_path), FavoritesAPI.as_view(), name='favorite_api')
 
 ]
+
+handler400 = 'articles.views.error_400'
+handler403 = 'articles.views.error_403'
+handler404 = 'articles.views.error_404'
+handler500 = 'articles.views.error_500'
