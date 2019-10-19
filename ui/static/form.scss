@@ -73,12 +73,12 @@
 }
 
 .form-field{
-  border:none;
+  border: none;
   background: lightgrey;
   border-radius: 8px;
   font-size: #{$font-size-m};
   width: 100%;
-  padding: 10px;
+  padding: .8rem;
   @include desktop {
     font-size: #{$font-size-d};
   }
@@ -86,12 +86,11 @@
 }
 
 .form-field-sm{
-  border:none;
-  background: lightgrey;
   border-radius: 8px;
+  background: lightgrey;
   font-size: #{$font-size-m};
   width: 100%;
-  padding: .5em 0 .5em 0;
+  padding: .8rem;
   @include desktop {
     font-size: #{$font-size-d};
   }
