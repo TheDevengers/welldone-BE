@@ -37,6 +37,20 @@
             grid-template-columns: 1fr 1fr 1fr 1fr;
          }
 
+         .alert {
+                grid-column-start: 1;
+                grid-column-end: 5;
+                font-size: $font-size-m;
+
+                @include desktop {
+                    font-size: $font-size-d;
+                 }
+
+                 @include largeDesktop {
+                    font-size: $font-size-d;
+                 }
+         }
+
          .card {
             -webkit-box-shadow: 4px 6px 8px -6px rgba(0,0,0,0.75);
             -moz-box-shadow: 4px 6px 8px -6px rgba(0,0,0,0.75);
