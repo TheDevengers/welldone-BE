@@ -36,7 +36,9 @@
                 </div>
             </article>
         {% empty %}
-            <p>No results found. Please, try a new search</p>
+            <div class="alert alert-danger text-center" role="alert">
+              No results found. Please, try a new search
+            </div>
         {% endfor %}
     </div>
 

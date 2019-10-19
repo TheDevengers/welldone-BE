@@ -7,7 +7,6 @@ from articles.controllers import UsersList
 class UserListView(View):
 
     def get(self, request):
-        search = request.GET.get('search')
         page = request.GET.get('page', 1)
         shown = request.GET.get('shown', 10)
 
@@ -17,8 +16,7 @@ class UserListView(View):
 
         context = dict(
             users=users_list,
-            query_params=query_params,
-            search=search
+            query_params=query_params
         )
         return HttpResponse(render(request, 'articles/users.html', context))
 
