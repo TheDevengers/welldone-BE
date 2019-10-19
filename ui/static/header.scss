@@ -8,8 +8,10 @@ nav.navbar-light {
         padding-right: 2rem;
 
         input {
-            border-radius: 20px;
+            border-radius: 8px;
+            background-color: lightgrey;
             font-size: $font-size-m;
+            color: black;
 
             @include desktop {
                 font-size: $font-size-d;
@@ -25,37 +27,72 @@ nav.navbar-light {
        color: black;
     }
 
+    .navbar-nav .navbar-text {
+        color: black;
+        font-weight: bold;
+        font-size: $font-size-m;
+
+        @include desktop {
+            font-size: $font-size-d;
+        }
+
+        @include largeDesktop {
+            font-size: $font-size-d;
+        }
+    }
+
     @include desktop {
         .navbar-nav .nav-link.nav-button {
-        padding: 0.4em 1em;
-        background: cadetblue;
-        color: white;
-        border-radius: 25px;
+            padding: 0.4em 1em;
+            background: cadetblue;
+            color: white;
+            border-radius: 8px;
       }
     }
 
-    a {
+    h1 {
+        margin-bottom: 0;
 
-        img.brand_mobile {
-        height: 100px;
+         a {
 
-        @include desktop {
-            display: none;
-            }
-        }
+            img.brand_mobile {
+                height: 100px;
 
-        span.brand_desktop {
-            font-family: 'Passion One', cursive;
-            font-size: 70px;
-            margin: 0 25px;
-            color: black;
-            text-decoration: none;
-
-            @media (max-width: #{$desktop-width}) {
+            @include desktop {
                 display: none;
+                }
+
+            @include largeDesktop {
+                display: none;
+               }
+            }
+
+            img.brand_desktop {
+                display: none;
+
+                @include desktop {
+                    display: block;
+                    margin: 0 25px;
+
+                    @media (max-width: #{$desktop-width}) {
+                        display: none;
+                    }
+                }
+
+                @include largeDesktop {
+                    display: block;
+                    margin: 0 25px;
+
+                    @media (max-width: #{$desktop-width}) {
+                        display: none;
+                    }
+                }
+
             }
         }
     }
+
+
     
     
 

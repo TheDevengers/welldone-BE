@@ -14,10 +14,24 @@
   }
 }
 
+.link-form {
+    text-align: right;
+
+    a {
+        color: cadetblue;
+
+        &:hover {
+            text-decoration: none;
+            font-weight: bold;
+        }
+    }
+
+}
+
 .button-form{
   display: inline-block;
   border-radius: 8px;
-  background-color: #000000;
+  background: cadetblue;
   border: none;
   color: #FFFFFF;
   text-align: center;
@@ -56,9 +70,9 @@
 }
 
 .button-form:hover {
-  background-color: #A9A9A9;
-  color: #000000;
-  font-weight: 700;
+  background: cadetblue;
+  color: white;
+  font-weight: bold;
 }
 
 .button-form:hover span {
