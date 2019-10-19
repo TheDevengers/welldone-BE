@@ -1,22 +1,19 @@
 {% extends 'base.html' %}
 {% load widget_tweaks %}
-{% load i18n %}
 
 {% block css %}
     {% load sass_tags %}
     <link rel="stylesheet" href="{% sass_src 'form.scss' %}" type="text/css">
 {% endblock %}
 
-{% block main_title %}
-Login
-{% endblock %}
+{% block head_title %} WellDone | Login {% endblock %}
 
 
 {% block body_main %}
 
-        {% for message in messages %}
-            <p>{{ message }}</p>
-        {% endfor %}
+    {% for message in messages %}
+        <p>{{ message }}</p>
+    {% endfor %}
 
 
     <div class="form-area">
@@ -35,7 +32,9 @@ Login
                 {{ form.pwd|add_class:"form-field" }} <br>
                 {{ form.pwd.errors }}
 
-                <a href="{{ pwd_reset }}">{% trans 'forgot password?' %}</a>
+                <div class="link-form">
+                    <a href="{{ pwd_reset }}">forgot password?</a>
+                </div>
 
                 <div>
                     <button class="button-form" type="submit">Login</button>

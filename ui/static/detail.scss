@@ -1,7 +1,7 @@
 @import 'media_queries';
 
 .article-detail__title {
-    color: green;
+    color: cadetblue;
     text-align: center;
 }
 
@@ -38,6 +38,14 @@
 
         p {
             display: inline-block;
+
+            a {
+                color: cadetblue;
+                &:hover {
+                    text-decoration: none;
+                    font-weight: bold;
+                }
+            }
         }
     }
 }
@@ -62,12 +70,17 @@
     .categories__category {
         display: inline-block;
         background-color: black;
-        border-radius: 0.5rem;
-        padding: 1.2rem;
+        border-radius: 8px;
+        padding: 0.2em 0.5em;
 
         a {
             color: white;
             font-size: 2rem;
+
+            &:hover {
+                text-decoration: none;
+                font-weight: bold;
+            }
 
             @include desktop {
                 font-size: 1rem;
@@ -116,6 +129,15 @@
         .comment__info {
             font-size: 0.8rem;
             font-style: italic;
+
+            a {
+                color: cadetblue;
+
+                &:hover {
+                    text-decoration: none;
+                    font-weight: bold;
+                }
+            }
         }
 
     }
