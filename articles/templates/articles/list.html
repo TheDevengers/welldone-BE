@@ -33,12 +33,11 @@
                     {% endfor %}
                 </div>
             </article>
+            {% include 'pagination.html' with list=article_list params=query_params %}
         {% empty %}
             <p>No results found. Please, try a new search</p>
         {% endfor %}
     </div>
-
-    {% include 'pagination.html' with list=article_list params=query_params %}
 
     {% load static %}
     <script src="{% static 'get-url-params.js' %}"></script>
