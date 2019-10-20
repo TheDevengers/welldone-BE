@@ -40,9 +40,10 @@
               No results found. Please, try a new search
             </div>
         {% endfor %}
+        {% if article_list and article_list.paginator.num_pages > 1 %}
+            {% include 'pagination.html' with list=article_list params=query_params %}
+        {% endif %}
     </div>
-
-    {% include 'pagination.html' with list=article_list params=query_params %}
 
     {% load static %}
     <script src="{% static 'get-url-params.js' %}"></script>

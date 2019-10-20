@@ -147,7 +147,9 @@
                         <hr>
                     </div>
                 {% endfor %}
+            {% if comments and comments.paginator.num_pages > 1 %}
                 {% include 'pagination.html' with list=comments params=shown_param %}
+            {% endif %}
             </div>
         </section>
     </div>

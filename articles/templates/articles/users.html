@@ -32,6 +32,8 @@
             </div>
             {% endfor %}
        </div>
-        {% include 'pagination.html' with list=users params=query_params %}
+       {% if users and users.paginator.num_pages > 1 %}
+            {% include 'pagination.html' with list=users params=query_params %}
+       {% endif %} 
     </div>
 {% endblock %}
