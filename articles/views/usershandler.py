@@ -17,8 +17,7 @@ class UserListView(View):
 
         context = dict(
             users=users_list,
-            query_params=query_params,
-            search=search
+            query_params=query_params
         )
         return HttpResponse(render(request, 'articles/users.html', context))
 
