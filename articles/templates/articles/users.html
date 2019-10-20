@@ -14,7 +14,7 @@
     <div class="authors">
         <form method="get">
           <div class="form-group">
-            <input type="text" class="form-control form-field" id="author" placeholder="Author">
+            <input type="text" class="form-control form-field" id="author" placeholder="Author" name="author" value="{{ author }}">
           </div>
           <button type="submit" class="btn btn-primary button-form">Search</button>
         </form>
@@ -26,6 +26,10 @@
                     <a href="{% url 'user_articles' user.username %}">{{ user.username }}</a>
                   </div>
                 </div>
+            {% empty %}
+            <div class="alert alert-danger text-center" role="alert">
+              No results found. Please, try a new search
+            </div>
             {% endfor %}
        </div>
         {% include 'pagination.html' with list=users params=query_params %}
