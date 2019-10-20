@@ -13,14 +13,15 @@
     {% load bootstrap4 %}
     {% bootstrap_css %}
     <link rel="stylesheet" href="{% sass_src 'base.scss' %}" type="text/css">
+    <link rel="stylesheet" href="{% sass_src 'header.scss' %}" type="text/css">
     {% block css %}{% endblock %}
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light">
             <h1><a class="navbar-brand" href="{% url 'latest_articles' %}">
-              <img class="brand_mobile"src="{% static 'images/wd.png'%}" alt="Welldone">
-              <span class="brand_desktop">WellDone</span>
+              <img class="brand_mobile"src="{% static 'images/wd.png'%}">
+              <img class="brand_desktop"src="{% static 'images/wd_desktop.png'%}">
             </a></h1>
 
             <form action="" method="get" class="searcher">
@@ -35,7 +36,7 @@
                     {% if user.is_authenticated %}
                     {% if user.username %}
                     <li>
-                         <a class="nav-link" href="#"><span> Hi, {{ user.first_name }}!</span></a>
+                         <span class="navbar-text"> Hi, {{ user.first_name }}!</span>
                     </li>
                     {% endif %}
                      <li class="nav-item active">

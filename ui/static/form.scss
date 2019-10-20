@@ -14,10 +14,24 @@
   }
 }
 
+.link-form {
+    text-align: right;
+
+    a {
+        color: cadetblue;
+
+        &:hover {
+            text-decoration: none;
+            font-weight: bold;
+        }
+    }
+
+}
+
 .button-form{
   display: inline-block;
   border-radius: 8px;
-  background-color: #000000;
+  background: cadetblue;
   border: none;
   color: #FFFFFF;
   text-align: center;
@@ -56,9 +70,9 @@
 }
 
 .button-form:hover {
-  background-color: #A9A9A9;
-  color: #000000;
-  font-weight: 700;
+  background: cadetblue;
+  color: white;
+  font-weight: bold;
 }
 
 .button-form:hover span {
@@ -73,12 +87,12 @@
 }
 
 .form-field{
-  border:none;
+  border: none;
   background: lightgrey;
   border-radius: 8px;
   font-size: #{$font-size-m};
   width: 100%;
-  padding: 10px;
+  padding: .8rem;
   @include desktop {
     font-size: #{$font-size-d};
   }
@@ -86,12 +100,11 @@
 }
 
 .form-field-sm{
-  border:none;
-  background: lightgrey;
   border-radius: 8px;
+  background: lightgrey;
   font-size: #{$font-size-m};
   width: 100%;
-  padding: .5em 0 .5em 0;
+  padding: .8rem;
   @include desktop {
     font-size: #{$font-size-d};
   }

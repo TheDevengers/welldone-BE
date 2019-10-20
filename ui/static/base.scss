@@ -1,4 +1,5 @@
-@import "header.scss";
+@import "media_queries";
+@import "variables";
 
 html, body {
     height:100%;
@@ -69,4 +70,22 @@ footer {
 
 a {
   text-decoration: none;
+}
+
+input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus,
+    select:-webkit-autofill,
+    select:-webkit-autofill:hover,
+    select:-webkit-autofill:focus {
+    border: none;
+    -webkit-text-fill-color: black;
+    -webkit-box-shadow: 0 0 0px 1000px lightgrey inset;
+    font-size: #{$font-size-m};
+    @include desktop {
+     font-size: #{$font-size-d};
+    }
 }

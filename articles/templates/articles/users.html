@@ -3,7 +3,7 @@
 
 {% block css %}
     {% load sass_tags %}
-    <link rel="stylesheet" href="{% sass_src 'body-three-cols.scss' %}" type="text/css">
+    <link rel="stylesheet" href="{% sass_src 'authors.scss' %}" type="text/css">
     <link rel="stylesheet" href="{% sass_src 'form.scss' %}" type="text/css">
     <link rel="stylesheet" href="{% sass_src 'pagination.scss' %}" type="text/css">
 {% endblock %}
@@ -11,31 +11,25 @@
 {% block head_title %} WellDone | Authors {% endblock %}
 
 {% block body_main %}
-    <div class="three-cols">
-        <div class="left">
-            <form method="get">
-                <div>
-                    <input class="form-field-sm" type="text" name="search" placeholder="Author">
+    <div class="authors">
+        <form method="get">
+          <div class="form-group">
+            <input type="text" class="form-control form-field" id="author" placeholder="Author">
+          </div>
+          <button type="submit" class="btn btn-primary button-form">Search</button>
+        </form>
+
+       <div class="authors__name">
+            {% for user in users %}
+                <div class="card">
+                  <div class="card-body">
+                    <a href="{% url 'user_articles' user.username %}">{{ user.username }}</a>
+                  </div>
                 </div>
-                <div>
-                    <button class="button-form" type="submit" id="button-search">Search</button>
-                </div>
-            </form>
-        </div>
-
-        <div class="middle">
-            <div class="auth-grid">
-
-                    {% for user in users %}
-                        <a href="{% url 'user_articles' user.username %}">{{ user.username }}</a>
-                    {% endfor %}
-
-            </div>
-            <br/>
-        {% if users and users.paginator.num_pages > 1 %}
+            {% endfor %}
+       </div>
+       {% if users and users.paginator.num_pages > 1 %}
             {% include 'pagination.html' with list=users params=query_params %}
-        {% endif %}
-        </div>
-        <div class="rigth"></div>
+       {% endif %} 
     </div>
 {% endblock %}

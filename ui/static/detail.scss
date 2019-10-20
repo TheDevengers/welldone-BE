@@ -1,7 +1,8 @@
 @import 'media_queries';
+@import 'variables';
 
 .article-detail__title {
-    color: green;
+    color: cadetblue;
     text-align: center;
 }
 
@@ -38,6 +39,14 @@
 
         p {
             display: inline-block;
+
+            a {
+                color: cadetblue;
+                &:hover {
+                    text-decoration: none;
+                    font-weight: bold;
+                }
+            }
         }
     }
 }
@@ -62,12 +71,17 @@
     .categories__category {
         display: inline-block;
         background-color: black;
-        border-radius: 0.5rem;
-        padding: 1.2rem;
+        border-radius: 8px;
+        padding: 0.2em 0.5em;
 
         a {
             color: white;
             font-size: 2rem;
+
+            &:hover {
+                text-decoration: none;
+                font-weight: bold;
+            }
 
             @include desktop {
                 font-size: 1rem;
@@ -107,6 +121,14 @@
 
         p {
             margin: 0;
+            font-size: $font-size-m;
+            @include desktop {
+                font-size: $font-size-d;
+            }
+
+            @include largeDesktop {
+                 font-size: $font-size-d;
+             }
         }
 
         .comment__text {
@@ -114,8 +136,34 @@
         }
 
         .comment__info {
-            font-size: 0.8rem;
             font-style: italic;
+             p {
+                font-size: $font-size-m - 0.4rem;
+                @include desktop {
+                    font-size: $font-size-d - 0.5rem;
+                }
+
+                 @include largeDesktop {
+                     font-size: $font-size-d - 0.4rem;
+                 }
+             }
+
+            a {
+                color: cadetblue;
+                 font-size: $font-size-m - 0.4rem;
+                 @include desktop {
+                    font-size: $font-size-d - 0.5rem;
+                 }
+
+                 @include largeDesktop {
+                     font-size: $font-size-d - 0.4rem;
+                 }
+
+                &:hover {
+                    text-decoration: none;
+                    font-weight: bold;
+                }
+            }
         }
 
     }

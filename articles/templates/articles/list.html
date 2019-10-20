@@ -10,7 +10,7 @@
 
 {% block body_main %}
     <div class="article__list">
-        <select class="date_order" id="date_order" name="date_order">
+        <select class="custom-select date_order" id="date_order" name="date_order">
             <option value="-date">Newer articles first</option>
             <option value="date">Older articles first</option>
         </select>
@@ -21,16 +21,18 @@
                 </a>
                 <small class="article__item__info">
                     <a href="{% url 'user_articles' article.author.username %}">{{ article.author.first_name }} {{ article.author.last_name }}</a>
-                    | {{ article.publication_date }}
+                    | <span>{{ article.publication_date }}</span>
                 </small>
                 <a class="article__item__image" href="{% url 'article_detail' article.author.username article.slug %}">
                     <img src="{{ article.image }}" alt="{{ article.title }}" title="{{ article.title }}">
                 </a>
                 <p class="article__item__intro">{{ article.introduction }}</p>
                 <div class="article__item__categories">
-                    {% for category in article.categories.all %}
-                        <a href="{% url 'category_articles' category.slug %}" title="{{ category }} articles">{{ category }}</a>
+                    <ul>
+                        {% for category in article.categories.all %}
+                        <li><a href="{% url 'category_articles' category.slug %}" title="{{ category }} articles">{{ category }}</a></li>
                     {% endfor %}
+                    </ul>
                 </div>
             </article>
         {% empty %}
