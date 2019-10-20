@@ -24,7 +24,7 @@
               <img class="brand_desktop"src="{% static 'images/wd_desktop.png'%}">
             </a></h1>
 
-            <form action="" method="get" class="searcher">
+            <form action="{% url 'latest_articles' %}" method="get" class="searcher">
                 <input class="form-control" type="search" name="search" id="search" placeholder="search..." value={{ search }}>
             </form>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
