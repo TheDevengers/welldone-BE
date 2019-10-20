@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{% sass_src 'pagination.scss' %}" type="text/css">
 {% endblock %}
 
-{% block head_title %} WellDone | Articles {% endblock %}
+{% block head_title %} WellDone | Authors {% endblock %}
 
 {% block body_main %}
     <div class="three-cols">
@@ -31,9 +31,10 @@
                     {% endfor %}
 
             </div>
-
+            <br/>
+        {% if users and users.paginator.num_pages > 1 %}
             {% include 'pagination.html' with list=users params=query_params %}
-
+        {% endif %}
         </div>
         <div class="rigth"></div>
     </div>

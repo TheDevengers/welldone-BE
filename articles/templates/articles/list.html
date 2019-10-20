@@ -33,10 +33,12 @@
                     {% endfor %}
                 </div>
             </article>
-            {% include 'pagination.html' with list=article_list params=query_params %}
         {% empty %}
             <p>No results found. Please, try a new search</p>
         {% endfor %}
+        {% if article_list and article_list.paginator.num_pages > 1 %}
+            {% include 'pagination.html' with list=article_list params=query_params %}
+        {% endif %}
     </div>
 
     {% load static %}
