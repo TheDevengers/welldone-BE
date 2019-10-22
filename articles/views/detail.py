@@ -66,7 +66,8 @@ class CommentsView(View):
 class FavoriteView(View):
     def post(self, request, slug=None):
         FavoriteController.add_favorite(request=request, slug=slug)
-        return redirect('article_detail', username=request.user, slug=slug)
+        article = get_object_or_404(Article, slug=slug)
+        return redirect('article_detail', username=article.author, slug=slug)
 
 
 class ResponseToView(View):
