@@ -15,6 +15,7 @@ class SignupForm(UserCreationForm):
         user.email = self.cleaned_data.get("email")
         if commit:
             user.save()
+            Profile.objects.create(user=user)
         return user
 
 
