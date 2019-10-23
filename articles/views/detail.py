@@ -60,7 +60,8 @@ class ArticleDetailView(View):
 class CommentsView(View):
     def post(self, request, slug=None):
         CommentsController.create_new_comment(request=request, slug=slug)
-        return redirect('article_detail', username=request.user, slug=slug)
+        article = get_object_or_404(Article, slug=slug)
+        return redirect('article_detail', username=article.author, slug=slug)
 
 
 class FavoriteView(View):
@@ -73,4 +74,5 @@ class FavoriteView(View):
 class ResponseToView(View):
     def post(self, request, slug=None):
         CreateArticle.create_new_article(request=request, slug=slug)
-        return redirect('article_detail', username=request.user, slug=slug)
+        article = get_object_or_404(Article, slug=slug)
+        return redirect('article_detail', username=article.author, slug=slug)
