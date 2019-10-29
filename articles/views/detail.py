@@ -11,7 +11,7 @@ from articles.forms import CommentForm
 from articles.controllers import CommentsController, FavoriteController
 from users.models import Follower
 from articles.forms import CommentForm, ArticleForm
-from articles.controllers import CommentsController, FavoriteController, CreateArticle
+from articles.controllers import CommentsController, FavoriteController, CreateArticle, DetailsController
 
 DEFAULT_COMMENTS_SHOWN = 10
 
@@ -21,58 +21,56 @@ class ArticleDetailView(View):
     def get(self, request, username, slug):
         comments_page = request.GET.get('page')
         comments_shown = request.GET.get('shown', DEFAULT_COMMENTS_SHOWN)
-        shown_param = '&shown={0}'.format(comments_shown) if comments_shown != DEFAULT_COMMENTS_SHOWN else ''
-        article = get_object_or_404(Article.objects.select_related('author'), Q(author__username=username) & Q(slug=slug) & Q(publication_date__lte=datetime.now()) & Q(state__exact='PB'))
 
-        comments_list = Comment.objects.select_related('article').all().filter(article=article.pk).order_by(
-            '-creation_date')
-
-        paginator = Paginator(comments_list, comments_shown)
-
-        comments = paginator.get_page(comments_page)
-
-        form = CommentForm()
-
-        response = ArticleForm()
-
-        is_followed = True if request.user.is_authenticated and Follower.objects.filter(follower=request.user,
-                                                                                        followed=article.author).exists() else False
-
-        is_favorite = True if request.user.is_authenticated and Favorite.objects.filter(article=article,
-                                                                                        user=request.user).exists() else False
-
-        context = {'article': article,
-                   'username': username,
-                   'comments': comments,
-                   'shown_param': shown_param,
-                   'form': form,
-                   'is_favorite': is_favorite,
-                   'response': response,
-                   'is_followed': is_followed
-                   }
+        context = DetailsController.create_detail_article(comments_shown=comments_shown,
+                                                          username=username,
+                                                          slug=slug,
+                                                          comments_page=comments_page,
+                                                          user=request.user)
 
         html = render(request, 'articles/detail.html', context)
 
         return HttpResponse(html)
 
 
-
 class CommentsView(View):
+
     def post(self, request, slug=None):
-        CommentsController.create_new_comment(request=request, slug=slug)
+
+        comment_form = CommentsController.create_new_comment(user=request.user,
+                                                             slug=slug,
+                                                             title=request.POST.get('title'),
+                                                             text=request.POST.get('text'))
         article = get_object_or_404(Article, slug=slug)
-        return redirect('article_detail', username=article.author, slug=slug)
+        context = DetailsController.create_detail_article(username=article.author,
+                                                          slug=slug,
+                                                          user=request.user,
+                                                          comment_form=comment_form)
+        return HttpResponse(render(request, 'articles/detail.html', context))
 
 
 class FavoriteView(View):
+
     def post(self, request, slug=None):
-        FavoriteController.add_favorite(request=request, slug=slug)
+
+        FavoriteController.add_favorite(user=request.user, slug=slug)
+
         article = get_object_or_404(Article, slug=slug)
-        return redirect('article_detail', username=article.author, slug=slug)
+        context = DetailsController.create_detail_article(username=article.author,
+                                                          slug=slug,
+                                                          user=request.user)
+        return HttpResponse(render(request, 'articles/detail.html', context))
 
 
 class ResponseToView(View):
+
     def post(self, request, slug=None):
-        CreateArticle.create_new_article(request=request, slug=slug)
+        article_form = CreateArticle.create_new_article(user=request.user,
+                                                        values=request.POST,
+                                                        slug=slug)
         article = get_object_or_404(Article, slug=slug)
-        return redirect('article_detail', username=article.author, slug=slug)
+        context = DetailsController.create_detail_article(username=article.author,
+                                                          slug=slug,
+                                                          user=request.user,
+                                                          article_form=article_form)
+        return HttpResponse(render(request, 'articles/detail.html', context))

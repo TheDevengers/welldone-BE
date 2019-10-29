@@ -79,6 +79,7 @@
                 <div class="form-area add-comment">
                     <h3>Create a new comment</h3>
                     <form  method="post" action="{% url 'article_comments' article.slug %}">
+
                         {% csrf_token %}
                         {{ form.non_field_errors }}
                         {{ form.active.errors }}
