@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block css %}
+    {% load sass_tags %}
+    <link rel="stylesheet" href="{% sass_src 'categories.scss' %}" type="text/css">
+{% endblock %}
+
+{% block head_title %} WellDone | Categories {% endblock %}
+
+{% block body_main %}
+    <div class="categories">
+        {% for category in categories %}
+        <div class="card">
+          <div class="card-body">
+            <a href="{% url 'category_articles' category.slug %}">{{ category.name }}</a>
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

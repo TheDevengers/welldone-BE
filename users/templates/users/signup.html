@@ -6,9 +6,7 @@
     <link rel="stylesheet" href="{% sass_src 'form.scss' %}" type="text/css">
 {% endblock %}
 
-{% block main_title %}
-Singup
-{% endblock %}
+{% block head_title %} WellDone | Sign Up {% endblock %}
 
 
 {% block body_main %}
@@ -55,7 +53,7 @@ Singup
                 {{ form.email.errors }} <br>
 
                 <div>
-                    <button class="button-form" type="submit">singup</button>
+                    <button class="button-form" type="submit">Sign Up</button>
                 </div>
             </form>
         </div>

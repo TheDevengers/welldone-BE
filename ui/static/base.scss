@@ -1,59 +1,91 @@
+@import "media_queries";
+@import "variables";
+
+html, body {
+    height:100%;
+    margin:0;
+}
+
 body {
-  display: grid;
-  grid-template-areas:
-      'header'
-      'main'
-      'footer';
-  grid-column-gap: 0;
-  grid-template-columns: auto;
+  display: flex;
+  flex-direction: column;
   font-family: 'Roboto', sans-serif;
-  margin: 0;
 }
 
 header {
-  grid-area: header;
   border-bottom: 2px solid dimgrey;
-  padding: 1em;
+  padding: 1em 1em 0 1em;
 
-  display: grid;
-  grid-template-areas:
-    'brand  searcher'
-    'nav    nav';
-  grid-template-columns: auto 70%;
-  align-items: center;
-
-  h1 {
-    grid-area: brand;
-  }
-
-  .searcher {
-    grid-area: searcher;
-    label {
-      display: none;
-    }
-    input {
-      padding: 1em;
-      width: 100%;
-      border: 1px solid grey;
-      border-radius: 25px;
-    }
-  }
-
-  nav {
-    grid-area: nav;
-  }
 }
 main {
-  grid-area: main;
   padding: 2em;
 }
 footer {
-  grid-area: footer;
+  margin-top: auto;
   background: black;
   color: whitesmoke;
   padding: 2em;
+  p {
+    font-family: 'Passion One', cursive;
+    font-size: 40px;
+    margin: 0;
+  }
+
+  .copyright {
+    box-sizing: inherit;
+    margin: 0;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif;
+    font-weight: 300;
+    line-height: 20px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 12px;
+  }
+
+  .links-list {
+    display: flex;
+    flex-wrap: wrap;
+    text-decoration: none;
+    list-style: none;
+    justify-content: flex-start
+  }
+
+  ul li {
+    display: inline-block;
+    padding: 5px 10px;
+  }
+
+  .link {
+    color: white
+  }
+
+  .link:hover {
+    color: cadetblue;
+    text-decoration: none;
+  }
+  
+  a {
+    text-decoration: none;
+  }
 }
 
 a {
   text-decoration: none;
+}
+
+input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus,
+    select:-webkit-autofill,
+    select:-webkit-autofill:hover,
+    select:-webkit-autofill:focus {
+    border: none;
+    -webkit-text-fill-color: black;
+    -webkit-box-shadow: 0 0 0px 1000px lightgrey inset;
+    font-size: #{$font-size-m};
+    @include desktop {
+     font-size: #{$font-size-d};
+    }
 }

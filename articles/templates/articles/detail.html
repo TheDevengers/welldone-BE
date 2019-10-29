@@ -5,89 +5,161 @@
     {% load sass_tags %}
     <link rel="stylesheet" href="{% sass_src 'form.scss' %}" type="text/css">
     <link rel="stylesheet" href="{% sass_src 'pagination.scss' %}" type="text/css">
+    <link rel="stylesheet" href="{% sass_src 'detail.scss' %}" type="text/css">
     <script src="https://kit.fontawesome.com/6c46e41581.js" crossorigin="anonymous"></script>
 {% endblock %}
 
 {% block head_title %} WellDone | {{ article.title }} {% endblock %}
 
 {% block body_main %}
-    <h1>{{ article.title }}</h1>
-    <img src={{ article.image }} alt={{ article.title }}
-         title="{{ article.name }} by {{ article.author.first_name }} {{ article.author.last_name }}" height="200">
-    <p>By <a href="{% url 'user_articles' article.author.username %}">{{ article.author.first_name }} {{ article.author.last_name }}</a>
-        {% if user.is_authenticated and request.user != article.author%}
-            <div class="form-area">
-                {% if not is_followed %}
-                    <form method="post" action="{% url 'user_follow' article.author %}">
-                    {% csrf_token %}
-                    <button class="button-form" type="submit">Follow</button>
-                {% else %}
-                    <form method="post" action="{% url 'user_unfollow' article.author %}">
-                    {% csrf_token %}
-                    <button class="button-form" type="submit">Unfollow</button>
-                {% endif %}
-                </form>
-            </div>
+    <script>
+        function openCreateArticleForm(){
+            $('.add-comment').hide();
+            $('.response-article').toggle();
+        }
+
+        function openCreateCommentForm(){
+            $('.response-article').hide();
+            $('.add-comment').toggle();
+        }
+    </script>
+    <div class="article-detail">
+        <h1 class="article-detail__title">{{ article.title }}</h1>
+        {% if article.image %}
+        <img class="article-detail__img" src={{ article.image }} alt={{ article.title }}
+             title="{{ article.name }} by {{ article.author.first_name }} {{ article.author.last_name }}">
         {% endif %}
-    </p>
-    <p>Published on {{ article.publication_date }}</p>
-    <div class="article__sharing">
-        <a class="twitter-share-button"
-           href="https://twitter.com/intent/tweet?text={{ article.title|urlencode }}&url={{ request.build_absolute_uri|slice:"0:-1" }}{% url 'article_detail' article.author.username article.slug %}"
-           target="_blank">
-            <i class="fab fa-twitter-square fa-2x"></i>
-        </a>
-    </div>
-    <p><a href="#comments">{{ comments.paginator.count }} comment{{ comments.paginator.count|pluralize }}</a></p>
-    <p>Categories:
-        {% for category in article.categories.all %}
-            <a href="{% url 'category_articles' category.slug %}" title="{{ category }} articles">{{ category }}</a>
-        {% endfor %}
-    <p>{{ article.introduction }}</p>
-    <p>{{ article.body }}</p>
+        <div class="article-detail__author">
+            <p>Published on {{ article.publication_date }}</p>
 
-    {% if user.is_authenticated %}
-        <div class="form-area">
-             <form  method="post" action="{% url 'article_favorites' article.slug %}">
-                 {% csrf_token %}
-                 {% if is_favorite == False %}
-                    <button class="button-form" type="submit">Add to favorite</button>
-                 {% else %}
-                    <button class="button-form" disabled>Is in your favorites</button>
-                 {% endif %}
-             </form>
+            <div class="form-area author__info">
+                <p>By <a href="{% url 'user_articles' article.author.username %}">{{ article.author.first_name }} {{ article.author.last_name }}</a></p>
+                {% if user.is_authenticated and request.user != article.author%}
+                    {% if not is_followed %}
+                        <form method="post" action="{% url 'user_follow' article.author %}">
+                            {% csrf_token %}
+                            <button class="button-form" type="submit">Follow</button>
+                        </form>
+                    {% else %}
+                        <form method="post" action="{% url 'user_unfollow' article.author %}">
+                            {% csrf_token %}
+                            <button class="button-form" type="submit">Unfollow</button>
+                    {% endif %}
+                        </form>
+                {% endif %}
+            </div>
         </div>
-    {% endif %}
-    <h2 id="comments">{{ comments.paginator.count }} Comment{{ comments.paginator.count|pluralize }}:</h2>
-    {% if user.is_authenticated %}
-        <div class="form-area">
-            <form  method="post" action="{% url 'article_comments' article.slug %}">
-                {% csrf_token %}
-                {{ form.non_field_errors }}
-                {{ form.active.errors }}
 
-                {{ form.title.label_tag }} <br>
-                {{ form.title|add_class:"form-field" }} <br>
-                {{ form.title.errors }} <br>
+        <div class="article-detail__content">
+            <h2 class="content__introduction">{{ article.introduction }}</h2>
+            <p class="content__body">{{ article.body }}</p>
+        </div>
 
-                {{ form.text.label_tag }} <br>
-                {{ form.text|add_class:"form-texttarea" }} <br>
-                {{ form.text.errors }} <br>
-                <div>
-                    <button class="button-form" type="submit">Add comment</button>
+        <div class="article-detail__categories">
+            {% for category in article.categories.all %}
+            <div class="categories__category">
+                <a href="{% url 'category_articles' category.slug %}" title="{{ category }} articles">{{ category }}</a>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="article__sharing">
+            <a class="twitter-share-button"
+               href="https://twitter.com/intent/tweet?text={{ article.title|urlencode }}&url={{ request.build_absolute_uri|slice:"0:-1" }}{% url 'article_detail' article.author.username article.slug %}"
+               target="_blank">
+                <i class="fab fa-twitter-square fa-2x"></i>
+            </a>
+        </div>
+
+        <div class="article-details__actions">
+            {% if user.is_authenticated %}
+                <div class="button-group">
+                     <form  method="post" action="{% url 'article_favorites' article.slug %}">
+                         {% csrf_token %}
+                         {% if is_favorite == False %}
+                            <button class="button-form" type="submit">&#x2764;</button>
+                         {% else %}
+                            <button class="button-form" disabled>&#x2764;</button>
+                         {% endif %}
+                     </form>
+                    <button class="button-form" onclick="openCreateCommentForm()">Add a new comment</button>
+                    <button class="button-form" onclick="openCreateArticleForm()">Response with an article</button>
                 </div>
-            </form>
-        </div>
-    {% endif %}
-    <section>
-        {% for comment in comments %}
-            <i><p>By <a href="{% url 'user_articles' comment.author.username %}">{{ comment.author.first_name }} {{ comment.author.last_name }}</a>,
-                on {{ comment.creation_date }}</p></i>
-            <h4>{{ comment.title }}</h4>
-            <p>{{ comment.text }}</p>
-            <br>
-        {% endfor %}
+                <div class="form-area add-comment">
+                    <h3>Create a new comment</h3>
+                    <form  method="post" action="{% url 'article_comments' article.slug %}">
+                        {% csrf_token %}
+                        {{ form.non_field_errors }}
+                        {{ form.active.errors }}
 
-        {% include 'pagination.html' with list=comments params=shown_param %}
-    </section>
+                        {{ form.title.label_tag }} <br>
+                        {{ form.title|add_class:"form-field" }} <br>
+                        {{ form.title.errors }} <br>
+
+                        {{ form.text.label_tag }} <br>
+                        {{ form.text|add_class:"form-texttarea" }} <br>
+                        {{ form.text.errors }} <br>
+                        <div>
+                            <button class="button-form" type="submit">post</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="form-area response-article">
+                    <h3>Create a new article</h3>
+                    <form  method="post" action="{% url 'article_response_to' article.slug %}">
+                        {% csrf_token %}
+                        {{ response.non_field_errors }}
+                        {{ response.active.errors }}
+
+                        {{ response.title.label_tag }} <br>
+                        {{ response.title|add_class:"form-field" }} <br>
+                        {{ response.title.errors }} <br>
+
+                        {{ response.introduction.label_tag }} <br>
+                        {{ response.introduction|add_class:"form-field" }} <br>
+                        {{ response.introduction.errors }} <br>
+
+                        {{ response.body.label_tag }} <br>
+                        {{ response.body|add_class:"form-texttarea" }} <br>
+                        {{ response.body.errors }} <br>
+
+                        {{ response.image.label_tag }} <br>
+                        {{ response.image|add_class:"form-texttarea" }} <br>
+                        {{ response.image.errors }} <br>
+
+                        {{ response.categories.label_tag }} <br>
+                        {{ response.categories|add_class:"form-checkbox" }} <br>
+                        {{ response.categories.errors }} <br>
+
+                        {{ response.state.label_tag }} <br>
+                        {{ response.state|add_class:"form-texttarea" }} <br>
+                        {{ response.state.errors }} <br>
+
+                        <div>
+                            <button class="button-form" type="submit">post</button>
+                        </div>
+                    </form>
+                </div>
+            {% endif %}
+        </div>
+
+        <section class="article-detail__comments">
+            <h2 id="comments" class="comments__counter">{{ comments.paginator.count }} Comment{{ comments.paginator.count|pluralize }}:</h2>
+
+            <div class="comments__comment">
+                {% for comment in comments %}
+                    <h3>{{ comment.title }}</h3>
+                    <p class="comment__text">{{ comment.text }}</p>
+                    <div class="comment__info">
+                        <p>By <a href="{% url 'user_articles' comment.author.username %}">{{ comment.author.first_name }} {{ comment.author.last_name }}</a></p>
+                        <p>{{ comment.creation_date }}</p></p>
+                        <hr>
+                    </div>
+                {% endfor %}
+            {% if comments and comments.paginator.num_pages > 1 %}
+                {% include 'pagination.html' with list=comments params=shown_param %}
+            {% endif %}
+            </div>
+        </section>
+    </div>
 {% endblock %}

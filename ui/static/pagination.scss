@@ -1,11 +1,28 @@
+@import 'media_queries';
+@import 'variables';
+
+
 .pagination {
+  display: block;
   text-align: center;
+  margin-top: 2rem;
+  font-size: $font-size-m;
+  @include desktop {
+        font-size: $font-size-d;
+  }
+
+   @include largeDesktop {
+        font-size: $font-size-d;
+   }
 
   &__links {
     a {
       font-size: 1.5em;
       padding: 0 0.3em;
       border: 1px solid grey;
+      color: white;
+      background-color: cadetblue;
+      border-radius: 25%;
     }
   }
 }

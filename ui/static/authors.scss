@@ -1,0 +1,85 @@
+@import "media_queries";
+@import "variables";
+
+.authors {
+    form {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .form-group {
+        margin: 0;
+        width: 80%;
+
+        @include desktop {
+             width: 90%;
+        }
+
+         @include desktop {
+             width: 90%;
+         }
+    }
+
+    .authors__name{
+
+        margin-top: 2rem;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 1rem;
+
+         @include desktop {
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+         }
+
+         @include largeDesktop {
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+         }
+
+         .alert {
+                grid-column-start: 1;
+                grid-column-end: 5;
+                font-size: $font-size-m;
+
+                @include desktop {
+                    font-size: $font-size-d;
+                 }
+
+                 @include largeDesktop {
+                    font-size: $font-size-d;
+                 }
+         }
+
+         .card {
+            -webkit-box-shadow: 4px 6px 8px -6px rgba(0,0,0,0.75);
+            -moz-box-shadow: 4px 6px 8px -6px rgba(0,0,0,0.75);
+            box-shadow: 4px 6px 8px -6px rgba(0,0,0,0.75);
+
+            .card-body {
+                text-align: center;
+                a {
+                    color: black;
+                    font-size: $font-size-m;
+                    transition: all .2s ease-in;
+
+                    @include desktop {
+                        font-size: $font-size-d;
+                     }
+
+                     @include largeDesktop {
+                        font-size: $font-size-d;
+                     }
+
+                    &:hover {
+                        font-weight: bold;
+                        color: black;
+                        text-decoration: none;
+                    }
+                }
+
+            }
+        }
+
+    }
+}

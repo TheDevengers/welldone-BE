@@ -2,6 +2,10 @@ from datetime import datetime
 
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.shortcuts import get_object_or_404
+
+from articles.models import Article, Category
+from articles.forms import ArticleForm
 
 DEFAULT_SHOWN = 10
 SEARCH_RESULTS = 20
@@ -22,6 +26,7 @@ class ListArticles(object):
         query_params = None
         query_params = query_params + '&shown={0}'.format(shown) if shown != DEFAULT_SHOWN else ''
         query_params = query_params + '&search={0}'.format(search) if search != '' else ''
+        query_params = query_params + '&order={0}'.format(date_order) if date_order != '' else ''
 
         article_list = article_objects.select_related('author').all()\
             .filter(publication_date__lte=datetime.now(), state__exact='PB')\
@@ -42,3 +47,23 @@ class ListArticles(object):
         }
 
         return context
+
+
+class CreateArticle(object):
+
+    @staticmethod
+    def create_new_article(request, slug):
+        article = Article()
+        article.author = request.user
+        article.response_to = get_object_or_404(Article, slug=slug)
+        form = ArticleForm(request.POST, instance=article)
+        if form.is_valid():
+            form.save()
+            categories_selected = form.cleaned_data['categories']
+            categories = []
+            for category_selected in categories_selected:
+                obj = Category.objects.get(id=category_selected.id)
+                categories.append(obj)
+            article.categories.add(*categories)
+            form.save()
+

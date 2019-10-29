@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block head_title %} WellDone | Error {% endblock %}
+
+{% block css %}
+    {% load sass_tags %}
+    <link rel="stylesheet" href="{% sass_src 'error.scss' %}" type="text/css">
+{% endblock %}
+
+{% block body_main %}
+    <div class="alert alert-danger text-center" role="alert">
+      Ups, there is a problem. Try again!
+    </div>
+{% endblock %}

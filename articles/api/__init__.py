@@ -1,1 +1,1 @@
-from .api import ArticlesAPI, ArticleAPI, CategoriesAPI
+from .api import ArticlesAPI, ArticleAPI, CategoriesAPI, FavoritesAPI
