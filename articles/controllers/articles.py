@@ -52,11 +52,11 @@ class ListArticles(object):
 class CreateArticle(object):
 
     @staticmethod
-    def create_new_article(request, slug):
+    def create_new_article(user, values, slug):
         article = Article()
-        article.author = request.user
+        article.author = user
         article.response_to = get_object_or_404(Article, slug=slug)
-        form = ArticleForm(request.POST, instance=article)
+        form = ArticleForm(values, instance=article)
         if form.is_valid():
             form.save()
             categories_selected = form.cleaned_data['categories']
@@ -66,4 +66,7 @@ class CreateArticle(object):
                 categories.append(obj)
             article.categories.add(*categories)
             form.save()
+            return None
+        else:
+            return form
 

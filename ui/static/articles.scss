@@ -7,7 +7,8 @@
       'image  title'
       'image  intro'
       'image  categories'
-      'image  info';
+      'image  info'
+      'image  sharing';
   grid-template-columns: 33% auto;
   margin-bottom: 2em;
   margin-left: 2em;
@@ -132,6 +133,9 @@
         font-weight: bold;
       }
     }
+  }
+  &__sharing {
+    grid-area: sharing;
   }
 }
 

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{% sass_src 'form.scss' %}" type="text/css">
     <link rel="stylesheet" href="{% sass_src 'pagination.scss' %}" type="text/css">
     <link rel="stylesheet" href="{% sass_src 'detail.scss' %}" type="text/css">
+    <script src="https://kit.fontawesome.com/6c46e41581.js" crossorigin="anonymous"></script>
 {% endblock %}
 
 {% block head_title %} WellDone | {{ article.title }} {% endblock %}
@@ -62,6 +63,14 @@
             {% endfor %}
         </div>
 
+        <div class="article__sharing">
+            <a class="twitter-share-button"
+               href="https://twitter.com/intent/tweet?text={{ article.title|urlencode }}&url={{ request.build_absolute_uri|slice:"0:-1" }}{% url 'article_detail' article.author.username article.slug %}"
+               target="_blank">
+                <i class="fab fa-twitter-square fa-2x"></i>
+            </a>
+        </div>
+
         <div class="article-details__actions">
             {% if user.is_authenticated %}
                 <div class="button-group">
@@ -79,6 +88,7 @@
                 <div class="form-area add-comment">
                     <h3>Create a new comment</h3>
                     <form  method="post" action="{% url 'article_comments' article.slug %}">
+
                         {% csrf_token %}
                         {{ form.non_field_errors }}
                         {{ form.active.errors }}
