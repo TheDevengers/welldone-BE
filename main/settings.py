@@ -171,7 +171,7 @@ SASS_OUTPUT_STYLE = 'compressed'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'main.authentication.tokenauthentication.TokenAuthentication',
     ],
 }
 
@@ -181,3 +181,5 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=int(env('ACCESS_TOKEN_LIFETIME'))),
     'USER_ID_CLAIM': 'user_id',
 }
+
+
