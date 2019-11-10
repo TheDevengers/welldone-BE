@@ -1,9 +1,14 @@
+import jwt
+import environ
 from django.shortcuts import render, redirect, resolve_url
 from django.views import View
 from django.contrib.auth import logout as django_logout, login as django_login, authenticate
 from django.contrib import messages
-
 from users.forms import LoginForm
+from main.authentication.tokengeneration import TokenGeneration
+
+env = environ.Env()
+environ.Env.read_env()
 
 
 class Login(View):
@@ -30,8 +35,19 @@ class Login(View):
             if user is None:
                 messages.error(request, 'usuario o contraseña incorrectos')
             else:
+                token = TokenGeneration.generateToken(user_id=user.id, email=user.email)
+                """payload = dict(
+                    id=user.id,
+                    email=user.email
+                )
+                token = jwt.encode(payload, env('SECRET_KEY'), 'HS256').decode('utf-8')
+                test = jwt.decode(token, env('SECRET_KEY'), 'HS256')"""
                 django_login(request, user)
-                return redirect('latest_articles')
+                target = redirect('latest_articles')
+                target.set_cookie(key='accessKey', value=token)
+                target.set_cookie(key='id', value=user.id)
+                target.set_cookie(key='username', value=user.username)
+                return target
         context = {'form': form}
         return render(request, 'users/login.html', context)
 
@@ -40,4 +56,8 @@ class Logout(View):
 
     def get(self, request):
         django_logout(request)
-        return redirect('latest_articles')
+        target = redirect('latest_articles')
+        target.delete_cookie(key='accessKey')
+        target.delete_cookie(key='id')
+        target.delete_cookie(key='username')
+        return target
