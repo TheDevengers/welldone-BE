@@ -8,7 +8,7 @@ django-environ==0.4.5
 django-sass-processor==0.7.3
 django-sendgrid-v5==0.8.0
 django-widget-tweaks==1.4.5
-djangorestframework==3.10.3
+djangorestframework==3.11.2
 djangorestframework-simplejwt==4.3.0
 future==0.17.1
 isort==4.3.21
